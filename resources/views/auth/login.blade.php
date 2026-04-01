@@ -10,7 +10,7 @@
     <x-header/> 
         <div class="flex flex-1 items-center justify-center">
             <div class="w-full max-w-xl text-center">
-                <h2 class="text-3xl mb-10">Connection</h2>
+                <h2 class="text-3xl font-bold mb-10">Connection</h2>
                 <x-auth-session-status class="mb-4" :status="session('status')" />
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
