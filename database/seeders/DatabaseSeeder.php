@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
         State::factory()->createMany(
             [
                 [
-                    'name' => 'Waiting to be sliced',
+                    'name' => 'waiting to be sliced',
                 ],
                 [
                     'name' => 'slicing error',
@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Benchy_Stress_Test',
                     'path'              => '/uploads/models/benchy/',
-                    'state'             => 'waiting to be sliced',
+                    'name_state'        => 'waiting to be sliced',
                     'stl_filename'      => '3dbenchy_v2.stl',
                     'gcode_filename'    => null, 
                     'filament'          => 14.5,
@@ -96,14 +96,13 @@ class DatabaseSeeder extends Seeder
                     'finish_at'         => null,  
                     'id_printer'        => null, 
 
-                    'name_state'        => 'Waiting to be sliced',
                     'id_slicer_profile' => 1,    
                     'id_user'           => 1,    
                 ],
                 [
                     'name'              => 'Moving_flower',
                     'path'              => '/uploads/models/flower/',
-                    'state'             => 'Waiting to be printed',
+                    'name_state'        => 'waiting to be printed',
                     'stl_filename'      => 'flower_full.stl',
                     'gcode_filename'    => 'flower_04noz_pla.gcode',
                     'filament'          => 60.7,
@@ -114,14 +113,13 @@ class DatabaseSeeder extends Seeder
                     'finish_at'         => null,
                     'id_printer'        => null,
 
-                    'name_state'        => 'waiting to be printed',
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,
                 ],
                 [
                     'name'              => 'Articulated_Dragon',
-                    'path'              => '/uploads/models/dragon/',
-                    'state'             => 'Finished',
+                    'path'              => '/uploads/models/dragon/',                    
+                    'name_state'        => 'printed',
                     'stl_filename'      => 'dragon_full.stl',
                     'gcode_filename'    => 'dragon_04noz_pla.gcode',
                     'filament'          => 150.2,
@@ -132,7 +130,6 @@ class DatabaseSeeder extends Seeder
                     'finish_at'         => now(),
                     'id_printer'        => 'Ender-3-V2-01',
 
-                    'name_state'        => 'printed',
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,
                 ],

@@ -23,7 +23,7 @@ class JobFactory extends Factory
         return [
             'name' => substr($this->faker->words(3, true), 0, 50),
             'path' => $this->faker->lexify('/uploads/jobs/'),
-            'state' => $this->faker->randomElement(['pending', 'processing', 'completed', 'failed']),
+            'name_state' => State::factory(),
             'stl_filename' => substr($this->faker->word() . '.stl', 0, 100),
             
             'gcode_filename' => null,
@@ -36,7 +36,7 @@ class JobFactory extends Factory
             'finish_at' => null,
             'id_printer' => null,
 
-            'name_state' => State::factory(),
+            
             'id_slicer_profile' => SlicerProfile::factory(),
             'id_user' => User::factory(),
         ];

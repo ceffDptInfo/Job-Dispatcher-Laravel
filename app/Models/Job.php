@@ -15,7 +15,7 @@ class Job extends Model
      protected $fillable = [
         'name',
         'path',
-        'state',
+        'name_state',
         'stl_filename',
         'gcode_filename',
         'filament',
@@ -27,7 +27,6 @@ class Job extends Model
         'id_printer',
         
         'id_slicer_profile',
-        'name_state',
         'id_user',
     ];
 
