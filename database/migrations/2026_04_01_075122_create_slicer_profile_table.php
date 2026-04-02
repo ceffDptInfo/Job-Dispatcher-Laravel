@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('path',150);
             $table->string('color',150);
             $table->string('material',150);
-
         });
     }
 

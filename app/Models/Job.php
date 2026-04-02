@@ -9,18 +9,23 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $table = 'job';
+    public $timestamps = false; 
+
      protected $fillable = [
         'name',
         'path',
-        'stl_filename',
-        'film_id',
         'state',
+        'stl_filename',
+        'gcode_filename',
         'filament',
-        'film_id',
-        'sliced_time',
-        'printing_time',
-        'finished_time',
+        'duration',
+        'create_at',
+        'slice_at',
+        'print_at',
+        'finish_at',
         'id_printer',
+        
         'id_slicer_profile',
         'id_user',
     ];

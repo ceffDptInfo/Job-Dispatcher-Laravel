@@ -20,16 +20,19 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->words(3, true),
-            'path' => '/uploads/jobs/' . $this->faker->uuid(),
-            'stl_filename' => $this->faker->word() . '.stl',
+            'name' => substr($this->faker->words(3, true), 0, 50),
+            'path' => $this->faker->lexify('/uploads/jobs/'),
+            'state' => $this->faker->randomElement(['pending', 'processing', 'completed', 'failed']),
+            'stl_filename' => substr($this->faker->word() . '.stl', 0, 100),
             
             'gcode_filename' => null,
             'filament' => $this->faker->randomFloat(2, 10, 500),
-            'created_time' => now(),
-            'sliced_time' => null,
-            'printing_time' => null,
-            'finished_time' => null,
+            'duration' => null,
+            
+            'create_at' => now(), 
+            'slice_at' => null,
+            'print_at' => null,
+            'finish_at' => null,
             'id_printer' => null,
 
             'id_slicer_profile' => SlicerProfile::factory(),

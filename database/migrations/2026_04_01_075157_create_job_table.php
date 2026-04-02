@@ -16,13 +16,15 @@ return new class extends Migration
 
             $table->string('name',50);
             $table->string('path',200);
+            $table->string('state',50);
             $table->string('stl_filename',100);
             $table->string('gcode_filename',100)->nullable();
-            $table->double('filament');
-            $table->dateTime('created_time');
-            $table->dateTime('sliced_time')->nullable();
-            $table->dateTime('printing_time')->nullable();
-            $table->dateTime('finished_time')->nullable();
+            $table->double('filament')->nullable();
+            $table->double('duration')->nullable();
+            $table->dateTime('create_at');
+            $table->dateTime('slice_at')->nullable();
+            $table->dateTime('print_at')->nullable();
+            $table->dateTime('finish_at')->nullable();
             $table->string('id_printer',50)->nullable();
 
             $table->foreignId('id_slicer_profile');
