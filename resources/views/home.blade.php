@@ -6,53 +6,34 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="div-login">
+    <div class="main-wrapper">
         <x-header/>
-        <div class="p-10">
+        <main class="content-container">
             <div class="div2-home">
                 <h2>Vos jobs</h2>
-                <div class="flex-1 flex items-center justify-end gap-6">
+                <div class="actions-header">
                     <a href="{{ route('jobs.create') }}" class="btn-add">Ajouter un job</a>
                 </div>
             </div>
-            <div class="flex justify-around mb-16 text-2xl mt-12">
-                <div class="flex items-center gap-4">Terminé : <span class="status-circle bg-green"></span></div>
-                <div class="flex items-center gap-4">En cours : <span class="status-circle bg-orange"></span></div>
-                <div class="flex items-center gap-4">En attente : <span class="status-circle bg-red"></span></div>
+            <div class="tasks-list">
+                @foreach ($jobs as $job)
+                    <div class="task-card">
+                        <div class="task-info">
+                            <span class="task-number">#{{ $loop->iteration }}</span>
+                            <strong class="task-name">{{ $job->name }}</strong>
+                            <span class="task-file">
+                                <i class="fas fa-file-code"></i> {{ $job->stl_filename }}
+                            </span>
+                        </div>
+                        
+                        <div class="task-status">
+                            <span class="status-label">Status :</span>
+                            <span class="status-text">{{ $job->name_state }}</span>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="max-w-5xl mx-auto space-y-6">
-                <div class="task-card">
-                    <div class="task-info">
-                        <span>Tâche: 1</span>
-                        <span>Fichier : fichier_a_imprimer</span>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <span>Status :</span>
-                        <span class="status-circle bg-green"></span>
-                    </div>
-                </div>
-                <div class="task-card">
-                    <div class="task-info">
-                        <span>Tâche: 2</span>
-                        <span>Fichier : fichier_a_imprimer</span>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <span>Status :</span>
-                        <span class="status-circle bg-orange"></span>
-                    </div>
-                </div>
-                <div class="task-card">
-                    <div class="task-info">
-                        <span>Tâche: 3</span>
-                        <span>Fichier : fichier_a_imprimer</span>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <span>Status :</span>
-                        <span class="status-circle bg-red"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>

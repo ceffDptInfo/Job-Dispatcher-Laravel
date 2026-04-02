@@ -155,37 +155,36 @@
 }
 
 /*Styles page d'acceuil*/
-.status-circle {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: inline-block;
+.main-wrapper {
+    min-height: 100vh;
+    background-color: #2b2e38;
+    color: white;
 }
 
-.bg-green {
-    background-color: #1ed714;
-}
-
-.bg-orange {
-    background-color: #ffbd14;
-}
-
-.bg-red {
-    background-color: #ff0000;
+.content-container {
+    padding: 40px;
+    max-width: 1100px;
+    /* Équivalent à max-w-5xl */
+    margin: 0 auto;
 }
 
 .div2-home {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 60px;
 }
 
 h2 {
     font-size: 50px;
     font-weight: bold;
-    width: 100%;
-    text-align: center;
+    margin: 0;
+}
+
+.actions-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
 .btn-add {
@@ -203,6 +202,13 @@ h2 {
     background-color: #252d8a;
 }
 
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Espace entre les cartes */
+}
+
 .task-card {
     background-color: white;
     border-radius: 20px;
@@ -210,15 +216,37 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
     color: black;
-    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .task-info {
     display: flex;
-    gap: 50px;
+    align-items: center;
+    gap: 40px;
     flex: 1;
+}
+
+.task-number {
+    color: #9ca3af;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.task-name {
+    min-width: 150px;
+    font-size: 1.2rem;
+}
+
+.task-file {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.task-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 /*Styles de page de création */

@@ -2,14 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 
-Route::get('home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
-
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
+Route::get('/home', [JobController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('home');
 
 Route::get('/jobs/create', function () {
     return view('create-job');
