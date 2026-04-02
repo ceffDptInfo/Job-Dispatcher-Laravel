@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Job Dispatcher</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -11,7 +10,7 @@
     <x-header/>
     <div class="flex flex-1 items-center justify-center p-4">
         <div class="w-full max-w-xl text-center">
-            <h2 class="text-3xl font-bold mb-10">Créer un compte</h2>
+            <h2 class="title-login">Créer un compte</h2>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="flex items-center mb-6">
@@ -19,7 +18,7 @@
                     <div class="w-full">
                         <input type="text" name="name" value="{{ old('name') }}" required autofocus class="input-login">
                         @error('name')
-                            <p class="text-red-400 text-sm mt-1 text-left">{{ $message }}</p>
+                            <p class="error-login">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -28,7 +27,7 @@
                     <div class="w-full">
                         <input type="email" name="email" value="{{ old('email') }}" required class="input-login">
                         @error('email')
-                            <p class="text-red-400 text-sm mt-1 text-left">{{ $message }}</p>
+                            <p class="error-login">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -37,7 +36,7 @@
                     <div class="w-full">
                         <input type="password" name="password" required class="input-login">
                         @error('password')
-                            <p class="text-red-400 text-sm mt-1 text-left">{{ $message }}</p>
+                            <p class="error-login">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>

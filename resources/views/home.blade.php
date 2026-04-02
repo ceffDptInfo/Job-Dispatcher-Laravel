@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vos Jobs - Job Dispatcher</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="div-login min-h-screen">
+    <div class="div-login">
         <x-header/>
         <div class="p-10">
             <div class="div2-home">
-                <div class="flex-1"></div> <h2>Vos jobs</h2>
+                <h2>Vos jobs</h2>
                 <div class="flex-1 flex items-center justify-end gap-6">
                     <a href="{{ route('jobs.create') }}" class="btn-add">Ajouter un job</a>
                 </div>
