@@ -17,22 +17,21 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:50',
-            'path' => 'required|max:200',
-            'name_state' => 'required|exists:state,name',
-            'stl_filename' => 'required|max:100',
-            // 'stl_filename'=> ,
-            // 'gcode_filename'=> ,
-            // 'filament'=> ,
-            // 'duration'=> ,
-            // 'create_at'=> ,
-            // 'slice_at'=> ,
-            // 'print_at'=> ,
-            // 'finish_at'=> ,
-            // 'id_printer'=> ,
+            'name'              => 'required|string|max:50',
+            'path'              => 'required|string|max:200',
+            'name_state'        => 'required|string|exists:state,name',
+            'stl_filename'      => 'required|string|max:100',
+            'gcode_filename'    => 'nullable|string|max:100',
+            'filament'          => 'nullable|numeric|min:0',
+            'duration'          => 'nullable|numeric|min:0',
+            'create_at'         => 'required|date',
+            'slice_at'          => 'nullable|date',
+            'print_at'          => 'nullable|date',
+            'finish_at'         => 'nullable|date',
+            'id_printer'        => 'nullable|integer',
 
             'id_slicer_profile' => 'required|exists:slicer_profiles,id',
-            // 'id_user'=> ,
+            'id_user'           => 'required|exists:users,id',
         ]);
 
         Job::create([
