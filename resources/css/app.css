@@ -206,7 +206,6 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    /* Espace entre les cartes */
 }
 
 .task-card {
