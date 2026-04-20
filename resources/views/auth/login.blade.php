@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/test.css', 'resources/js/app.js', ])
+    @vite(['resources/css/login.css', 'resources/js/app.js', ])
 </head>
 <body class="div-login">
     <x-header/> 
@@ -36,9 +36,6 @@
                 <div class="mt-10">
                     <p>Vous n'avez pas encore de compte ?</p>
                     <a href="{{ route('register') }}" class="href-login">Inscrivez-vous ici</a>
-                </div>
-                <div>
-                    <x-test-button>Test Button</x-test-button>
                 </div>
             </div>
         </div>

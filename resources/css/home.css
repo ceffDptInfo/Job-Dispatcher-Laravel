@@ -1,0 +1,94 @@
+.main-wrapper {
+    min-height: 100vh;
+    background-color: #2b2e38;
+    color: white;
+}
+
+.content-container {
+    padding: 40px;
+    max-width: 1100px;
+    /* Équivalent à max-w-5xl */
+    margin: 0 auto;
+}
+
+.div2-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+
+.actions-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.btn-add {
+    background-color: #313bac;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.btn-add:hover {
+    background-color: #252d8a;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.task-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+}
+
+.task-number {
+    color: #9ca3af;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.task-name {
+    min-width: 150px;
+    font-size: 1.2rem;
+}
+
+.task-file {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.task-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title-home {
+    font-size: 50px;
+    font-weight: bold;
+    margin: -10px;
+}
+
