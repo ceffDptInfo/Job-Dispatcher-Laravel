@@ -50,7 +50,7 @@
             </form>
             <div class="mt-10">
                 <p class="text-gray-300">Vous avez déjà un compte ?</p>
-                <a href="{{ route('login') }}" class="href-login">Connectez-vous ici</a>
+                <a href="{{ route('/') }}" class="href-login">Connectez-vous ici</a>
             </div>
         </div>
     </div>

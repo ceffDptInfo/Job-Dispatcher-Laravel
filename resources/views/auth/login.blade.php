@@ -11,7 +11,7 @@
             <div class="w-full max-w-xl text-center">
                 <h2 class="title-login">Connection</h2>
                 <x-auth-session-status :status="session('status')" />
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('/') }}">
                     @csrf
                     <div class="flex items-center mb-6">
                         <label class="label-login">Email :</label>

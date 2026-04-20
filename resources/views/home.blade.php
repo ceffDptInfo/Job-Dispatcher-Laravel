@@ -28,7 +28,7 @@
                         
                         <div class="task-status">
                             <span class="status-label">Status :</span>
-                            <span class="status-text">{{ $job->name_state }}</span>
+                            <span class="status-text">{{ $job->name }}</span>
                         </div>
                     </div>
                 @endforeach
