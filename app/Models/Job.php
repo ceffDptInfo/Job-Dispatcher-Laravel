@@ -15,7 +15,7 @@ class Job extends Model
      protected $fillable = [
         'name',
         'path',
-        'state',
+        'name_state',
         'stl_filename',
         'gcode_filename',
         'filament',
@@ -30,13 +30,20 @@ class Job extends Model
         'id_user',
     ];
 
-     public function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'name_state', 'name');
     }
 
     public function slicerprofile()
     {
         return $this->belongsTo(SlicerProfile::class);
     }
+
+
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\State;
 use App\Models\SlicerProfile;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,7 +23,7 @@ class JobFactory extends Factory
         return [
             'name' => substr($this->faker->words(3, true), 0, 50),
             'path' => $this->faker->lexify('/uploads/jobs/'),
-            'state' => $this->faker->randomElement(['pending', 'processing', 'completed', 'failed']),
+            'name_state' => State::factory(),
             'stl_filename' => substr($this->faker->word() . '.stl', 0, 100),
             
             'gcode_filename' => null,
@@ -35,6 +36,7 @@ class JobFactory extends Factory
             'finish_at' => null,
             'id_printer' => null,
 
+            
             'id_slicer_profile' => SlicerProfile::factory(),
             'id_user' => User::factory(),
         ];
