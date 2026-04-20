@@ -2,6 +2,8 @@
 
 return [
 
+    'slicer_path' => env('SLICER_FOLDER_PATH', 'default_value_here'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

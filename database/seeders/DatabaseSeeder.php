@@ -8,6 +8,7 @@ use App\Models\State;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -66,22 +67,22 @@ class DatabaseSeeder extends Seeder
         State::factory()->createMany(
             [
                 [
-                    'name' => 'waiting to be sliced',
+                    'name' => 'waiting',
                 ],
                 [
-                    'name' => 'slicing error',
+                    'name' => 'sliced',
                 ],
                 [
-                    'name' => 'waiting to be printed',
+                    'name' => 'error_slicing',
                 ],
                 [
                     'name' => 'printing',
                 ],
                 [
-                    'name' => 'printed',
+                    'name' => 'error_printing',
                 ],
                 [
-                    'name' => 'printing error',
+                    'name' => 'finished',
                 ],
             ]
         );
@@ -91,33 +92,50 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Benchy_Stress_Test',
                     'path'              => '/uploads/models/benchy/',
-                    'name_state'        => 'waiting to be sliced',
+                    'name_state'        => 'waiting',
                     'stl_filename'      => '3dbenchy_v2.stl',
                     'gcode_filename'    => null, 
-                    'filament'          => 14.5,
+                    'filament'          => null,
                     'duration'          => null,
-                    'create_at'         => now(), 
+                    'create_at'        => Carbon::parse('2026-03-01 10:00:00'), 
                     'slice_at'          => null,  
                     'print_at'          => null,  
                     'finish_at'         => null,  
-                    'id_printer'        => null, 
-
+                    'id_printer'        => 1, 
+                    
                     'id_slicer_profile' => 1,    
                     'id_user'           => 1,    
                 ],
                 [
                     'name'              => 'Moving_flower',
                     'path'              => '/uploads/models/flower/',
-                    'name_state'        => 'waiting to be printed',
+                    'name_state'        => 'sliced',
                     'stl_filename'      => 'flower_full.stl',
                     'gcode_filename'    => 'flower_04noz_pla.gcode',
                     'filament'          => 60.7,
-                    'duration'          => 2, 
-                    'create_at'         => now()->subDays(1),
-                    'slice_at'          => now(),
+                    'duration'          => 5000, 
+                    'create_at'         => Carbon::parse('2026-03-01 11:00:00'), 
+                    'slice_at'          => Carbon::parse('2026-03-01 12:00:00'), 
                     'print_at'          => null,
                     'finish_at'         => null,
-                    'id_printer'        => null,
+                    'id_printer'        => 1,
+
+                    'id_slicer_profile' => 2,
+                    'id_user'           => 1,
+                ],
+                [
+                    'name'              => 'Stress_toy',
+                    'path'              => '/uploads/models/stressToy/',
+                    'name_state'        => 'printing',
+                    'stl_filename'      => 'stressToy_full.stl',
+                    'gcode_filename'    => 'stressToy_04noz_pla.gcode',
+                    'filament'          => 70.7,
+                    'duration'          => 7000, 
+                    'create_at'         => Carbon::parse('2026-03-01 13:00:00'), 
+                    'slice_at'          => Carbon::parse('2026-03-01 14:00:00'), 
+                    'print_at'          => Carbon::parse('2026-03-01 15:00:00'),
+                    'finish_at'         => null,
+                    'id_printer'        => 1,
 
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,
@@ -125,16 +143,16 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Articulated_Dragon',
                     'path'              => '/uploads/models/dragon/',                    
-                    'name_state'        => 'printed',
+                    'name_state'        => 'finished',
                     'stl_filename'      => 'dragon_full.stl',
                     'gcode_filename'    => 'dragon_04noz_pla.gcode',
                     'filament'          => 150.2,
-                    'duration'          => 5, 
-                    'create_at'         => now()->subDays(1),
-                    'slice_at'          => now()->subHours(5),
-                    'print_at'          => now()->subHours(4),
-                    'finish_at'         => now(),
-                    'id_printer'        => 'Ender-3-V2-01',
+                    'duration'          => 90000, 
+                    'create_at'         => Carbon::parse('2026-03-01 16:00:00'), 
+                    'slice_at'          => Carbon::parse('2026-03-01 17:00:00'), 
+                    'print_at'          => Carbon::parse('2026-03-01 18:00:00'), 
+                    'finish_at'         => Carbon::parse('2026-03-01 19:00:00'), 
+                    'id_printer'        => 1,
 
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,

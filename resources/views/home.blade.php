@@ -28,7 +28,8 @@
                         
                         <div class="task-status">
                             <span class="status-label">Status :</span>
-                            <span class="status-text">{{ $job->name }}</span>
+                            <span class="status-text">{{ $job->name_state }}</span>
+                            <span>{{ config('app.slicer_path') }}</span>
                         </div>
                     </div>
                 @endforeach
