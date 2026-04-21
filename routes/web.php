@@ -14,14 +14,14 @@ Route::get('/home', [JobController::class, 'index'])
     ->name('home');
 
 Route::get('/jobs/create', function () {
-    return view('create-job'); 
+    return view('create-job');
 })->middleware(['auth'])->name('jobs.create');
 
 Route::post('/jobs/store', [JobController::class, 'store'])
     ->middleware(['auth'])
     ->name('jobs.store');
 
-    Route::post('/job/create', [JobController::class, 'create']);
+Route::post('/job/create', [JobController::class, 'create']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

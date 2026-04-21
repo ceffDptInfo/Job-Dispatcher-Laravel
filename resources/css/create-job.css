@@ -11,6 +11,14 @@
     min-height: 100vh;
 }
 
+.div-center {
+    display: flex;
+    flex: 1 1 0%;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
 .drop-zone {
     background-color: white;
     border-radius: 25px;
@@ -21,6 +29,14 @@
     color: black;
     font-size: 1.8rem;
     margin-bottom: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    min-height: 300px;
+    border-width: 2px;
+    border-style: dashed;
+    border-color: black;
     cursor: pointer;
 }
 
@@ -53,4 +69,65 @@
     background-position: right 15px center;
     background-size: 20px;
     width: 200px;
+}
+
+.name-project {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-style {
+    padding: 16px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 448px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border: 2px solid gray;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    color: black;
+}
+
+.input-style:focus {
+    border-color: #4338ca;
+}
+
+.dropdown-menu {
+    padding: 16px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 448px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border: 2px solid gray;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    color: black;
+}
+
+.dropdown-menu:focus {
+    border-color: #4338ca;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: #4338ca;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #4338ca;
+    color: white;
 }
