@@ -8,9 +8,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -33,6 +34,14 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $basePath = config('services.nfs.path');
+        $folderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
+        $userFolderPath = $basePath . DIRECTORY_SEPARATOR . $folderName;
+
+        if (!File::exists($userFolderPath)) {
+            File::makeDirectory($userFolderPath, 0755, true);
+        }
 
         event(new Registered($user));
 
