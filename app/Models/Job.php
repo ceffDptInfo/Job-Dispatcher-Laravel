@@ -32,9 +32,9 @@ class Job extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user');
     }
-
+    
     public function state()
     {
         return $this->belongsTo(State::class, 'name_state', 'name');
@@ -42,7 +42,7 @@ class Job extends Model
 
     public function slicerprofile()
     {
-        return $this->belongsTo(SlicerProfile::class);
+        return $this->belongsTo(SlicerProfile::class, 'id_slicer_profile');
     }
 
 

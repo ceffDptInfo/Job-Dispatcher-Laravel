@@ -28,21 +28,24 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Leila',
                 'email' => 'leila@ceff.ch',
                 'password'=> bcrypt('1234'),
-
                 ],
 
                 [
                 'name' => 'Gwen',
                 'email' => 'gwendoline@ceff.ch',
                 'password'=> bcrypt('1234'),
-
                 ],
 
                 [
                 'name' => 'Simon',
                 'email' => 'simon@ceff.ch',
                 'password'=> bcrypt('1234'),
+                ],
 
+                [
+                'name' => 'Gyan',
+                'email' => 'gyan@ceff.ch',
+                'password'=> bcrypt('1234'),
                 ],
             ]
         );
@@ -60,6 +63,18 @@ class DatabaseSeeder extends Seeder
                 'path' => 'C:\'test\'sclicerTwo',
                 'color' => 'Black',
                 'material' => 'PETG',
+                ],
+                [ 
+                'name' => 'sclicer tree',
+                'path' => 'C:\'test\'sclicerTwo',
+                'color' => 'Black',
+                'material' => 'ABS',
+                ],
+                [ 
+                'name' => 'sclicer four',
+                'path' => 'C:\'test\'sclicerTwo',
+                'color' => 'Black',
+                'material' => 'Nylon',
                 ]
             ]
         );
