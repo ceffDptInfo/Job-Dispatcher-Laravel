@@ -55,6 +55,21 @@
     .btn-header:hover {
         background-color: #f3f4f6;
     }
+    
+    .btn-profile {
+        text-align: left;
+        padding: 8px 16px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #124fd3;
+        transition-property: background-color, border-color, color, fill, stroke;
+        transition-duration: 150ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-profile:hover {
+        background-color: #f3f4f6;
+    }
 
     .box-logout {
         position: absolute;
@@ -83,6 +98,7 @@
     }
 
     .header-title {
+        color: white;
         font-size: 30px;
         font-weight: bold;
     }

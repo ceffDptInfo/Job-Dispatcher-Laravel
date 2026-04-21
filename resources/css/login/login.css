@@ -34,26 +34,26 @@
 }
 
 .btn-login {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem 3rem;
-        border-radius: 9999px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: all 0.2s;
-        cursor: pointer;
-        background-color: #4338ca;
-        color: white;
-        border: none;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: #4338ca;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
 
 .btn-login:hover {
-        transform: scale(1.05);
-        background-color: #4338ca;
-        color: white;
-    }
+    transform: scale(1.05);
+    background-color: #4338ca;
+    color: white;
+}
 
 .href-login {
     color: #818cf8;
