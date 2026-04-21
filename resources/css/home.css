@@ -1,3 +1,5 @@
+@import "./card-state-job.css";
+
 .main-wrapper {
     min-height: 100vh;
     background-color: #2b2e38;
@@ -7,7 +9,6 @@
 .content-container {
     padding: 40px;
     max-width: 1100px;
-    /* Équivalent à max-w-5xl */
     margin: 0 auto;
 }
 
@@ -52,7 +53,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: black;
+    color: rgb(0, 0, 0);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 

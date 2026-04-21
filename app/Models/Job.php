@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
     use HasFactory;
 
     protected $table = 'job';
-    public $timestamps = false; 
+    public $timestamps = false;
 
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'path',
         'name_state',
@@ -25,7 +26,7 @@ class Job extends Model
         'print_at',
         'finish_at',
         'id_printer',
-        
+
         'id_slicer_profile',
         'id_user',
     ];
@@ -34,7 +35,7 @@ class Job extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
-    
+
     public function state()
     {
         return $this->belongsTo(State::class, 'name_state', 'name');
@@ -46,4 +47,18 @@ class Job extends Model
     }
 
 
+    protected function statusColor(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => match ($this->name_state) {
+                'Finished'       => 'green',
+                'Printing'       => 'orange',
+                'Sliced'         => 'blue',
+                'Waiting'        => 'gray',
+                'Error Printing' => 'red1',
+                'Error Slicing'  => 'red2',
+                default          => 'gray',
+            },
+        );
+    }
 }
