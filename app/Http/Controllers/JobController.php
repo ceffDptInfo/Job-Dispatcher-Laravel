@@ -26,6 +26,14 @@ class JobController extends Controller
         $user = Auth::user();
         $projectName = Str::slug($request->name);
 
+        // $basePath = config('services.nfs.path');
+        // $folderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
+        // $userFolderPath = $basePath . DIRECTORY_SEPARATOR . $folderName;
+
+        // if (!File::exists($userFolderPath)) {
+        //     File::makeDirectory($userFolderPath, 0755, true);
+        // }
+
         $basePath = "\\\\PC-BD52-24\\NFS-Printers\\Users\\";
         $userFolder = $user->id . "-" . Str::slug($user->name);
         $folderPath = $basePath . $userFolder . "\\" . $projectName;
