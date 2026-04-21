@@ -30,8 +30,15 @@ return new class extends Migration
             $table->dateTime('finish_at')->nullable();
             $table->integer('id_printer')->nullable();
 
-            $table->foreignId('id_slicer_profile');
-            $table->foreignId('id_user');
+            $table->unsignedBigInteger('id_slicer_profile');
+            $table->foreign('id_slicer_profile')
+                ->references('id_slicer_profile') 
+                ->on('slicer_profile');
+
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')
+                ->references('id_user')           
+                ->on('users');
         });
     }
 

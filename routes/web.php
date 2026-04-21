@@ -1,17 +1,25 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
+Route::get('/', function () {
+    return redirect()->route('home');
+});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', [JobController::class, 'index'])->name('home');
+Route::get('/home', [JobController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('home');
 
-    Route::get('/jobs/create', function () {
-        return view('create-job');
-    })->name('jobs.create');
+Route::get('/jobs/create', function () {
+    return view('create-job'); 
+})->middleware(['auth'])->name('jobs.create');
+
+Route::post('/jobs/store', [JobController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('jobs.store');
 
     Route::post('/job/create', [JobController::class, 'create']);
 
