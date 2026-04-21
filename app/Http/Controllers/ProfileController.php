@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,13 +28,31 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        
+        $oldName = $user->getOriginal('name');
+        
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        if ($user->isDirty('name')) {
+            $basePath = config('services.nfs.path');
+            
+            $oldFolderName = Str::slug($user->id_user) . '-' . Str::slug($oldName);
+            $newFolderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
+            
+            $oldPath = $basePath . DIRECTORY_SEPARATOR . $oldFolderName;
+            $newPath = $basePath . DIRECTORY_SEPARATOR . $newFolderName;
+
+            if (File::exists($oldPath)) {
+                File::move($oldPath, $newPath);
+            }
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -47,6 +67,14 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        $basePath = config('services.nfs.path');
+        $folderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
+        $userFolderPath = $basePath . DIRECTORY_SEPARATOR . $folderName;
+
+        if(File::exists($userFolderPath)) {
+            File::deleteDirectory($userFolderPath);
+        }
 
         Auth::logout();
 
