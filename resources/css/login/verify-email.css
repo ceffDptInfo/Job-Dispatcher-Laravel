@@ -1,0 +1,89 @@
+.main-wrapper {
+    min-height: 100vh;
+    background-color: #2b2e38;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    font-family: 'figtree', sans-serif;
+}
+
+.verify-card {
+    background-color: #1f222a;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.verify-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.verify-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d1d5db;
+    margin-bottom: 24px;
+}
+
+/* Message de succès (Lien envoyé) */
+.status-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+/* Container des boutons */
+.verify-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+/* Le bouton principal (Renvoyer) - Style cohérent avec ton login */
+.btn-resend {
+    background-color: #4338ca;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 9999px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    font-size: 14px;
+}
+
+.btn-resend:hover {
+    transform: scale(1.03);
+    background-color: #4f46e5;
+}
+
+/* Bouton secondaire (Déconnexion) */
+.btn-logout {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.btn-logout:hover {
+    color: #f87171; /* Rouge pâle au survol */
+}
