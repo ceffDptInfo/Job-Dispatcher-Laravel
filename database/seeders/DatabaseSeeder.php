@@ -22,30 +22,35 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@ceff.ch',
                 'password'=> bcrypt('1234'),
+                'role' => 'admin',
                 ],
 
                 [
                 'name' => 'Leila',
                 'email' => 'leila@ceff.ch',
                 'password'=> bcrypt('1234'),
+                'role' => 'user',
                 ],
 
                 [
                 'name' => 'Gwen',
                 'email' => 'gwendoline@ceff.ch',
                 'password'=> bcrypt('1234'),
+                'role' => 'user',
                 ],
 
                 [
                 'name' => 'Simon',
                 'email' => 'simon@ceff.ch',
                 'password'=> bcrypt('1234'),
+                'role' => 'user',
                 ],
 
                 [
                 'name' => 'Gyan',
                 'email' => 'gyan@ceff.ch',
                 'password'=> bcrypt('1234'),
+                'role' => 'user',
                 ],
             ]
         );
