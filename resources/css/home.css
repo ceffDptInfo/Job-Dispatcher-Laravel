@@ -98,3 +98,11 @@
     font-size: 20px;
     border-radius: 10px;
 }
+
+.btn-edit {
+    color: rgb(32, 93, 224);
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+}

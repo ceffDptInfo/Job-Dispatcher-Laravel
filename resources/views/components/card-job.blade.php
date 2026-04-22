@@ -11,6 +11,11 @@
     <div class="task-status">
         <span class="status-label">Status :</span>
         <x-card-state-job :color="$job->status_color" :text="$job->name_state" />
+        @if(auth()->user()->role === 'admin')
+            <a href="{{ route('jobs.edit', $job) }}" class="btn-edit">
+                <i class="fas fa-edit"></i>
+            </a>
+        @endif
     </div>
     <div class="task-actions">
         <form action="{{ route('jobs.destroy', $job) }}" method="POST" onsubmit="return confirm('Voulez-vous supprimer ce job ?');">

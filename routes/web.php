@@ -29,4 +29,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
 
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+Route::put('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+
 require __DIR__ . '/auth.php';
