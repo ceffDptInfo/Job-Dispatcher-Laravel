@@ -26,14 +26,6 @@ class JobController extends Controller
         $user = Auth::user();
         $projectName = Str::slug($request->name);
 
-        // $basePath = config('services.nfs.path');
-        // $folderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
-        // $userFolderPath = $basePath . DIRECTORY_SEPARATOR . $folderName;
-
-        // if (!File::exists($userFolderPath)) {
-        //     File::makeDirectory($userFolderPath, 0755, true);
-        // }
-
         $basePath = "\\\\PC-BD52-24\\NFS-Printers\\Users\\";
         $userFolder = $user->id . "-" . Str::slug($user->name);
         $folderPath = $basePath . $userFolder . "\\" . $projectName;
@@ -63,5 +55,28 @@ class JobController extends Controller
     {
         $job->delete();
         return redirect()->route('home')->with('success', 'Job supprimé avec succès');
+    }
+
+    public function edit(Job $job)
+    {
+        return view('edit', compact('job'));
+    }
+
+    public function update(Request $request, Job $job)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'id_slicer_profile' => 'required|integer',
+            'name_state' => 'required|string'
+        ]);
+        if ($request->hasFile('stl_filename')) {
+            $file = $request->file('stl_filename');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs($job->path, $fileName, 'public');
+            $validated['stl_filename'] = $fileName;
+        }
+
+        $job->update($validated);
+        return redirect()->route('home')->with('success', 'Job mis à jour !');
     }
 }

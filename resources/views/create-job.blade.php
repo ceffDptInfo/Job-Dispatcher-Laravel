@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/create-job.css', 'resources/js/app.js'])
 </head>
-
+ 
 <body class="antialiased">
     <div class="div-login" x-data="{ fileName: '', isDragging: false, error: '' }">
         <x-header />
@@ -27,7 +27,7 @@
                             }"
                             @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false"
                             @drop.prevent="
-                            isDragging = false; 
+                            isDragging = false;
                             let file = $event.dataTransfer.files[0];
                             if (file && file.name.toLowerCase().endsWith('.stl')) {
                                 fileName = file.name;
@@ -36,8 +36,7 @@
                             } else {
                                 fileName = '';
                                 error = 'Le format n\'est pas autorisé (.STL seulement)';
-                            }
-                        ">
+                            }">
                             <input type="file" name="inputfile" x-ref="fileInput" class="hidden" id="inputfile"
                                 accept=".stl"
                                 @change="
@@ -45,31 +44,25 @@
                                if (file && file.name.toLowerCase().endsWith('.stl')) {
                                    fileName = file.name;
                                    error = '';
-                               } else {
-                                   fileName = '';
-                                   error = 'Le format n\'est pas autorisé';
-                               }">
+                                }">
                             <div class="text-center w-full">
                                 <div class="mb-4 h-16 flex items-center justify-center">
                                     <template x-if="!fileName && !error">
                                         <svg class="w-16 h-16 text-white opacity-90" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
                                     </template>
                                     <template x-if="fileName">
                                         <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </template>
                                     <template x-if="error">
                                         <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </template>
                                 </div>
