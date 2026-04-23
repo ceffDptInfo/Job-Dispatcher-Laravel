@@ -9,13 +9,15 @@ class State extends Model
 {
     use HasFactory;
 
-     protected $table = 'state';
-    protected $primaryKey = 'name';
+    protected $table = 'state';
+    protected $primaryKey = 'code';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
 
     protected $fillable = [
+        'code',
         'name',
+        'color',
     ];
 }

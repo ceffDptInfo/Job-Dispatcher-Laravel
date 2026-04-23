@@ -6,6 +6,10 @@ use App\Models\Job;
 use App\Models\SlicerProfile;
 use App\Models\State;
 use App\Models\User;
+use App\Models\Color;
+use App\Models\Material;
+use App\Models\Tag;
+use App\Models\TagJob;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -180,6 +184,25 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        
+        Color::factory()->createMany(
+            [
+          
+            ]
+        );
+        Material::factory()->createMany(
+            [
+          
+            ] 
+        );
+        Tag::factory()->createMany(
+            [
+          
+            ]          
+        );
+        TagJob::factory()->createMany(
+            [
+          
+            ]  
+        );
     }
 }

@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
-class SlicerProfile extends Model
+class Color extends Model
 {
     use HasFactory;
 
-    protected $table = 'slicer_profile';
-    public $timestamps = false;
-
     protected $fillable = [
         'name',
-        'path',
-        'color',
 
-        'id_material',
+        'id_material'
     ];
 
      public function material()
