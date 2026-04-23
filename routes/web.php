@@ -23,7 +23,13 @@ Route::post('/jobs/store', [JobController::class, 'store'])
 
 Route::post('/job/create', [JobController::class, 'create']);
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
+
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+Route::put('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+
 require __DIR__ . '/auth.php';

@@ -1,8 +1,8 @@
 <head>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                @vite(['resources/css/profile/update-profile-information-form.css'])
-                </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/profile/update-profile-information-form.css'])
+</head>
 
 <section class="profile-section">
     <header>
@@ -10,7 +10,7 @@
             {{ __('Votre profil') }}
         </h2>
         <p class="profile-desc">
-            {{ __("Mettez à jour les informations de votre profil et votre adresse email.") }}
+            {{ __('Mettez à jour les informations de votre profil et votre adresse email.') }}
         </p>
     </header>
 
@@ -38,16 +38,16 @@
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div class="verification-alert">
                     <p class="profile-desc">
-                        {{ __('Your email address is unverified.') }}
-                        <button form="send-verification" class="btn-link">
-                            {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Votre nouvelle adresse e-mail n\'est pas vérifiée ;') }}
+                        <button form="send-verification" type="submit" class="btn-link">
+                            {{ __('Cliquez ici pour envoyer l\'e-mail de vérification.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="status-msg">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
+                        <span class="status-msg-alert">
+                            {{ __('Un nouveau lien a été envoyé à votre adresse.') }}
+                        </span>
                     @endif
                 </div>
             @endif
