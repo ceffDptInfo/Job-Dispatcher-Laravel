@@ -3,33 +3,16 @@
 @tailwind utilities;
 
 @layer components {
+    /* Header principal */
     .main-header {
         background-color: #4338ca;
-        padding: 24px;
+        padding: 16px 0; /* Réduit un peu pour plus de finesse */
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-
-    .profile-circle {
-        width: 40px;
-        height: 40px;
-        background-color: #f3f4f6;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s;
-        color: black;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .profile-circle:hover {
-        border-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 100;
     }
 
     .div-header {
@@ -41,103 +24,150 @@
         align-items: center;
     }
 
-    .btn-header {
-        text-align: left;
-        padding: 8px 16px;
-        font-size: 14px;
-        line-height: 20px;
-        color: #dc2626;
-        transition-property: background-color, border-color, color, fill, stroke;
-        transition-duration: 150ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    .header-title {
+        color: white;
+        font-size: 24px; /* Un peu plus petit pour l'équilibre */
+        font-weight: 800;
+        letter-spacing: -0.025em;
     }
 
-    .btn-header:hover {
-        background-color: #f3f4f6;
+    .header-title a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+
+    .header-title a:hover {
+        opacity: 0.9;
+    }
+
+    /* Le cercle de profil */
+    .profile-circle {
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        color: #4338ca;
+        font-weight: bold;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .profile-circle:hover {
+        border-color: #a5b4fc;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    /* Le menu déroulant (Dropdown) */
+    .box-logout {
+        position: absolute;
+        right: 0;
+        top: 110%; /* Décalage pour ne pas coller au bouton */
+        width: 220px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 8px 0;
+        z-index: 50;
+        border: 1px solid #f3f4f6;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        
+        /* Animation fluide */
+        display: block; /* On utilise l'opacité pour l'animation */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Activation au survol */
+    .group:hover .box-logout {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Texte du nom d'utilisateur */
+    .box-text {
+        padding: 12px 16px 8px 16px;
+        font-size: 11px;
+        color: #9ca3af;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Liens et boutons du menu */
+    .btn-profile, .btn-header {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 16px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+        transition: all 0.15s;
+        text-decoration: none;
+        border: none;
+        background: none;
+        cursor: pointer;
     }
 
     .btn-profile {
-        text-align: left;
-        padding: 8px 16px;
-        font-size: 14px;
-        line-height: 20px;
-        color: #124fd3;
-        transition-property: background-color, border-color, color, fill, stroke;
-        transition-duration: 150ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        color: #374151;
     }
 
     .btn-profile:hover {
         background-color: #f3f4f6;
+        color: #4338ca;
     }
 
-    .box-logout {
-        position: absolute;
-        right: 0;
-        width: 192px;
-        background-color: #ffffff;
-        border-radius: 5px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        z-index: 50;
-        border: 1px solid #e5e7eb;
-        display: none;
+    .btn-header {
+        color: #dc2626;
+        border-top: 1px solid #f3f4f6;
+        margin-top: 4px;
     }
 
-    .group:hover .box-logout {
-        display: block;
+    .btn-header:hover {
+        background-color: #fff1f2;
     }
 
-    .box-text {
-        padding: 8px 16px;
-        font-size: 14px;
-        color: #374151;
-        font-weight: 600;
-        border-bottom: 1px solid #f3f4f6;
-        display: block;
-    }
-
-    .header-title {
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-    }
-
+    /* Sélecteur de langue */
     .lang-selector {
         display: flex;
-        padding-left: 16px;
+        padding: 8px 16px;
         align-items: center;
-        gap: 8px;
-        font-family: sans-serif;
+        gap: 12px;
+        border-bottom: 1px solid #f3f4f6;
+        margin-bottom: 4px;
     }
 
     .lang-link {
-        color: #000000 !important;
+        color: #6b7280;
         text-decoration: none;
-        font-size: 14px;
-        font-weight: 400;
-        transition: all 0.2s;
-        opacity: 0.6;
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
     }
 
     .lang-link:hover {
-        opacity: 1;
-        text-decoration: underline;
+        color: #4338ca;
     }
 
     .lang-link.active {
-        font-weight: 800;
-        opacity: 1;
+        color: #4338ca;
+        font-weight: 700;
         cursor: default;
     }
 
-    .lang-link.active:hover {
-        text-decoration: none;
-    }
-
     .lang-separator {
-        color: #000000;
-        opacity: 0.3;
+        color: #e5e7eb;
         font-size: 12px;
     }
 }

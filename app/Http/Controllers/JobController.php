@@ -59,7 +59,7 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
-        return view('edit', compact('job'));
+        return view('edit-job', compact('job'));
     }
 
     public function update(Request $request, Job $job)

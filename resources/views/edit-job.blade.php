@@ -15,7 +15,7 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-10 flex flex-col items-center">
-                        <label for="name" class="name-project">Nom du projet :</label>
+                        <label for="name" class="name-project">{{ __('editJob.name_project_editJob') }}</label>
                         <input type="text" name="name" id="name" class="input-style" value="{{ old('name', $job->name) }}">
                     </div>
                     <div class="mb-10">
@@ -36,7 +36,7 @@
                                     $refs.fileInput.files = $event.dataTransfer.files;
                                 } else {
                                     fileName = '';
-                                    error = 'Le format n\'est pas autorisé (.STL seulement)';
+                                    error = '{{ __('editJob.unauthorized_file_format_editJob') }}';
                                 }
                             ">
                             <input type="file" name="stl_filename" x-ref="fileInput" class="hidden" id="stl_filename" accept=".stl"
@@ -70,8 +70,7 @@
                                     </template>
                                 </div>
                                 <h3 class="text-xl font-semibold mb-2">
-                                    <span x-show="!fileName && !error" class="text-white">Remplacer le STL (optionnel)</span>
-                                    <span x-show="fileName" class="text-green-600">Fichier : <span x-text="fileName"></span></span>
+                                    <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }} <span x-text="fileName"></span></span>
                                     <span x-show="error" class="text-red-500" x-text="error"></span>
                                 </h3>
                             </div>
@@ -79,7 +78,7 @@
                     </div>
                     <div class="flex flex-col items-center mb-12">
                         <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">Profil :</label>
+                            <label class="name-project">{{ __('editJob.profile_text_editJob') }}</label>
                             <select name="id_slicer_profile" class="dropdown-menu">
                                 @foreach([1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon'] as $id => $label)
                                     <option value="{{ $id }}" {{ $job->id_slicer_profile == $id ? 'selected' : '' }}>
@@ -91,7 +90,7 @@
                     </div>
                     <div class="flex flex-col items-center mb-12">
                         <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">Statut du Job :</label>
+                            <label class="name-project">{{ __('editJob.state_text_editJob') }}</label>
                             <select name="name_state" class="dropdown-menu">
                                 <option value="error_printing" {{ $job->name_state == 'error_printing' ? 'selected' : '' }}>Error_printing</option>
                                 <option value="error_slicing" {{ $job->name_state == 'error_slicing' ? 'selected' : '' }}>Error_slicing</option>
@@ -103,8 +102,8 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-                         <x-link-button-style href="{{ route('home') }}">Annuler</x-link-button-style>
-                         <button type="submit" class="btn">Enregistrer</button>
+                         <x-link-button-style href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>
+                         <button type="submit" class="btn">{{ __('editJob.edit_button_editJob') }}</button>
                     </div>
                 </form>
             </div>
