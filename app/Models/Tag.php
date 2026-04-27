@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tag extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $primaryKey = 'id_tag';
+    protected $table = 'tag';
+
 
     protected $fillable = [
         'name',

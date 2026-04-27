@@ -17,8 +17,13 @@ class StateFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-           'name' => substr($this->faker->words(3, true), 0, 50)
+        return 
+        [
+            'code' => strtoupper($this->faker->unique()->lexify('???')),
+            
+            'name' => $this->faker->randomElement(['finished', 'waiting']),
+            
+            'color' => $this->faker->safeHexColor()
         ];
     }
 }

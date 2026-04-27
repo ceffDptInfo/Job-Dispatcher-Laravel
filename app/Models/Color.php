@@ -9,6 +9,10 @@ class Color extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $table = 'color';
+
     protected $fillable = [
         'name',
 

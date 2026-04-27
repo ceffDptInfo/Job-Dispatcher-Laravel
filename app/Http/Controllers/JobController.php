@@ -39,7 +39,7 @@ class JobController extends Controller
             Job::create([
                 'name' => $request->name,
                 'path' => $folderPath,
-                'name_state' => 'waiting',
+                'code_state' => 'waiting',
                 'stl_filename' => $fileName,
                 'id_slicer_profile' => $request->id_slicer_profile,
                 'id_user' => $user->id_user,
@@ -67,7 +67,7 @@ class JobController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'id_slicer_profile' => 'required|integer',
-            'name_state' => 'required|string'
+            'code_state' => 'required|string'
         ]);
         if ($request->hasFile('stl_filename')) {
             $file = $request->file('stl_filename');

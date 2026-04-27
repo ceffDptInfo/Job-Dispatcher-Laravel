@@ -23,7 +23,7 @@ class JobFactory extends Factory
         return [
             'name' => substr($this->faker->words(3, true), 0, 50),
             'path' => $this->faker->lexify('/uploads/jobs/'),
-            'name_state' => State::factory(),
+            'code_state' => State::factory(),
             'stl_filename' => substr($this->faker->word() . '.stl', 0, 100),
             
             'gcode_filename' => null,

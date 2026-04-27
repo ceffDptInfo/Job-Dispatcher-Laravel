@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Material extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $table = 'material';
 

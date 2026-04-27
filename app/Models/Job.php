@@ -17,7 +17,7 @@ class Job extends Model
     protected $fillable = [
         'name',
         'path',
-        'name_state',
+        'code_state',
         'stl_filename',
         'gcode_filename',
         'filament',
@@ -39,7 +39,7 @@ class Job extends Model
 
     public function state()
     {
-        return $this->belongsTo(State::class, 'name_state', 'name');
+        return $this->belongsTo(State::class, 'code_state', 'code');
     }
 
     public function slicerprofile()
@@ -51,7 +51,7 @@ class Job extends Model
     protected function statusColor(): Attribute
     {
         return Attribute::make(
-            get: fn() => match ($this->name_state) {
+            get: fn() => match ($this->code_state) {
                 'Finished' => 'green',
                 'Printing' => 'orange',
                 'Sliced' => 'blue',

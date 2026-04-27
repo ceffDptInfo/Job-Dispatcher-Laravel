@@ -16,9 +16,9 @@ return new class extends Migration
 
             $table->string('name',50);
             $table->string('path',200);
-            $table->string('name_state');
+            $table->string('code_state');
 
-            $table->foreign('name_state')->references('name')->on('state');   
+            $table->foreign('code_state')->references('code')->on('state');   
 
             $table->string('stl_filename',100);
             $table->string('gcode_filename',100)->nullable();

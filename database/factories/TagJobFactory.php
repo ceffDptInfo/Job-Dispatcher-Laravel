@@ -21,7 +21,7 @@ class TagJobFactory extends Factory
     {
         return [
             'id_tag' => Tag::factory(),
-            'id_Job' => Job::factory(),
+            'id_job' => Job::factory(),
         ];
     }
 }

@@ -90,14 +90,14 @@
                     </div>
                     <div class="flex flex-col items-center mb-12">
                         <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">{{ __('editJob.state_text_editJob') }}</label>
-                            <select name="name_state" class="dropdown-menu">
-                                <option value="error_printing" {{ $job->name_state == 'error_printing' ? 'selected' : '' }}>Error_printing</option>
-                                <option value="error_slicing" {{ $job->name_state == 'error_slicing' ? 'selected' : '' }}>Error_slicing</option>
-                                <option value="finished" {{ $job->name_state == 'finished' ? 'selected' : '' }}>Finished</option>
-                                <option value="printing" {{ $job->name_state == 'printing' ? 'selected' : '' }}>Printing</option>
-                                <option value="sliced" {{ $job->name_state == 'sliced' ? 'selected' : '' }}>Sliced</option>
-                                <option value="waiting" {{ $job->name_state == 'waiting' ? 'selected' : '' }}>Waiting</option>
+                            <label class="name-project">Statut du Job :</label>
+                            <select name="code_state" class="dropdown-menu">
+                                <option value="error_printing" {{ $job->code_state == 'ep' ? 'selected' : '' }}>Error_printing</option>
+                                <option value="error_slicing" {{ $job->code_state == 'es' ? 'selected' : '' }}>Error_slicing</option>
+                                <option value="finished" {{ $job->code_state == 'f' ? 'selected' : '' }}>Finished</option>
+                                <option value="printing" {{ $job->code_state == 'p' ? 'selected' : '' }}>Printing</option>
+                                <option value="sliced" {{ $job->code_state == 's' ? 'selected' : '' }}>Sliced</option>
+                                <option value="waiting" {{ $job->code_state == 'w' ? 'selected' : '' }}>Waiting</option>
                             </select>
                         </div>
                     </div>

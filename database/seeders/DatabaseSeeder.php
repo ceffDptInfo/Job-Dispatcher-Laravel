@@ -91,22 +91,34 @@ class DatabaseSeeder extends Seeder
         State::factory()->createMany(
             [
                 [
+                    'code' => 'w',
                     'name' => 'waiting',
+                    'color' => '#f1c40f', 
                 ],
                 [
+                    'code' => 's',
                     'name' => 'sliced',
+                    'color' => '#3498db', 
                 ],
                 [
+                    'code' => 'es',
                     'name' => 'error_slicing',
+                    'color' => '#e67e22', 
                 ],
                 [
+                    'code' => 'p',
                     'name' => 'printing',
+                    'color' => '#9b59b6', 
                 ],
                 [
+                    'code' => 'ep',
                     'name' => 'error_printing',
+                    'color' => '#e74c3c', 
                 ],
                 [
+                    'code' => 'f',
                     'name' => 'finished',
+                    'color' => '#2ecc71', 
                 ],
             ]
         );
@@ -116,12 +128,12 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Benchy_Stress_Test',
                     'path'              => '/uploads/models/benchy/',
-                    'name_state'        => 'waiting',
+                    'code_state'        => 'w', //code
                     'stl_filename'      => '3dbenchy_v2.stl',
                     'gcode_filename'    => null, 
                     'filament'          => null,
                     'duration'          => null,
-                    'create_at'        => Carbon::parse('2026-03-01 10:00:00'), 
+                    'create_at'         => Carbon::parse('2026-03-01 10:00:00'), 
                     'slice_at'          => null,  
                     'print_at'          => null,  
                     'finish_at'         => null,  
@@ -133,7 +145,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Moving_flower',
                     'path'              => '/uploads/models/flower/',
-                    'name_state'        => 'sliced',
+                    'code_state'        => 's',
                     'stl_filename'      => 'flower_full.stl',
                     'gcode_filename'    => 'flower_04noz_pla.gcode',
                     'filament'          => 60.7,
@@ -150,7 +162,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Stress_toy',
                     'path'              => '/uploads/models/stressToy/',
-                    'name_state'        => 'printing',
+                    'code_state'        => 'p',
                     'stl_filename'      => 'stressToy_full.stl',
                     'gcode_filename'    => 'stressToy_04noz_pla.gcode',
                     'filament'          => 70.7,
@@ -167,7 +179,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Articulated_Dragon',
                     'path'              => '/uploads/models/dragon/',                    
-                    'name_state'        => 'finished',
+                    'code_state'        => 'f',
                     'stl_filename'      => 'dragon_full.stl',
                     'gcode_filename'    => 'dragon_04noz_pla.gcode',
                     'filament'          => 150.2,
@@ -184,24 +196,69 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        Color::factory()->createMany(
-            [
-          
-            ]
-        );
         Material::factory()->createMany(
             [
-          
+                [
+                    'name' => 'PLA'
+                ],
+
+                [
+                    'name' => 'PETG'
+                ],
             ] 
         );
+
+        Color::factory()->createMany(
+            [
+                [
+                    'name'  => 'Red',
+                    'id_material'  => '1',
+                ],
+
+                [
+                    'name'  => 'Red',
+                    'id_material'  => '1',
+                ],
+
+                [
+                    'name'  => 'blue',
+                    'id_material'  => '2',
+                ]
+            ]
+        );
+        
         Tag::factory()->createMany(
             [
-          
+                [
+                    'name'  => 'Favorites',
+                    'id_user'  => '1',
+                ],
+                [
+                    'name'  => 'dragon',
+                    'id_user'  => '1',
+                ],
+                [
+                    'name'  => 'prototype',
+                    'id_user'  => '1',
+                ],
             ]          
         );
         TagJob::factory()->createMany(
             [
-          
+                [
+                    'id_tag'  => '1',
+                    'id_job'  => '1',
+                ],
+                
+                [
+                    'id_tag'  => '2',
+                    'id_job'  => '2',
+                ],
+                
+                [
+                    'id_tag'  => '3',
+                    'id_job'  => '3',
+                ],
             ]  
         );
     }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class TagJob extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $table = 'tag_job';
 
