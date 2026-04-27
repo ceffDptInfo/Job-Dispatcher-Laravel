@@ -91,6 +91,11 @@ class DatabaseSeeder extends Seeder
         State::factory()->createMany(
             [
                 [
+                    'code' => 'pp',
+                    'name' => 'pending_preview',
+                    'color' => '#f38014ff',
+                ],
+                [
                     'code' => 'w',
                     'name' => 'waiting',
                     'color' => '#f1c40f', 
@@ -128,7 +133,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Benchy_Stress_Test',
                     'path'              => '/uploads/models/benchy/',
-                    'code_state'        => 'w', //code
+                    'code_state'        => 'w', 
                     'stl_filename'      => '3dbenchy_v2.stl',
                     'gcode_filename'    => null, 
                     'filament'          => null,
