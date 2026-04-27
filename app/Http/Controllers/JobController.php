@@ -39,7 +39,7 @@ class JobController extends Controller
             Job::create([
                 'name' => $request->name,
                 'path' => $folderPath,
-                'code_state' => 'waiting',
+                'code_state' => 'w',
                 'stl_filename' => $fileName,
                 'id_slicer_profile' => $request->id_slicer_profile,
                 'id_user' => $user->id_user,

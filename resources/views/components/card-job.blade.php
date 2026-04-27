@@ -10,7 +10,7 @@
     </div>
     <div class="task-status">
         <span class="status-label">{{ __('home.state_job') }}</span>
-        <x-card-state-job :color="$job->status_color" :text="$job->code_state" />
+        <x-card-state-job :color="$job->state->color" :text="$job->state->name" />
         @if(auth()->user()->role === 'admin')
             <a href="{{ route('jobs.edit', $job) }}" class="btn-edit">
                 <i class="fas fa-edit"></i>

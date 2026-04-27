@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tag_job', function (Blueprint $table) {
             
         $table->unsignedBigInteger('id_job');
-        $table->foreign('id_job')->references('id_job')->on('job');
+        $table->foreign('id_job')->references('id_job')->on('job')->onDelete('cascade');
 
         $table->unsignedBigInteger('id_tag');
-        $table->foreign('id_tag')->references('id_tag')->on('tag');
+        $table->foreign('id_tag')->references('id_tag')->on('tag')->onDelete('cascade');
         });
     }
 

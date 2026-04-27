@@ -18,7 +18,7 @@
             </div>
             <div class="tasks-list">
                 @foreach ($jobs as $job)
-                    <x-card-job :job="$job" :index="$loop->iteration" />
+                    <x-card-job :job="$job" :index="$loop->iteration"/>
                 @endforeach
             </div>
         </main>
