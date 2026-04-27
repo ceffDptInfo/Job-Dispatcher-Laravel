@@ -8,21 +8,21 @@
 <header class="main-header">
     <div class="div-header">
         <h1 class="header-title">
-            <a href="{{ route('home') }}" style="color: white; text-decoration: none;"> 
-                {{ __('header.name_app_header') }} 
+            <a href="{{ route('home') }}" style="header-title">
+                {{ __('header.name_app_header') }}
             </a>
         </h1>
-        
+
         <div>
             @auth
                 <div class="relative group" style="padding: 10px 0;">
                     <button class="profile-circle">
                         {{ substr(Auth::user()->name, 0, 1) }}
                     </button>
-                    
+
                     <div class="box-logout">
                         <div class="box-text">{{ Auth::user()->name }}</div>
-                        
+
                         <div class="lang-selector">
                             <a href="{{ route('lang.switch', 'fr') }}"
                                 class="lang-link {{ app()->getLocale() == 'fr' ? 'active' : '' }}">FR</a>

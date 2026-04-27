@@ -9,9 +9,26 @@ use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::orderBy('create_at', 'desc')->paginate(15);
+        $query = Job::where('id_user', auth()->id());
+        $filter = $request->query('filter');
+
+        match ($filter) {
+            'abc' => $query->reorder()->orderBy('name', 'asc'),
+            'cba' => $query->reorder()->orderBy('name', 'desc'),
+            'waiting' => $query->where('code_state', 'w'),
+            'printing' => $query->where('code_state', 'p'),
+            'finished' => $query->where('code_state', 'f'),
+            'sliced' => $query->where('code_state', 's'),
+            'error_printing' => $query->where('code_state', 'ep'),
+            'error_slicing' => $query->where('code_state', 'es'),
+
+            default => $query->reorder()->orderBy('create_at', 'desc'),
+        };
+
+        $jobs = $query->paginate(15)->withQueryString();
+
         return view('home', compact('jobs'));
     }
 
@@ -50,7 +67,6 @@ class JobController extends Controller
         }
         return back()->withErrors(['inputfile' => 'Erreur lors du transfert du fichier.']);
     }
-
     public function destroy(Job $job)
     {
         $job->delete();

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dropdown-menu {
+    padding: 16px;
+    border-radius: 12px;
+    width: 300px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border: 2px solid gray;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    color: black;
+    margin-bottom: 20px;
+}
+
+.dropdown-menu:focus {
+    border-color: #4338ca;
+}

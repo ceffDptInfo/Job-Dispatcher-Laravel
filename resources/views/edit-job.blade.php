@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,16 @@
 
 <body class="antialiased">
     <div class="div-login" x-data="{ fileName: '{{ $job->stl_filename }}', isDragging: false, error: '' }">
-        <x-header/>
+        <x-header />
         <div class="div-center">
-            <div class="w-full max-w-4xl">          
+            <div class="w-full max-w-4xl">
                 <form action="{{ route('jobs.update', $job) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-10 flex flex-col items-center">
                         <label for="name" class="name-project">{{ __('editJob.name_project_editJob') }}</label>
-                        <input type="text" name="name" id="name" class="input-style" value="{{ old('name', $job->name) }}">
+                        <input type="text" name="name" id="name" class="input-style"
+                            value="{{ old('name', $job->name) }}">
                     </div>
                     <div class="mb-10">
                         <label for="stl_filename" class="drop-zone"
@@ -25,8 +27,7 @@
                                 'border-red-500 bg-red-50/20': error,
                                 'border-gray-400 bg-gray-50/20': !isDragging && !fileName && !error
                             }"
-                            @dragover.prevent="isDragging = true"
-                            @dragleave.prevent="isDragging = false"
+                            @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false"
                             @drop.prevent="
                                 isDragging = false; 
                                 let file = $event.dataTransfer.files[0];
@@ -37,10 +38,10 @@
                                 } else {
                                     fileName = '';
                                     error = '{{ __('editJob.unauthorized_file_format_editJob') }}';
-                                }
-                            ">
-                            <input type="file" name="stl_filename" x-ref="fileInput" class="hidden" id="stl_filename" accept=".stl"
-                                   @change="
+                                }">
+                            <input type="file" name="stl_filename" x-ref="fileInput" class="hidden" id="stl_filename"
+                                accept=".stl"
+                                @change="
                                    let file = $event.target.files[0];
                                    if (file && file.name.toLowerCase().endsWith('.stl')) {
                                        fileName = file.name;
@@ -52,13 +53,17 @@
                             <div class="text-center w-full">
                                 <div class="mb-4 h-16 flex items-center justify-center">
                                     <template x-if="!fileName && !error">
-                                        <svg class="w-16 h-16 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        <svg class="w-16 h-16 text-white opacity-90" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
                                     </template>
                                     <template x-if="fileName">
-                                        <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </template>
                                     <template x-if="error">
@@ -70,44 +75,33 @@
                                     </template>
                                 </div>
                                 <h3 class="text-xl font-semibold mb-2">
-                                    <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }} <span x-text="fileName"></span></span>
+                                    <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }}
+                                        <span x-text="fileName"></span></span>
                                     <span x-show="error" class="text-red-500" x-text="error"></span>
                                 </h3>
                             </div>
                         </label>
                     </div>
-                    <div class="flex flex-col items-center mb-12">
-                        <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">{{ __('editJob.profile_text_editJob') }}</label>
-                            <select name="id_slicer_profile" class="dropdown-menu">
-                                @foreach([1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon'] as $id => $label)
-                                    <option value="{{ $id }}" {{ $job->id_slicer_profile == $id ? 'selected' : '' }}>
-                                        {{ $label }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center mb-12">
-                        <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">Statut du Job :</label>
-                            <select name="code_state" class="dropdown-menu">
-                                <option value="error_printing" {{ $job->code_state == 'ep' ? 'selected' : '' }}>Error_printing</option>
-                                <option value="error_slicing" {{ $job->code_state == 'es' ? 'selected' : '' }}>Error_slicing</option>
-                                <option value="finished" {{ $job->code_state == 'f' ? 'selected' : '' }}>Finished</option>
-                                <option value="printing" {{ $job->code_state == 'p' ? 'selected' : '' }}>Printing</option>
-                                <option value="sliced" {{ $job->code_state == 's' ? 'selected' : '' }}>Sliced</option>
-                                <option value="waiting" {{ $job->code_state == 'w' ? 'selected' : '' }}>Waiting</option>
-                            </select>
-                        </div>
-                    </div>
+                    <x-dropdown class="mb-12 items-center" label="Profil :" name="id_slicer_profile" :options="[1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon']"
+                        :selected="$job->id_slicer_profile" />
+                    <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state"
+                        :options="[
+                            'error_printing' => 'Error_printing',
+                            'error_slicing' => 'Error_slicing',
+                            'finished' => 'Finished',
+                            'printing' => 'Printing',
+                            'sliced' => 'Sliced',
+                            'waiting' => 'Waiting',
+                        ]":selected="$job->name_state" />
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-                         <x-link-button-style href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>
-                         <button type="submit" class="btn">{{ __('editJob.edit_button_editJob') }}</button>
+                        <x-link-button-style
+                            href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>
+                        <button type="submit" class="btn">{{ __('editJob.edit_button_editJob') }}</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>
