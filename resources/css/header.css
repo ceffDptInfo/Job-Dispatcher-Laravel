@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer components {
-    /* Header principal */
+
     .main-header {
         background-color: #4338ca;
-        padding: 16px 0; /* Réduit un peu pour plus de finesse */
+        padding: 16px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -26,7 +26,7 @@
 
     .header-title {
         color: white;
-        font-size: 24px; /* Un peu plus petit pour l'équilibre */
+        font-size: 35px;
         font-weight: 800;
         letter-spacing: -0.025em;
     }
@@ -41,7 +41,6 @@
         opacity: 0.9;
     }
 
-    /* Le cercle de profil */
     .profile-circle {
         width: 40px;
         height: 40px;
@@ -56,20 +55,19 @@
         color: #4338ca;
         font-weight: bold;
         text-transform: uppercase;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .profile-circle:hover {
         border-color: #a5b4fc;
         transform: translateY(-1px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* Le menu déroulant (Dropdown) */
     .box-logout {
         position: absolute;
         right: 0;
-        top: 110%; /* Décalage pour ne pas coller au bouton */
+        top: 110%;
         width: 220px;
         background-color: #ffffff;
         border-radius: 12px;
@@ -77,23 +75,19 @@
         z-index: 50;
         border: 1px solid #f3f4f6;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        
-        /* Animation fluide */
-        display: block; /* On utilise l'opacité pour l'animation */
+        display: block;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Activation au survol */
     .group:hover .box-logout {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
 
-    /* Texte du nom d'utilisateur */
     .box-text {
         padding: 12px 16px 8px 16px;
         font-size: 11px;
@@ -103,8 +97,8 @@
         letter-spacing: 0.05em;
     }
 
-    /* Liens et boutons du menu */
-    .btn-profile, .btn-header {
+    .btn-profile,
+    .btn-header {
         display: block;
         width: 100%;
         text-align: left;
@@ -138,7 +132,6 @@
         background-color: #fff1f2;
     }
 
-    /* Sélecteur de langue */
     .lang-selector {
         display: flex;
         padding: 8px 16px;

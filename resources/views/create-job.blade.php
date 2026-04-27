@@ -1,3 +1,14 @@
+@php
+    $statusOptions = [
+        'error_printing' => 'Error_printing',
+        'error_slicing' => 'Error_slicing',
+        'finished' => 'Finished',
+        'printing' => 'Printing',
+        'sliced' => 'Sliced',
+        'waiting' => 'Waiting',
+    ];
+@endphp
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -90,17 +101,14 @@
                             </div>
                         </label>
                     </div>
-                    <div class="flex flex-col items-center mb-12">
-                        <div class="flex flex-col items-center gap-2 w-full justify-center">
-                            <label class="name-project">{{ __('createJob.profil_select_create_job') }}</label>
-                            <select name="id_slicer_profile" class="dropdown-menu">
-                                <option value="1">Blanc, PLA</option>
-                                <option value="2">Blanc, PETG</option>
-                                <option value="3">Noir, ABS</option>
-                                <option value="4">Noir, Nylon</option>
-                            </select>
-                        </div>
-                    </div>
+                    <x-dropdown class="mb-12 items-center" :label="__('createJob.profil_select_create_job')" name="id_slicer_profile" :options="[
+                        1 => 'Blanc, PLA',
+                        2 => 'Blanc, PETG',
+                        3 => 'Noir, ABS',
+                        4 => 'Noir, Nylon',
+                    ]"
+                        :selected="old('id_slicer_profile')" />
+
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
                         <x-link-button-style
                             href="{{ route('home') }}">{{ __('createJob.bouton_cancel_create_job') }}</x-link-button-style>
