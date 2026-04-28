@@ -21,7 +21,7 @@ Route::get('/home', [JobController::class, 'index'])
     ->name('home');
 
 Route::get('/jobs/create', function () {
-    return view('create-job');
+    return view('create-job-v2');
 })->middleware(['auth'])->name('jobs.create');
 
 Route::post('/jobs/store', [JobController::class, 'store'])

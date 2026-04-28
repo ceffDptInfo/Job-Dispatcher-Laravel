@@ -1,0 +1,188 @@
+        @import './home.css';
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #2b2e38;
+            color: #f9fafb;
+            height: 100vh;
+            /* On change le grid en flex pour gérer le header */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* Évite le scroll sur toute la page */
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            /* Prend tout l'espace restant sous le header */
+            overflow: hidden;
+        }
+
+        aside {
+            padding: 20px;
+            background: #313bac;
+            border-right: 1px solid #1f2937;
+            overflow-y: auto;
+        }
+
+        main {
+            position: relative;
+            background: #1a1c23;
+            /* Couleur de fond pour le viewer */
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            margin: 0 0 16px;
+        }
+
+        .panel {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        button {
+            width: 100%;
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            background: #2563eb;
+            color: white;
+            font-weight: 650;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button.secondary {
+            background: #334155;
+        }
+
+        button.secondary:hover {
+            background: #475569;
+        }
+
+        button.danger {
+            background: #b91c1c;
+        }
+
+        button.danger:hover {
+            background: #991b1b;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: #94a3b8;
+        }
+
+        #viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            color: #e5e7eb;
+            pointer-events: none;
+        }
+
+        .dropzone {
+            border: 2px dashed #475569;
+            /* Bordure un peu plus visible */
+            border-radius: 12px;
+            padding: 25px 12px;
+            /* Un peu plus d'espace */
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            /* Indique que c'est cliquable */
+            background: #0f172a;
+        }
+
+        .dropzone:hover {
+            border-color: #2563eb;
+            background: #1e293b;
+            color: #f9fafb;
+        }
+
+        /* État quand on survole avec un fichier au dessus */
+        .dropzone.drag-over {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            transform: scale(1.02);
+        }
+
+        .small {
+            font-size: 0.78rem;
+            color: #94a3b8;
+        }
+
+        .name-project {
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .input-style {
+            padding: 4px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 448px;
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border: 2px solid gray;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            color: black;
+        }
+
+        .input-style:focus {
+            border-color: #4338ca;
+        }

@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name'              => 'Benchy_Stress_Test',
                     'path'              => '/uploads/models/benchy/',
-                    'code_state'        => 'w', //code
+                    'code_state'        => 'w', 
                     'stl_filename'      => '3dbenchy_v2.stl',
                     'gcode_filename'    => null, 
                     'filament'          => null,

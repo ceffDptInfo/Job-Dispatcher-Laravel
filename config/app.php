@@ -2,6 +2,9 @@
 
 return [
 
+
+
+    'nfs_base_path' => env('NFS_SHARE_PATH', '\\\\PC-BD52-24\\NFS-Printers\\Users\\'),
     'slicer_path' => env('SLICER_FOLDER_PATH', 'default_value_here'),
 
     /*

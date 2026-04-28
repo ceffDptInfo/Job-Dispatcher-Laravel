@@ -55,6 +55,7 @@ class Job extends Model
                 'Finished' => 'green',
                 'Printing' => 'orange',
                 'Sliced' => 'blue',
+                'pending_preview' => 'orange',
                 'Waiting' => 'gray',
                 'Error Printing' => 'red1',
                 'Error Slicing' => 'red2',
