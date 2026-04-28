@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/dropdown.css'])
+    @vite(['resources/css/component/dropdown.css'])
 </head>
 
 @props(['label', 'name', 'options', 'selected' => null])

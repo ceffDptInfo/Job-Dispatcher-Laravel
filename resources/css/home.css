@@ -1,4 +1,5 @@
 @import "./card-state-job.css";
+@import "./card-job.css";
 
 .main-wrapper {
     min-height: 100vh;
@@ -52,46 +53,6 @@
     gap: 24px;
 }
 
-.task-card {
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(0, 0, 0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.task-info {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex: 1;
-}
-
-.task-number {
-    color: #9ca3af;
-    font-family: monospace;
-    font-size: 1.1rem;
-}
-
-.task-name {
-    min-width: 150px;
-    font-size: 1.2rem;
-}
-
-.task-file {
-    color: #6b7280;
-    font-size: 1rem;
-}
-
-.task-status {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .title-home {
     font-size: 35px;
     font-weight: 800;
@@ -103,6 +64,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .btn-delete {
@@ -118,4 +80,17 @@
     font-size: 20px;
     border-radius: 10px;
     margin-right: 10px;
+}
+
+.btn-round {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    line-height: 1;
+    padding: 0;
 }

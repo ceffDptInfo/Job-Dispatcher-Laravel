@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/create-job.css', 'resources/js/app.js'])
+    @vite(['resources/css/component/create-job.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased">
@@ -87,15 +87,15 @@
                     
                     <x-dropdown class="mb-12 items-center" label="Profil :" name="id_slicer_profile" :options="[1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon']"
                         :selected="$job->id_slicer_profile" />
-                    <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state"
-                        :options="[
-                            'error_printing' => 'Error_printing',
-                            'error_slicing' => 'Error_slicing',
-                            'finished' => 'Finished',
-                            'printing' => 'Printing',
-                            'sliced' => 'Sliced',
-                            'waiting' => 'Waiting',
-                        ]":selected="$job->name_state" />
+                    <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state" :options="[
+                        'error_printing' => 'Error_printing',
+                        'error_slicing' => 'Error_slicing',
+                        'finished' => 'Finished',
+                        'printing' => 'Printing',
+                        'sliced' => 'Sliced',
+                        'waiting' => 'Waiting',
+                    ]"
+                        :selected="$job->name_state" />
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
                         <x-link-button-style
                             href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>

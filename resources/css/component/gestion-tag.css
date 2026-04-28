@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-wrapper {
+    min-height: 100vh;
+    background-color: #2b2e38;
+    color: white;
+}
+
+.content-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.space-home {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.title-home {
+    font-size: 35px;
+    font-weight: 800;
+    margin: 0;
+    margin-bottom: 2rem;
+}
+
+.label-tag {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-tag {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+}
+
+.group-tag {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: #4338ca;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #4338ca;
+    color: white;
+}
+
+.div-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-direction: row;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: #4338ca;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #4338ca;
+    color: white;
+}
