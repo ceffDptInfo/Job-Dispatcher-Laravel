@@ -16,7 +16,6 @@ class SlicerProfile extends Model
     protected $fillable = [
         'name',
         'path',
-        'color',
 
         'id_material',
     ];

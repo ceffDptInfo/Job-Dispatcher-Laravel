@@ -59,35 +59,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        SlicerProfile::factory()->createMany(
-            [
-                [ 
-                'name' => 'sclicer one',
-                'path' => 'C:\'test\'sclicerOne',
-                'color' => 'Red',
-                'material' => 'PLA',
-                ],
-                [ 
-                'name' => 'sclicer two',
-                'path' => 'C:\'test\'sclicerTwo',
-                'color' => 'Black',
-                'material' => 'PETG',
-                ],
-                [ 
-                'name' => 'sclicer tree',
-                'path' => 'C:\'test\'sclicerTwo',
-                'color' => 'Black',
-                'material' => 'ABS',
-                ],
-                [ 
-                'name' => 'sclicer four',
-                'path' => 'C:\'test\'sclicerTwo',
-                'color' => 'Black',
-                'material' => 'Nylon',
-                ]
-            ]
-        );
-
         State::factory()->createMany(
             [
                 [
@@ -120,6 +91,43 @@ class DatabaseSeeder extends Seeder
                     'name' => 'finished',
                     'color' => '#2ecc71', 
                 ],
+            ]
+        );
+
+        Material::factory()->createMany(
+            [
+                [
+                    'name' => 'PLA'
+                ],
+
+                [
+                    'name' => 'PETG'
+                ],
+            ] 
+        );
+
+        SlicerProfile::factory()->createMany(
+            [
+                [ 
+                'name' => 'sclicer one',
+                'path' => 'C:\'test\'sclicerOne',
+                'id_material' => 1,
+                ],
+                [ 
+                'name' => 'sclicer two',
+                'path' => 'C:\'test\'sclicerTwo',
+                'id_material' => 2,
+                ],
+                [ 
+                'name' => 'sclicer tree',
+                'path' => 'C:\'test\'sclicerTwo',
+                'id_material' => 2,
+                ],
+                [ 
+                'name' => 'sclicer four',
+                'path' => 'C:\'test\'sclicerTwo',
+                'id_material' => 1,
+                ]
             ]
         );
 
@@ -194,18 +202,6 @@ class DatabaseSeeder extends Seeder
                     'id_user'           => 1,
                 ],
             ]
-        );
-
-        Material::factory()->createMany(
-            [
-                [
-                    'name' => 'PLA'
-                ],
-
-                [
-                    'name' => 'PETG'
-                ],
-            ] 
         );
 
         Color::factory()->createMany(

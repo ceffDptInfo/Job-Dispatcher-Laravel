@@ -82,6 +82,9 @@
                             </div>
                         </label>
                     </div>
+
+
+                    
                     <x-dropdown class="mb-12 items-center" label="Profil :" name="id_slicer_profile" :options="[1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon']"
                         :selected="$job->id_slicer_profile" />
                     <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state"

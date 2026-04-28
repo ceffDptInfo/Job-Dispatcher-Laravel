@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Material;
 use App\Models\SlicerProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,16 +29,9 @@ class SlicerProfileFactory extends Factory
             
             'path' => '/configs/profiles/' . $this->faker->slug() . '.ini',
             
-            'color' => $this->faker->safeColorName(),
             
-            'material' => $this->faker->randomElement([
-                'PLA', 
-                'ABS', 
-                'PETG', 
-                'TPU', 
-                'ASA', 
-                'Nylon'
-            ]),
+            'id_material' => Material::factory(),
+                
         ];
     }
 }

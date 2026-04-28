@@ -16,8 +16,11 @@ return new class extends Migration
 
             $table->string('name',150);
             $table->string('path',150);
-            $table->string('color',150);
-            $table->string('material',150);
+            
+            $table->unsignedBigInteger('id_material');
+            $table->foreign('id_material')
+                ->references('id_material') 
+                ->on('material');
         });
     }
 

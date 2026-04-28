@@ -7,6 +7,14 @@
         'sliced' => 'Sliced',
         'waiting' => 'Waiting',
     ];
+
+    // Data for the logic
+    $materials = ['PLA', 'ABS', 'PETG'];
+    $colors = [
+        'PLA' => ['White', 'Red', 'Blue'],
+        'ABS' => ['Black', 'Grey'],
+        'PETG' => ['Transparent', 'White']
+    ];
 @endphp
 
 <!DOCTYPE html>
@@ -19,7 +27,14 @@
 </head>
 
 <body class="antialiased">
-    <div class="div-login" x-data="{ fileName: '', isDragging: false, error: '' }">
+    <div class="div-login" x-data="{ 
+        fileName: '', 
+        isDragging: false, 
+        error: '',
+        selectedMaterial: '',
+        selectedProfile: '',
+        selectedColor: '' 
+    }">
         <x-header />
         <div class="div-center">
             <div class="w-full max-w-4xl">
@@ -29,6 +44,7 @@
                         <label for="name" class="name-project">{{ __('createJob.name_create_job') }}</label>
                         <input type="text" name="name" id="name" class="input-style">
                     </div>
+
                     <div class="mb-10">
                         <label for="inputfile" class="drop-zone"
                             :class="{
@@ -96,19 +112,48 @@
                             </div>
                         </label>
                     </div>
-                    <x-dropdown class="mb-12 items-center" :label="__('createJob.profil_select_create_job')" name="id_slicer_profile" :options="[
-                        1 => 'Blanc, PLA',
-                        2 => 'Blanc, PETG',
-                        3 => 'Noir, ABS',
-                        4 => 'Noir, Nylon',
-                    ]"
-                        :selected="old('id_slicer_profile')" />
+
+                    <div class="mb-10 flex flex-col items-center">
+                        <label class="name-project">Material Selection</label>
+                        <select x-model="selectedMaterial" @change="selectedProfile = ''; selectedColor = '';" class="input-style">
+                            <option value="">-- Select Material --</option>
+                            @foreach($materials as $mat)
+                                <option value="{{ $mat }}">{{ $mat }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-10 flex flex-col items-center" x-show="selectedMaterial" x-transition>
+                        <label class="name-project">Profile Selection</label>
+                        <select x-model="selectedProfile" @change="selectedColor = '';" class="input-style" name="id_slicer_profile">
+                            <option value="">-- Select Profile --</option>
+                            <option value="1">Standard Quality</option>
+                            <option value="2">High Detail</option>
+                            <option value="3">Fast Draft</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-12 flex flex-col items-center" x-show="selectedProfile" x-transition>
+                        <label class="name-project">Color Selection</label>
+                        <select x-model="selectedColor" class="input-style" name="color">
+                            <option value="">-- Select Color --</option>
+                            @foreach($colors as $mat => $colorList)
+                                <template x-if="selectedMaterial == '{{ $mat }}'">
+                                    <optgroup label="{{ $mat }} Colors">
+                                        @foreach($colorList as $color)
+                                            <option value="{{ strtolower($color) }}">{{ $color }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                </template>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
                         <x-link-button-style
                             href="{{ route('home') }}">{{ __('createJob.bouton_cancel_create_job') }}</x-link-button-style>
                         <button type="submit" class="btn"
-                            :disabled="!fileName">{{ __('createJob.bouton_start_create_job') }}</button>
+                            :disabled="!fileName || !selectedColor">{{ __('createJob.bouton_start_create_job') }}</button>
                     </div>
                 </form>
             </div>
