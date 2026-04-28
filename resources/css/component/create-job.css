@@ -115,3 +115,12 @@
     background-color: #4338ca;
     color: white;
 }
+
+.div-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-direction: row;
+}

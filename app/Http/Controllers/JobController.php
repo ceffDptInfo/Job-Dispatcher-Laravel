@@ -95,4 +95,15 @@ class JobController extends Controller
         $job->update($validated);
         return redirect()->route('home')->with('success', 'Job mis à jour !');
     }
+
+    public function updateTags(Request $request, Job $job)
+    {
+        $request->validate([
+            'id_tag' => 'required|exists:tags,id_tag',
+        ]);
+
+        $job->tags()->syncWithoutDetaching([$request->id_tag]);
+
+        return redirect()->route('home')->with('success', 'Tag assigné !');
+    }
 }

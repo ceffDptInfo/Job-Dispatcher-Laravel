@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobTagController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'fr'])) { 
+    if (in_array($locale, ['en', 'fr'])) {
         session()->put('locale', $locale);
     }
     return redirect()->back();
@@ -38,5 +40,14 @@ Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.dest
 
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
 Route::put('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+
+Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
+Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
+
+Route::get('/jobs/{job}/tags/create', [TagController::class, 'assign'])->name('jobs.tags.create');
+Route::post('/jobs/{job}/tags', [TagController::class, 'storeRelation'])->name('jobs.tags.update');
+Route::delete('/jobs/{job}/tags/{tag}', [JobTagController::class, 'destroy'])->name('jobs.tags.destroy');
+
+Route::delete('/tags/delete-permanently', [TagController::class, 'destroy'])->name('tags.destroy_permanent');
 
 require __DIR__ . '/auth.php';

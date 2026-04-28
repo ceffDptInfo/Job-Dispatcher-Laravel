@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    @vite(['resources/css/header.css', 'resources/js/app.js'])
+    @vite(['resources/css/component/header.css', 'resources/js/app.js'])
 </head>
 
 <header class="main-header">
@@ -12,7 +12,6 @@
                 {{ __('header.name_app_header') }}
             </a>
         </h1>
-
         <div>
             @auth
                 <div class="relative group" style="padding: 10px 0;">

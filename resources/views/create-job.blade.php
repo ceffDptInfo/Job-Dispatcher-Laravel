@@ -1,21 +1,10 @@
-@php
-    $statusOptions = [
-        'error_printing' => 'Error_printing',
-        'error_slicing' => 'Error_slicing',
-        'finished' => 'Finished',
-        'printing' => 'Printing',
-        'sliced' => 'Sliced',
-        'waiting' => 'Waiting',
-    ];
-@endphp
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/create-job.css', 'resources/js/app.js'])
+    @vite(['resources/css/component/create-job.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased">
@@ -103,8 +92,7 @@
                         4 => 'Noir, Nylon',
                     ]"
                         :selected="old('id_slicer_profile')" />
-
-                    <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <div class="div-btn">
                         <x-link-button-style
                             href="{{ route('home') }}">{{ __('createJob.bouton_cancel_create_job') }}</x-link-button-style>
                         <button type="submit" class="btn"

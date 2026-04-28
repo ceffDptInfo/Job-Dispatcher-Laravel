@@ -47,7 +47,6 @@ class Job extends Model
         return $this->belongsTo(SlicerProfile::class, 'id_slicer_profile');
     }
 
-
     protected function statusColor(): Attribute
     {
         return Attribute::make(
@@ -61,5 +60,10 @@ class Job extends Model
                 default => 'gray',
             },
         );
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tag_job', 'id_job', 'id_tag');
     }
 }
