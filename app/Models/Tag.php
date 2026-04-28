@@ -23,4 +23,9 @@ class Tag extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'tag_job', 'id_tag', 'id_job');
+    }
 }
