@@ -12,8 +12,19 @@ class Material extends Model
 
     protected $table = 'material';
 
-
+    protected $primaryKey = 'id_material';
+    
     protected $fillable = [
         'name',
     ];
+
+    public function profiles()
+    {
+        return $this->hasMany(SlicerProfile::class, 'id_material');
+    }
+
+    public function colors()
+    {
+        return $this->hasMany(Color::class, 'id_material');
+    }
 }

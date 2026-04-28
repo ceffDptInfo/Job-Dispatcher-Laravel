@@ -172,6 +172,7 @@
         }
 
         .input-style {
+            margin-bottom: 5px;
             padding: 4px;
             border-radius: 12px;
             width: 100%;

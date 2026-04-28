@@ -3,12 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
+    public function getMaterialDetails($id)
+    {
+        $material = Material::with(['profiles', 'colors'])->find($id);
+        if (!$material) {
+            return response()->json(['error' => 'Matériau non trouvé'], 404);
+        }
+
+        return response()->json([
+            'profiles' => $material->profiles,
+            'colors'   => $material->colors,
+        ]);
+
+    }
+
     public function index(Request $request)
     {
         $query = Job::where('id_user', auth()->id());
@@ -31,42 +46,6 @@ class JobController extends Controller
 
         return view('home', compact('jobs'));
     }
-
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:50',
-    //         'inputfile' => 'required|file',
-    //         'id_slicer_profile' => 'required|integer',
-    //     ]);
-
-    //     $user = Auth::user();
-    //     $projectName = Str::slug($request->name);
-
-    //     $basePath = "\\\\PC-BD52-24\\NFS-Printers\\Users\\";
-    //     $userFolder = $user->id . "-" . Str::slug($user->name);
-    //     $folderPath = $basePath . $userFolder . "\\" . $projectName;
-
-    //     if ($request->hasFile('inputfile')) {
-    //         $file = $request->file('inputfile');
-    //         $fileName = $file->getClientOriginalName();
-
-    //         $file->storeAs($folderPath, $fileName, 'public');
-
-    //         Job::create([
-    //             'name' => $request->name,
-    //             'path' => $folderPath,
-    //             'code_state' => 'w',
-    //             'stl_filename' => $fileName,
-    //             'id_slicer_profile' => $request->id_slicer_profile,
-    //             'id_user' => $user->id_user,
-    //             'create_at' => now(),
-    //         ]);
-
-    //         return redirect()->route('home')->with('success', 'Job envoyé au serveur NFS !');
-    //     }
-    //     return back()->withErrors(['inputfile' => 'Erreur lors du transfert du fichier.']);
-    // }
 
     public function store(Request $request)
     {

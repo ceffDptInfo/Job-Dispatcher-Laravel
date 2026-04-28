@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Material;
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'fr'])) { 
@@ -20,9 +21,20 @@ Route::get('/home', [JobController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('home');
 
+
+
+
 Route::get('/jobs/create', function () {
-    return view('create-job-v2');
+    $materials = Material::all(); 
+    return view('create-job-v2', compact('materials'));
 })->middleware(['auth'])->name('jobs.create');
+
+Route::get('/materials/{id}/details', [JobController::class, 'getMaterialDetails'])
+    ->middleware(['auth'])
+    ->name('materials.details');
+
+
+
 
 Route::post('/jobs/store', [JobController::class, 'store'])
     ->middleware(['auth'])

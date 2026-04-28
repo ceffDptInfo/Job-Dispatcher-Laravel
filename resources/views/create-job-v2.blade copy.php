@@ -19,31 +19,16 @@
                     placeholder="Ex: Support Casque">
             </div>
 
-
-
             <div class="panel">
-                <div class="form-container">
-                    <label class="name-project">Matériau</label>
-                    <select id="materialSelect" name="material_id" class="input-style" style="background: white;">
-                        <option value="">-- Choisir un matériau --</option>
-                        @foreach($materials as $material)
-                            <option value="{{ $material->id_material }}">{{ $material->name }}</option>
-                        @endforeach
-                    </select>
-
-                    <label class="name-project">Profil d'impression</label>
-                    <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;" disabled>
-                        <option value="">Sélectionnez d'abord un matériau</option>
-                    </select>
-
-                    <label class="name-project">Couleur</label>
-                    <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">Sélectionnez d'abord un matériau</option>
-                    </select>
-                </div>
+                <label class="name-project">Profil d'impression</label>
+                <select id="slicerProfile" class="input-style" style="background: white;">
+                    {{-- Les profiles seront chargés plus tard par la BDD. Valeurs temporaires : --}}
+                    <option value="1">Blanc, PLA</option>
+                    <option value="2">Blanc, PETG</option>
+                    <option value="3">Noir, ABS</option>
+                    <option value="4">Noir, Nylon</option>
+                </select>
             </div>
-
-
 
             <div class="panel">
                 <label for="fileInput" class="name-project">Fichier STL</label>
@@ -72,6 +57,7 @@
             </div>
 
             <div class="panel">
+                {{-- Champ caché pour le token CSRF requis par Laravel --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>Lancer l'impression</button>
             </div>
@@ -102,14 +88,11 @@
         import { STLLoader } from 'three/addons/loaders/STLLoader.js';
         import { STLExporter } from 'three/addons/exporters/STLExporter.js';
 
-        // Elements
         const canvas = document.getElementById('viewer');
         const fileInput = document.getElementById('fileInput');
         const dropzone = document.getElementById('dropzone');
         const projectNameInput = document.getElementById('projectName');
-        const materialSelect = document.getElementById('materialSelect');
         const slicerProfileSelect = document.getElementById('slicerProfile');
-        const colorSelect = document.getElementById('colorSelect');
         const selectFaceBtn = document.getElementById('selectFaceBtn');
         const applyBtn = document.getElementById('applyBtn');
         const resetBtn = document.getElementById('resetBtn');
@@ -132,6 +115,7 @@
         function init() {
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x111827);
+
             camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100000);
             camera.up.set(0, 0, 1);
             camera.position.set(120, -120, 120);
@@ -158,43 +142,6 @@
             resize();
         }
 
-        // --- CASCADING SELECT LOGIC ---
-        materialSelect.addEventListener('change', function() {
-            const materialId = this.value;
-
-            if (!materialId) {
-                slicerProfileSelect.disabled = true;
-                colorSelect.disabled = true;
-                slicerProfileSelect.innerHTML = '<option value="">Sélectionnez d\'abord un matériau</option>';
-                colorSelect.innerHTML = '<option value="">Sélectionnez d\'abord un matériau</option>';
-                return;
-            }
-
-            setStatus("Chargement des profils et couleurs...");
-
-            fetch(`/materials/${materialId}/details`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate Profiles
-                    slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
-                    data.profiles.forEach(p => {
-                        slicerProfileSelect.innerHTML += `<option value="${p.id_slicer_profile}">${p.name}</option>`;
-                    });
-                    slicerProfileSelect.disabled = false;
-
-                    // Populate Colors
-                    colorSelect.innerHTML = '<option value="">-- Choisir une couleur --</option>';
-                    data.colors.forEach(c => {
-                        colorSelect.innerHTML += `<option value="${c.id_color}">${c.name}</option>`;
-                    });
-                    colorSelect.disabled = false;
-                    
-                    setStatus("Matériau sélectionné.");
-                    checkFormValidity();
-                })
-                .catch(err => setStatus("Erreur de chargement des données."));
-        });
-
         function resize() {
             const rect = canvas.parentElement.getBoundingClientRect();
             camera.aspect = rect.width / rect.height;
@@ -208,13 +155,12 @@
             renderer.render(scene, camera);
         }
 
+        // --- VALIDATION DU FORMULAIRE ---
         function checkFormValidity() {
             const name = projectNameInput.value.trim();
-            const profile = slicerProfileSelect.value;
-            const color = colorSelect.value;
             const hasMesh = mesh !== null;
 
-            if (name.length > 0 && hasMesh && profile && color) {
+            if (name.length > 0 && hasMesh) {
                 submitJobBtn.disabled = false;
                 submitJobBtn.style.opacity = "1";
                 submitJobBtn.style.cursor = "pointer";
@@ -227,9 +173,8 @@
 
         projectNameInput.addEventListener('input', checkFormValidity);
         slicerProfileSelect.addEventListener('change', checkFormValidity);
-        colorSelect.addEventListener('change', checkFormValidity);
 
-        // --- STL LOGIC ---
+        // --- LOGIQUE STL ---
         function loadSTLFile(file) {
             if (!file || !file.name.toLowerCase().endsWith('.stl')) {
                 setStatus('Veuillez choisir un fichier .stl valide.');
@@ -263,8 +208,8 @@
                     resetBtn.disabled = false;
                     applyBtn.disabled = true;
 
-                    setStatus(`Fichier chargé, ajustez l'orientation si besoin.`);
-                    checkFormValidity();
+                    setStatus(`Fichier chargé, cliquez sur "Sélectionner la face" pour pour ajuster l'orientation.`);
+                    checkFormValidity(); // Activer le bouton si le nom est déjà là
                 } catch (error) {
                     setStatus('Erreur lors du chargement du STL.');
                 }
@@ -364,11 +309,10 @@
             statusEl.textContent = message;
         }
 
-        // --- SUBMIT ---
+        // --- ENVOI FINAL ---
         async function handleFinalSubmit() {
             const name = projectNameInput.value;
             const profileId = slicerProfileSelect.value;
-            const colorId = colorSelect.value;
             const csrfToken = document.querySelector('input[name="_token"]').value;
 
             setStatus("Préparation et envoi...");
@@ -385,7 +329,6 @@
             formData.append('_token', csrfToken);
             formData.append('name', name);
             formData.append('id_slicer_profile', profileId);
-            formData.append('color_id', colorId);
             formData.append('inputfile', orientedFile, name + ".stl");
 
             try {
@@ -408,6 +351,7 @@
             }
         }
 
+        // --- LISTENERS ---
         fileInput.addEventListener('change', e => loadSTLFile(e.target.files[0]));
         dropzone.addEventListener('click', () => fileInput.click());
         dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.style.borderColor = '#60a5fa'; });

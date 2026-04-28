@@ -213,7 +213,7 @@ class DatabaseSeeder extends Seeder
 
                 [
                     'name'  => 'Red',
-                    'id_material'  => '1',
+                    'id_material'  => '2',
                 ],
 
                 [
