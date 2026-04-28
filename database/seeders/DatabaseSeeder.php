@@ -91,11 +91,6 @@ class DatabaseSeeder extends Seeder
         State::factory()->createMany(
             [
                 [
-                    'code' => 'pp',
-                    'name' => 'pending_preview',
-                    'color' => '#f38014ff',
-                ],
-                [
                     'code' => 'w',
                     'name' => 'waiting',
                     'color' => '#f1c40f', 
@@ -128,7 +123,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-         Job::factory()->createMany(
+        Job::factory()->createMany(
             [
                 [
                     'name'              => 'Benchy_Stress_Test',

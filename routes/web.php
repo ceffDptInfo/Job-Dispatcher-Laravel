@@ -21,15 +21,8 @@ Route::get('/home', [JobController::class, 'index'])
     ->name('home');
 
 Route::get('/jobs/create', function () {
-    return view('create-job');
+    return view('create-job-v2');
 })->middleware(['auth'])->name('jobs.create');
-
-Route::get('/kiri-moto', function () {
-    return view('preview-kiri-moto');
-})->middleware(['auth'])->name('kiri-moto');
-
-Route::get('/jobs/{job}/preview', [JobController::class, 'preview'])->name('jobs.preview');
-Route::get('/jobs/{job}/download-stl', [JobController::class, 'downloadStl'])->name('jobs.download-stl');
 
 Route::post('/jobs/store', [JobController::class, 'store'])
     ->middleware(['auth'])
