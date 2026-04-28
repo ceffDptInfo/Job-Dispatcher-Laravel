@@ -1,0 +1,92 @@
+.task-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+}
+
+.task-number {
+    color: #9ca3af;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.task-name {
+    min-width: 150px;
+    font-size: 1.2rem;
+}
+
+.task-file {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.task-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tag-badge {
+    background-color: #f3f4f6;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgb(99, 99, 99);
+}
+
+.job-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 10px;
+}
+
+.tag-delete-form {
+    display: inline;
+}
+
+.btn-tag-remove {
+    color: #ef4444;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.btn-add-tag {
+    color: #313bac;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.btn-add-tag:hover {
+    transform: scale(1.1);
+}
