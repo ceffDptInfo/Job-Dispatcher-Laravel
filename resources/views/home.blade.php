@@ -21,17 +21,25 @@
                 </div>
                 <div>
                     <form id="sortForm" action="{{ url()->current() }}" method="GET">
-                        <x-dropdown label="Filtrer ou Trier" name="filter" :options="[
-                            '' => 'Par défaut (Plus récents)',
-                            'abc' => 'Nom (A-Z)',
-                            'cba' => 'Nom (Z-A)',
-                            'waiting' => 'Statut : En attente',
-                            'printing' => 'Statut : Impression',
-                            'finished' => 'Statut : Terminé',
-                            'sliced' => 'Statut : Slicing',
-                            'error_printing' => 'Statut : Erreur d\'impression',
-                            'error_slicing' => 'Statut : Erreur de slicing',
-                        ]" :selected="request('filter')"
+                        <x-dropdown label="Filtrer ou Trier" name="filter" :options="array_merge(
+                            [
+                                '' => 'Par défaut (Plus récents)',
+                                'abc' => 'Nom (A-Z)',
+                                'cba' => 'Nom (Z-A)',
+                                'waiting' => 'Statut : En attente',
+                                'printing' => 'Statut : Impression',
+                                'finished' => 'Statut : Terminé',
+                                'sliced' => 'Slicing',
+                                'error_printing' => 'Statut : Erreur d\'impression',
+                                'error_slicing' => 'Statut : Erreur de slicing',
+                            ],
+                            $tags
+                                ->pluck('name', 'id_tag')
+                                ->mapWithKeys(function ($name, $id) {
+                                    return ['tag_' . $id => 'Tag : ' . $name];
+                                })
+                                ->toArray(),
+                        )" :selected="request('filter')"
                             onchange="document.getElementById('sortForm').submit()" />
                     </form>
                 </div>

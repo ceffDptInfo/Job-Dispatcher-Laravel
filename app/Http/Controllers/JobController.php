@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -11,25 +12,32 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
+        $filter = $request->get('filter');
         $query = Job::where('id_user', auth()->id());
-        $filter = $request->query('filter');
 
-        match ($filter) {
-            'abc' => $query->reorder()->orderBy('name', 'asc'),
-            'cba' => $query->reorder()->orderBy('name', 'desc'),
-            'waiting' => $query->where('code_state', 'w'),
-            'printing' => $query->where('code_state', 'p'),
-            'finished' => $query->where('code_state', 'f'),
-            'sliced' => $query->where('code_state', 's'),
-            'error_printing' => $query->where('code_state', 'ep'),
-            'error_slicing' => $query->where('code_state', 'es'),
+        if ($filter) {
+            if (str_starts_with($filter, 'tag_')) {
+                $tagId = str_replace('tag_', '', $filter);
 
-            default => $query->reorder()->orderBy('create_at', 'desc'),
-        };
+                $query->whereHas('tags', function ($q) use ($tagId) {
+                    $q->where('tag.id_tag', $tagId);
+                });
+            } else {
+                match ($filter) {
+                    'abc' => $query->orderBy('name', 'asc'),
+                    'cba' => $query->orderBy('name', 'desc'),
+                    'waiting' => $query->where('status', 'waiting'),
+                    default => $query->orderBy('create_at', 'desc'),
+                };
+            }
+        } else {
+            $query->orderBy('create_at', 'desc');
+        }
 
-        $jobs = $query->paginate(15)->withQueryString();
+        $jobs = $query->get();
+        $tags = Tag::where('id_user', auth()->id())->get();
 
-        return view('home', compact('jobs'));
+        return view('home', compact('jobs', 'tags'));
     }
 
     public function store(Request $request)

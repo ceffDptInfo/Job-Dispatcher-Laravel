@@ -54,7 +54,7 @@
                         </select>
 
                         <button type="submit" class="btn"
-                            onclick="return confirm('Attention : Ce tag sera supprimé de la base et de TOUS vos jobs. Confirmer ?')">
+                            onclick="return confirm('Attention : Ce tag sera supprimé de la base et de tous vos jobs. Confirmer ?')">
                             Supprimer de ma liste
                         </button>
                     </div>
