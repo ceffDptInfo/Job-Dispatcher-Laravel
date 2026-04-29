@@ -28,14 +28,14 @@ return new class extends Migration
             $table->dateTime('slice_at')->nullable();
             $table->dateTime('print_at')->nullable();
             $table->dateTime('finish_at')->nullable();
-            $table->integer('id_printer')->nullable();
+            $table->string('id_printer')->nullable();
 
             $table->unsignedBigInteger('id_slicer_profile');
             $table->foreign('id_slicer_profile')
                 ->references('id_slicer_profile') 
                 ->on('slicer_profile');
 
-            $table->unsignedBigInteger('id_color')->nullable();
+            $table->unsignedBigInteger('id_color');
             $table->foreign('id_color')
                 ->references('id_color') 
                 ->on('color');

@@ -405,7 +405,7 @@
             formData.append('_token', csrfToken);
             formData.append('name', name);
             formData.append('id_slicer_profile', profileId);
-            formData.append('color_id', colorId);
+            formData.append('id_color', colorId);
             formData.append('inputfile', orientedFile, name + ".stl");
 
             try {
