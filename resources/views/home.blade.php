@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <form id="sortForm" action="{{ url()->current() }}" method="GET">
-                        <x-dropdown label="Filtrer ou Trier" name="filter" :options="array_merge(
+                        <x-dropdown label="Filtrer :" name="filter" :options="array_merge(
                             [
                                 '' => 'Par défaut (Plus récents)',
                                 'abc' => 'Nom (A-Z)',
@@ -29,7 +29,7 @@
                                 'waiting' => 'Statut : En attente',
                                 'printing' => 'Statut : Impression',
                                 'finished' => 'Statut : Terminé',
-                                'sliced' => 'Slicing',
+                                'sliced' => 'Statut : Slicing',
                                 'error_printing' => 'Statut : Erreur d\'impression',
                                 'error_slicing' => 'Statut : Erreur de slicing',
                             ],

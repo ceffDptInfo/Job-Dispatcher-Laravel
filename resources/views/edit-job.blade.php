@@ -76,15 +76,12 @@
                                 </div>
                                 <h3 class="text-xl font-semibold mb-2">
                                     <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }}
-                                        <span x-text="fileName"></span></span>
-                                    <span x-show="error" class="text-red-500" x-text="error"></span>
+                                        <span x-text="fileName"></span>
+                                        <span x-show="error" class="text-red-500" x-text="error"></span>
                                 </h3>
                             </div>
                         </label>
                     </div>
-
-
-                    
                     <x-dropdown class="mb-12 items-center" label="Profil :" name="id_slicer_profile" :options="[1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon']"
                         :selected="$job->id_slicer_profile" />
                     <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state" :options="[

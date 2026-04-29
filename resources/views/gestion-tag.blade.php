@@ -20,9 +20,11 @@
                     <div class="group-tag">
                         <label for="id_tag_assign" class="label-tag">Assigner un tag pour ce job</label>
                         <select name="id_tag" id="id_tag_assign" class="input-tag">
-                            @foreach ($tags as $tag)
+                            @forelse ($tags as $tag)
                                 <option value="{{ $tag->id_tag }}">{{ $tag->name }}</option>
-                            @endforeach
+                            @empty
+                                <option disabled>Pas de tag</option>
+                            @endforelse
                         </select>
                         <button type="submit" class="btn">Ajouter au job</button>
                     </div>
@@ -44,15 +46,15 @@
                 <form action="{{ route('tags.destroy_permanent') }}" method="POST">
                     @csrf
                     @method('DELETE')
-
                     <div class="group-tag">
                         <label for="id_tag_permanent" class="label-tag">Supprimer un tag</label>
                         <select name="id_tag" id="id_tag_permanent" class="input-tag">
-                            @foreach ($tags as $tag)
+                            @forelse ($tags as $tag)
                                 <option value="{{ $tag->id_tag }}">{{ $tag->name }}</option>
-                            @endforeach
+                            @empty
+                                <option disabled>Pas de tag</option>
+                            @endforelse
                         </select>
-
                         <button type="submit" class="btn"
                             onclick="return confirm('Attention : Ce tag sera supprimé de la base et de tous vos jobs. Confirmer ?')">
                             Supprimer de ma liste

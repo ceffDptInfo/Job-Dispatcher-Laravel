@@ -12,15 +12,10 @@
     <div class="app-container">
         <aside>
             <h1>JobDispatcher - Viewer STL</h1>
-
             <div class="panel">
                 <label class="name-project">Nom du projet</label>
-                <input type="text" id="projectName" class="input-style" maxlength="35"
-                    placeholder="Ex: Support Casque">
+                <input type="text" id="projectName" class="input-style" maxlength="35" placeholder="Ex: Support Casque">
             </div>
-
-
-
             <div class="panel">
                 <div class="form-container">
                     <label class="name-project">Matériau</label>
@@ -42,9 +37,6 @@
                     </select>
                 </div>
             </div>
-
-
-
             <div class="panel">
                 <label for="fileInput" class="name-project">Fichier STL</label>
                 <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
@@ -53,14 +45,12 @@
                     <span style="font-size: 0.7rem; opacity: 0.7;">(ou recliquez pour changer de pièce)</span>
                 </div>
             </div>
-
             <div class="panel">
                 <label class="name-project">Actions 3D</label>
                 <button id="selectFaceBtn" disabled>Sélectionner la face</button>
                 <button id="applyBtn" disabled>Orienter vers le plateau</button>
                 <button id="resetBtn" class="secondary" disabled>Réinitialiser la vue</button>
             </div>
-
             <div class="panel">
                 <label class="name-project">Aide</label>
                 <div class="hint">
@@ -70,23 +60,20 @@
                     4. Cliquez sur « Orienter vers le plateau » puis lancez l'impression.
                 </div>
             </div>
-
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>Lancer l'impression</button>
+                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>Lancer
+                    l'impression</button>
             </div>
-
             <div class="small">
                 Repère : la face sélectionnée est alignée vers <strong>-Z</strong> (le plateau).
             </div>
         </aside>
-
         <main>
             <canvas id="viewer"></canvas>
             <div id="status" class="badge">Remplissez les champs pour commencer et chargé un fichier STL</div>
         </main>
     </div>
-
     <script type="importmap">
     {
         "imports": {
@@ -98,9 +85,15 @@
 
     <script type="module">
         import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-        import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+        import {
+            OrbitControls
+        } from 'three/addons/controls/OrbitControls.js';
+        import {
+            STLLoader
+        } from 'three/addons/loaders/STLLoader.js';
+        import {
+            STLExporter
+        } from 'three/addons/exporters/STLExporter.js';
 
         // Elements
         const canvas = document.getElementById('viewer');
@@ -136,7 +129,10 @@
             camera.up.set(0, 0, 1);
             camera.position.set(120, -120, 120);
 
-            renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+            renderer = new THREE.WebGLRenderer({
+                canvas,
+                antialias: true
+            });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
             controls = new OrbitControls(camera, renderer.domElement);
@@ -325,7 +321,10 @@
             mesh.applyQuaternion(quaternion);
             bakeTransformIntoGeometry(mesh);
             centerAndPlaceOnPlate(mesh);
-            if (selectedHelper) { scene.remove(selectedHelper); selectedHelper = null; }
+            if (selectedHelper) {
+                scene.remove(selectedHelper);
+                selectedHelper = null;
+            }
             selectedNormalWorld = null;
             applyBtn.disabled = true;
             setStatus('Orientation appliquée.');
@@ -343,7 +342,10 @@
 
         function resetMesh() {
             if (!originalGeometry) return;
-            if (selectedHelper) { scene.remove(selectedHelper); selectedHelper = null; }
+            if (selectedHelper) {
+                scene.remove(selectedHelper);
+                selectedHelper = null;
+            }
             mesh.geometry.dispose();
             mesh.geometry = originalGeometry.clone();
             centerAndPlaceOnPlate(mesh);
@@ -378,8 +380,12 @@
             centerAndPlaceOnPlate(mesh);
 
             const exporter = new STLExporter();
-            const stlData = exporter.parse(mesh, { binary: true });
-            const orientedFile = new Blob([stlData], { type: 'application/octet-stream' });
+            const stlData = exporter.parse(mesh, {
+                binary: true
+            });
+            const orientedFile = new Blob([stlData], {
+                type: 'application/octet-stream'
+            });
 
             const formData = new FormData();
             formData.append('_token', csrfToken);
@@ -392,7 +398,9 @@
                 const response = await fetch("{{ route('jobs.store') }}", {
                     method: 'POST',
                     body: formData,
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
                 });
 
                 const res = await response.json();
@@ -410,7 +418,10 @@
 
         fileInput.addEventListener('change', e => loadSTLFile(e.target.files[0]));
         dropzone.addEventListener('click', () => fileInput.click());
-        dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.style.borderColor = '#60a5fa'; });
+        dropzone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropzone.style.borderColor = '#60a5fa';
+        });
         dropzone.addEventListener('dragleave', () => dropzone.style.borderColor = '#475569');
         dropzone.addEventListener('drop', e => {
             e.preventDefault();
@@ -428,4 +439,5 @@
         submitJobBtn.addEventListener('click', handleFinalSubmit);
     </script>
 </body>
+
 </html>

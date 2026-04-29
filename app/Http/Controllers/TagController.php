@@ -30,7 +30,6 @@ class TagController extends Controller
     public function assign(Job $job)
     {
         $tags = Tag::where('id_user', auth()->id())->get();
-
         return view('gestion-tag', compact('job', 'tags'));
     }
 
@@ -42,22 +41,20 @@ class TagController extends Controller
 
         $job->tags()->syncWithoutDetaching([$request->id_tag]);
 
-        return redirect()->route('home')->with('success', 'Tag bien assigné !');
+        return redirect()->route('home')->with('success');
     }
 
     public function destroy(Request $request)
     {
         $tagId = $request->input('id_tag');
-
         $tag = Tag::where('id_tag', $tagId)
             ->where('id_user', auth()->id())
             ->first();
 
         if ($tag) {
             $tag->delete();
-            return back()->with('success', 'Tag supprimé définitivement de votre base.');
+            return back()->with('success');
         }
-
-        return back()->with('error', 'Tag introuvable ou action non autorisée.');
+        return back()->with('error');
     }
 }
