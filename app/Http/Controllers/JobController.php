@@ -64,6 +64,7 @@ class JobController extends Controller
             'name' => 'required|string|max:50',
             'inputfile' => 'required|file', // Ce sera le fichier orienté envoyé par le JS
             'id_slicer_profile' => 'required|integer',
+            'id_color' => 'required|integer',
         ]);
 
         $user = Auth::user();
@@ -88,6 +89,7 @@ class JobController extends Controller
             'code_state' => 'w',
             'stl_filename' => $fileName,
             'id_slicer_profile' => $request->id_slicer_profile,
+            'id_color' => $request->id_color,
             'id_user' => $user->id_user,
             'create_at' => now(),
         ]);

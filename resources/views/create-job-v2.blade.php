@@ -34,7 +34,7 @@
                     </select>
 
                     <label class="name-project">Couleur</label>
-                    <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
+                    <select id="colorSelect" name="id_color" class="input-style" style="background: white;" disabled>
                         <option value="">Sélectionnez d'abord un matériau</option>
                     </select>
                 </div>
@@ -391,7 +391,7 @@
             formData.append('_token', csrfToken);
             formData.append('name', name);
             formData.append('id_slicer_profile', profileId);
-            formData.append('color_id', colorId);
+            formData.append('id_color', colorId);
             formData.append('inputfile', orientedFile, name + ".stl");
 
             try {
