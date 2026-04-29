@@ -131,6 +131,30 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        Color::factory()->createMany(
+            [
+                [
+                    'name'  => 'Red',
+                    'id_material'  => '1',
+                ],
+
+                [
+                    'name'  => 'Black',
+                    'id_material'  => '1',
+                ],
+
+                [
+                    'name'  => 'Red',
+                    'id_material'  => '2',
+                ],
+
+                [
+                    'name'  => 'Blue',
+                    'id_material'  => '2',
+                ]
+            ]
+        );
+
          Job::factory()->createMany(
             [
                 [
@@ -147,7 +171,8 @@ class DatabaseSeeder extends Seeder
                     'finish_at'         => null,  
                     'id_printer'        => 1, 
                     
-                    'id_slicer_profile' => 1,    
+                    'id_slicer_profile' => 1,
+                    'id_color'          => 3,
                     'id_user'           => 1,    
                 ],
                 [
@@ -165,6 +190,7 @@ class DatabaseSeeder extends Seeder
                     'id_printer'        => 1,
 
                     'id_slicer_profile' => 2,
+                    'id_color'          => 2,
                     'id_user'           => 1,
                 ],
                 [
@@ -181,7 +207,8 @@ class DatabaseSeeder extends Seeder
                     'finish_at'         => null,
                     'id_printer'        => 1,
 
-                    'id_slicer_profile' => 2,
+                    'id_slicer_profile' => 2,                    
+                    'id_color'          => 2,
                     'id_user'           => 1,
                 ],
                 [
@@ -199,27 +226,9 @@ class DatabaseSeeder extends Seeder
                     'id_printer'        => 1,
 
                     'id_slicer_profile' => 2,
+                    'id_color'          => 3,
                     'id_user'           => 1,
                 ],
-            ]
-        );
-
-        Color::factory()->createMany(
-            [
-                [
-                    'name'  => 'Red',
-                    'id_material'  => '1',
-                ],
-
-                [
-                    'name'  => 'Red',
-                    'id_material'  => '2',
-                ],
-
-                [
-                    'name'  => 'blue',
-                    'id_material'  => '2',
-                ]
             ]
         );
         

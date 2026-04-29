@@ -35,6 +35,11 @@ return new class extends Migration
                 ->references('id_slicer_profile') 
                 ->on('slicer_profile');
 
+            $table->unsignedBigInteger('id_color')->nullable();
+            $table->foreign('id_color')
+                ->references('id_color') 
+                ->on('color');
+
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')
                 ->references('id_user')           

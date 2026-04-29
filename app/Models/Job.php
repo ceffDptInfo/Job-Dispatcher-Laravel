@@ -29,12 +29,18 @@ class Job extends Model
         'id_printer',
 
         'id_slicer_profile',
+        'id_color',
         'id_user',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'id_color');
     }
 
     public function state()
