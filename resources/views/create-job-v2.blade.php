@@ -13,56 +13,70 @@
         <aside>
             <h1> {{ __('createJobV2.title_create_job_v2') }} </h1>
 
+            <div class="panel help-section">
+                <label class="label-text help-header">
+                    {{ __('createJobV2.title_help_create_job_v2') }}
+                    <span class="arrow-icon">▼</span>
+                </label>
+
+                <div class="help-content">
+                    @foreach (__('createJobV2.text_help_create_job_v2') as $step)
+                        <div class="hint"> {{ $step }} </div>
+                    @endforeach
+                </div>
+            </div>
             <div class="panel">
-                <label class="name-project">{{ __('createJobV2.name_create_job_v2') }}</label>
+                <label class="label-text">{{ __('createJobV2.name_create_job_v2') }}</label>
                 <input type="text" id="projectName" class="input-style" maxlength="35"
                     placeholder= "{{ __('createJobV2.placeholder_name_create_job_v2') }}" />
             </div>
             <div class="panel">
                 <div class="form-container">
-                    <label class="name-project">Matériau</label>
+                    <label class="label-text">{{ __('createJobV2.material_select_create_job_v2') }}</label>
                     <select id="materialSelect" name="material_id" class="input-style" style="background: white;">
-                        <option value="">-- Choisir un matériau --</option>
-                        @foreach($materials as $material)
+                        <option value="">-- {{ __('createJobV2.select_material_placeholder_create_job_v2') }} --
+                        </option>
+                        @foreach ($materials as $material)
                             <option value="{{ $material->id_material }}">{{ $material->name }}</option>
                         @endforeach
                     </select>
 
-                    <label class="name-project">Profil d'impression</label>
-                    <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;" disabled>
-                        <option value="">Sélectionnez d'abord un matériau</option>
+                    <label class="label-text">{{ __('createJobV2.profil_select_create_job_v2') }}</label>
+                    <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;"
+                        disabled>
+                        <option value="">--
+                            {{ __('createJobV2.select_slicer_profile_placeholder_create_job_v2') }} --</option>
                     </select>
 
-                    <label class="name-project">Couleur</label>
+                    <label class="label-text">{{ __('createJobV2.color_select_create_job_v2') }}</label>
                     <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">Sélectionnez d'abord un matériau</option>
+                        <option value="">-- {{ __('createJobV2.select_color_placeholder_create_job_v2') }} --
+                        </option>
                     </select>
                 </div>
             </div>
             <div class="panel">
-                <label for="fileInput" class="name-project"> {{ __('createJobV2.text_file_create_job_v2') }}</label>
+                <label for="fileInput" class="label-text"> {{ __('createJobV2.text_file_create_job_v2') }}</label>
                 <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
                 <div class="dropzone" id="dropzone">
                     {{ __('createJobV2.text_dropzone_file_create_job_v2') }} <br>
-                    <span style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJobV2.text_dropzone_file_create_job_v2_suffix') }}</span>
+                    <span
+                        style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJobV2.text_dropzone_file_create_job_v2_suffix') }}</span>
                 </div>
             </div>
             <div class="panel">
-                <label class="name-project">{{ __('createJobV2.title_3d_action_create_job_v2') }}</label>
+                <label class="label-text">{{ __('createJobV2.title_3d_action_create_job_v2') }}</label>
                 <button id="selectFaceBtn" disabled>{{ __('createJobV2.btn_selected_face_create_job_v2') }}</button>
                 <button id="applyBtn" disabled>{{ __('createJobV2.btn_apply_create_job_v2') }}</button>
-                <button id="resetBtn" class="secondary" disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
-            </div>
-            <div class="panel">
-                <label class="name-project">{{ __('createJobV2.title_help_create_job_v2') }}</label>
-                @foreach(__('createJobV2.text_help_create_job_v2') as $step)
-                    <div class="hint"> {{ $step }} </div>
-                @endforeach
+                <button id="resetBtn" class="secondary"
+                    disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
             </div>
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled> {{ __('createJobV2.btn_print_create_job_v2') }} </button>
-                <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'"> {{ __('createJobV2.btn_back_create_job_v2') }} </button>
+                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>
+                    {{ __('createJobV2.btn_print_create_job_v2') }} </button>
+                <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'">
+                    {{ __('createJobV2.btn_back_create_job_v2') }} </button>
             </div>
             <div class="small">
                 {{ __('createJobV2.notice_z_position_create_job_v2') }}
@@ -173,7 +187,8 @@
                     // Populate Profiles
                     slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
                     data.profiles.forEach(p => {
-                        slicerProfileSelect.innerHTML += `<option value="${p.id_slicer_profile}">${p.name}</option>`;
+                        slicerProfileSelect.innerHTML +=
+                            `<option value="${p.id_slicer_profile}">${p.name}</option>`;
                     });
                     slicerProfileSelect.disabled = false;
 
@@ -183,7 +198,7 @@
                         colorSelect.innerHTML += `<option value="${c.id_color}">${c.name}</option>`;
                     });
                     colorSelect.disabled = false;
-                    
+
                     setStatus("Matériau sélectionné.");
                     checkFormValidity();
                 })
@@ -227,7 +242,6 @@
         // --- STL LOGIC ---
         function loadSTLFile(file) {
             if (!file || !file.name.toLowerCase().endsWith('.stl')) {
-                // setStatus('Veuillez choisir un fichier .stl valide.');
                 setStatus("{{ __('createJobV2.badge_error_text1_create_job_v2') }}");
                 return;
             }

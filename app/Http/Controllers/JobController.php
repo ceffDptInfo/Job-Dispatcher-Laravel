@@ -22,7 +22,6 @@ class JobController extends Controller
             'profiles' => $material->profiles,
             'colors'   => $material->colors,
         ]);
-
     }
 
     public function index(Request $request)

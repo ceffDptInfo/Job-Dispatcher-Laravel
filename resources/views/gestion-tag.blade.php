@@ -23,7 +23,7 @@
                             @forelse ($tags as $tag)
                                 <option value="{{ $tag->id_tag }}">{{ $tag->name }}</option>
                             @empty
-                                <option disabled>Pas de tag</option>
+                                <option disabled>{{ __('gestionTag.info_no_tags_tag_management') }}</option>
                             @endforelse
                         </select>
                         <button type="submit" class="btn">{{ __('gestionTag.btn_add_tag_job_tag_management') }}</button>
@@ -52,7 +52,7 @@
                             @forelse ($tags as $tag)
                                 <option value="{{ $tag->id_tag }}">{{ $tag->name }}</option>
                             @empty
-                                <option disabled>Pas de tag</option>
+                                <option disabled>{{ __('gestionTag.info_no_tags_tag_management') }}</option>
                             @endforelse
                         </select>
                         <button type="submit" class="btn"
