@@ -5,7 +5,14 @@ return [
     'title_create_job_v2' => 'JobDispatcher - Mode STL ',
     'name_create_job_v2' => 'Nom du Job',
     'placeholder_name_create_job_v2' => 'Exemple: Mon super projet',
+
+    'material_select_create_job_v2' => 'Matériau',
+    'select_material_placeholder_create_job_v2' => '-- Sélectionnez un matériau --',
     'profil_select_create_job_v2' => 'Profil d\'impression',
+    'select_slicer_profile_placeholder_create_job_v2' => '-- Sélectionnez un profil --',
+    'color_select_create_job_v2' => 'Couleur',
+    'select_color_placeholder_create_job_v2' => '-- Sélectionnez une couleur --',
+
     'text_file_create_job_v2' => 'Fichier STL',
     'text_dropzone_file_create_job_v2' => 'Glissez-déposez un STL ici',
     'text_dropzone_file_create_job_v2_suffix' => '(ou recliquez pour changer de fichier)',

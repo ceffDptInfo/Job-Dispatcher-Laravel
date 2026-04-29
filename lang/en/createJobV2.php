@@ -5,7 +5,14 @@ return [
     'title_create_job_v2' => 'JobDispatcher - STL Mode',
     'name_create_job_v2' => 'Job Name',
     'placeholder_name_create_job_v2' => 'Example: My awesome project',
+
+    'material_select_create_job_v2' => 'Material',
+    'select_material_placeholder_create_job_v2' => '-- Select a material --',
     'profil_select_create_job_v2' => 'Print Profile',
+    'select_slicer_profile_placeholder_create_job_v2' => '-- Select a profile --',
+    'color_select_create_job_v2' => 'Color',
+    'select_color_placeholder_create_job_v2' => '-- Select a color --',
+
     'text_file_create_job_v2' => 'STL File',
     'text_dropzone_file_create_job_v2' => 'Drag and drop an STL here',
     'text_dropzone_file_create_job_v2_suffix' => '(or click to change file)',

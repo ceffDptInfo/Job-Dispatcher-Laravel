@@ -1,5 +1,5 @@
-@import "./card-state-job.css";
-@import "./card-job.css";
+@import "./component/card-state-job.css";
+@import "./component/card-job.css";
 
 .main-wrapper {
     min-height: 100vh;
