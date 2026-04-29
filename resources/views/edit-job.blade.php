@@ -42,14 +42,14 @@
                             <input type="file" name="stl_filename" x-ref="fileInput" class="hidden" id="stl_filename"
                                 accept=".stl"
                                 @change="
-                                   let file = $event.target.files[0];
-                                   if (file && file.name.toLowerCase().endsWith('.stl')) {
-                                       fileName = file.name;
-                                       error = '';
-                                   } else {
-                                       fileName = '';
-                                       error = 'Le format n\'est pas autorisé';
-                                   }">
+                                    let file = $event.target.files[0];
+                                    if (file && file.name.toLowerCase().endsWith('.stl')) {
+                                        fileName = file.name;
+                                        error = '';
+                                    } else {
+                                        fileName = '';
+                                        error = 'Le format n\'est pas autorisé';
+                                    }">
                             <div class="text-center w-full">
                                 <div class="mb-4 h-16 flex items-center justify-center">
                                     <template x-if="!fileName && !error">

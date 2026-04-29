@@ -54,7 +54,6 @@
             </div>
 
             <div class="panel">
-                {{-- Champ caché pour le token CSRF requis par Laravel --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled> {{ __('createJobV2.btn_print_create_job_v2') }} </button>
                 <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'"> {{ __('createJobV2.btn_back_create_job_v2') }} </button>
