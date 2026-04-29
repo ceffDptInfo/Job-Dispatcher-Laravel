@@ -20,15 +20,20 @@ class JobController extends Controller
 
         return response()->json([
             'profiles' => $material->profiles,
-            'colors'   => $material->colors,
+            'colors' => $material->colors,
         ]);
-
     }
 
     public function index(Request $request)
     {
         $filter = $request->get('filter');
-        $query = Job::where('id_user', auth()->id());
+        $user = auth()->user();
+
+        if ($user && $user->role === 'admin') {
+            $query = Job::query();
+        } else {
+            $query = Job::where('id_user', $user->id_user);
+        }
 
         if ($filter) {
             if (str_starts_with($filter, 'tag_')) {
@@ -51,10 +56,8 @@ class JobController extends Controller
                 };
             }
         }
-
         $jobs = $query->get();
-        $tags = Tag::where('id_user', auth()->id())->get();
-
+        $tags = ($user->role === 'admin') ? Tag::all() : Tag::where('id_user', $user->id_user)->get();
         return view('home', compact('jobs', 'tags'));
     }
 
@@ -62,7 +65,7 @@ class JobController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'inputfile' => 'required|file', // Ce sera le fichier orienté envoyé par le JS
+            'inputfile' => 'required|file',
             'id_slicer_profile' => 'required|integer',
             'id_color' => 'required|integer',
         ]);
@@ -70,7 +73,6 @@ class JobController extends Controller
         $user = Auth::user();
         $projectName = Str::slug($request->name);
 
-        // Configuration du chemin NFS
         $basePath = rtrim(config('app.nfs_base_path'), '\\') . '\\';
         $folderPath = $basePath . $user->id_user . "\\" . $projectName;
 
@@ -80,7 +82,6 @@ class JobController extends Controller
 
         $file = $request->file('inputfile');
         $fileName = $projectName . '-' . time() . '.stl';
-
         $file->move($folderPath, $fileName);
 
         Job::create([
@@ -93,17 +94,14 @@ class JobController extends Controller
             'id_user' => $user->id_user,
             'create_at' => now(),
         ]);
-
         return response()->json(['success' => true, 'redirect' => route('home')]);
     }
 
-    // Affiche la page de preview
     public function preview(Job $job)
     {
         return view('stl-orientation-viewer', compact('job'));
     }
 
-    // Permet au JS de télécharger le fichier depuis le NFS
     public function downloadStl(Job $job)
     {
         $fullPath = $job->path . DIRECTORY_SEPARATOR . $job->stl_filename;
@@ -123,7 +121,6 @@ class JobController extends Controller
             }
             rmdir($job->path);
         }
-
         $job->delete();
         return redirect()->route('home')->with('success');
     }
@@ -146,7 +143,6 @@ class JobController extends Controller
             $file->storeAs($job->path, $fileName, 'public');
             $validated['stl_filename'] = $fileName;
         }
-
         $job->update($validated);
         return redirect()->route('home')->with('success');
     }
@@ -156,9 +152,7 @@ class JobController extends Controller
         $request->validate([
             'id_tag' => 'required|exists:tags,id_tag',
         ]);
-
         $job->tags()->syncWithoutDetaching([$request->id_tag]);
-
         return redirect()->route('home')->with('success');
     }
 }
