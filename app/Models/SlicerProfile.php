@@ -12,15 +12,15 @@ class SlicerProfile extends Model
 
     protected $table = 'slicer_profile';
     public $timestamps = false;
+    protected $primaryKey = 'id_slicer_profile';
 
     protected $fillable = [
         'name',
         'path',
-
         'id_material',
     ];
 
-     public function material()
+    public function material()
     {
         return $this->belongsTo(Material::class, 'id_material');
     }

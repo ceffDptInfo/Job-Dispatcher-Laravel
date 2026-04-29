@@ -61,7 +61,7 @@ class JobController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'inputfile' => 'required|file', // Ce sera le fichier orienté envoyé par le JS
+            'inputfile' => 'required|file',
             'id_slicer_profile' => 'required|integer',
             'id_color' => 'required|integer',
         ]);
@@ -69,7 +69,6 @@ class JobController extends Controller
         $user = Auth::user();
         $projectName = Str::slug($request->name);
 
-        // Configuration du chemin NFS
         $basePath = rtrim(config('app.nfs_base_path'), '\\') . '\\';
         $folderPath = $basePath . $user->id_user . "\\" . $projectName;
 
@@ -96,13 +95,11 @@ class JobController extends Controller
         return response()->json(['success' => true, 'redirect' => route('home')]);
     }
 
-    // Affiche la page de preview
     public function preview(Job $job)
     {
         return view('stl-orientation-viewer', compact('job'));
     }
 
-    // Permet au JS de télécharger le fichier depuis le NFS
     public function downloadStl(Job $job)
     {
         $fullPath = $job->path . DIRECTORY_SEPARATOR . $job->stl_filename;
@@ -129,35 +126,50 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
-        return view('edit-job', compact('job'));
+        $materials = Material::all();
+        $currentMaterialId = $job->slicerprofile ? $job->slicerprofile->id_material : null;
+
+        return view('edit-job', compact('job', 'materials', 'currentMaterialId'));
     }
 
     public function update(Request $request, Job $job)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
             'id_slicer_profile' => 'required|integer',
-            'code_state' => 'required|string'
+            'id_color' => 'required|integer',
+            'code_state' => 'required|string',
         ]);
+
         if ($request->hasFile('stl_filename')) {
+
+            $folderPath = $job->path;
+
+            
+            if (file_exists($folderPath) && is_dir($folderPath)) {
+                $files = glob($folderPath . '/*');
+                foreach ($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file);
+                    }
+                }
+            } else {
+                mkdir($folderPath, 0777, true);
+            }
+
             $file = $request->file('stl_filename');
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs($job->path, $fileName, 'public');
+            $projectName = Str::slug($request->name);
+            $fileName = $projectName . '-' . time() . '.stl';
+
+            $file->move($folderPath, $fileName);
             $validated['stl_filename'] = $fileName;
         }
 
         $job->update($validated);
-        return redirect()->route('home')->with('success');
-    }
 
-    public function updateTags(Request $request, Job $job)
-    {
-        $request->validate([
-            'id_tag' => 'required|exists:tags,id_tag',
+        return response()->json([
+            'success' => true,
+            'redirect' => route('home')
         ]);
-
-        $job->tags()->syncWithoutDetaching([$request->id_tag]);
-
-        return redirect()->route('home')->with('success');
     }
 }
