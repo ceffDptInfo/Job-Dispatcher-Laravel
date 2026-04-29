@@ -41,12 +41,15 @@ class JobController extends Controller
                 match ($filter) {
                     'abc' => $query->orderBy('name', 'asc'),
                     'cba' => $query->orderBy('name', 'desc'),
-                    'waiting' => $query->where('status', 'waiting'),
+                    'waiting' => $query->where('code_state', 'w'),
+                    'printing' => $query->where('code_state', 'p'),
+                    'finished' => $query->where('code_state', 'f'),
+                    'sliced' => $query->where('code_state', 's'),
+                    'error_printing' => $query->where('code_state', 'ep'),
+                    'error_slicing' => $query->where('code_state', 'es'),
                     default => $query->orderBy('create_at', 'desc'),
                 };
             }
-        } else {
-            $query->orderBy('create_at', 'desc');
         }
 
         $jobs = $query->get();
@@ -120,7 +123,7 @@ class JobController extends Controller
         }
 
         $job->delete();
-        return redirect()->route('home')->with('success', 'Job supprimé avec succès');
+        return redirect()->route('home')->with('success');
     }
 
     public function edit(Job $job)
@@ -143,7 +146,7 @@ class JobController extends Controller
         }
 
         $job->update($validated);
-        return redirect()->route('home')->with('success', 'Job mis à jour !');
+        return redirect()->route('home')->with('success');
     }
 
     public function updateTags(Request $request, Job $job)
@@ -154,6 +157,6 @@ class JobController extends Controller
 
         $job->tags()->syncWithoutDetaching([$request->id_tag]);
 
-        return redirect()->route('home')->with('success', 'Tag assigné !');
+        return redirect()->route('home')->with('success');
     }
 }
