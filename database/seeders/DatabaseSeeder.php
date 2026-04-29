@@ -109,24 +109,39 @@ class DatabaseSeeder extends Seeder
         SlicerProfile::factory()->createMany(
             [
                 [ 
-                'name' => 'sclicer one',
-                'path' => 'C:\'test\'sclicerOne',
+                'name' => 'PLA-fast',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
                 'id_material' => 1,
                 ],
+
                 [ 
-                'name' => 'sclicer two',
-                'path' => 'C:\'test\'sclicerTwo',
-                'id_material' => 2,
-                ],
-                [ 
-                'name' => 'sclicer tree',
-                'path' => 'C:\'test\'sclicerTwo',
-                'id_material' => 2,
-                ],
-                [ 
-                'name' => 'sclicer four',
-                'path' => 'C:\'test\'sclicerTwo',
+                'name' => 'PLA-medium',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
                 'id_material' => 1,
+                ],
+
+                [ 
+                'name' => 'PLA-slow',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
+                'id_material' => 1,
+                ],
+
+                [ 
+                'name' => 'PETG-fast',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
+                'id_material' => 2,
+                ],
+
+                [ 
+                'name' => 'PETG-medium',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
+                'id_material' => 2,
+                ],
+
+                [ 
+                'name' => 'PETG-slow',
+                'path' => '\\\\PC-BD52-24\\NFS-Printers\\SlicerProfiles',
+                'id_material' => 2,
                 ]
             ]
         );

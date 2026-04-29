@@ -24,7 +24,8 @@ class SlicerProfileFactory extends Factory
                 'Fast Draft', 
                 'Strength Optimized', 
                 'Flexible TPU Profile', 
-                'High Temp PETG'
+                'High Temp PETG',
+                'weeeeee'
             ]) . ' ' . $this->faker->numberBetween(1, 100),
             
             'path' => '/configs/profiles/' . $this->faker->slug() . '.ini',
