@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-         Job::factory()->createMany(
+        Job::factory()->createMany(
             [
                 [
                     'name'              => 'Benchy_Stress_Test',

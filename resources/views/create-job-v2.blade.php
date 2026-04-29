@@ -11,10 +11,12 @@
 <body>
     <div class="app-container">
         <aside>
-            <h1>JobDispatcher - Viewer STL</h1>
+            <h1> {{ __('createJobV2.title_create_job_v2') }} </h1>
+
             <div class="panel">
-                <label class="name-project">Nom du projet</label>
-                <input type="text" id="projectName" class="input-style" maxlength="35" placeholder="Ex: Support Casque">
+                <label class="name-project">{{ __('createJobV2.name_create_job_v2') }}</label>
+                <input type="text" id="projectName" class="input-style" maxlength="35"
+                    placeholder= "{{ __('createJobV2.placeholder_name_create_job_v2') }}" />
             </div>
             <div class="panel">
                 <div class="form-container">
@@ -38,40 +40,37 @@
                 </div>
             </div>
             <div class="panel">
-                <label for="fileInput" class="name-project">Fichier STL</label>
+                <label for="fileInput" class="name-project"> {{ __('createJobV2.text_file_create_job_v2') }}</label>
                 <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
                 <div class="dropzone" id="dropzone">
-                    Glissez-déposez un STL ici <br>
-                    <span style="font-size: 0.7rem; opacity: 0.7;">(ou recliquez pour changer de pièce)</span>
+                    {{ __('createJobV2.text_dropzone_file_create_job_v2') }} <br>
+                    <span style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJobV2.text_dropzone_file_create_job_v2_suffix') }}</span>
                 </div>
             </div>
             <div class="panel">
-                <label class="name-project">Actions 3D</label>
-                <button id="selectFaceBtn" disabled>Sélectionner la face</button>
-                <button id="applyBtn" disabled>Orienter vers le plateau</button>
-                <button id="resetBtn" class="secondary" disabled>Réinitialiser la vue</button>
+                <label class="name-project">{{ __('createJobV2.title_3d_action_create_job_v2') }}</label>
+                <button id="selectFaceBtn" disabled>{{ __('createJobV2.btn_selected_face_create_job_v2') }}</button>
+                <button id="applyBtn" disabled>{{ __('createJobV2.btn_apply_create_job_v2') }}</button>
+                <button id="resetBtn" class="secondary" disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
             </div>
             <div class="panel">
-                <label class="name-project">Aide</label>
-                <div class="hint">
-                    1. Entrez un nom et chargez un STL.<br />
-                    2. Cliquez sur « Sélectionner la face du dessous ».<br />
-                    3. Cliquez sur une face plane de la pièce.<br />
-                    4. Cliquez sur « Orienter vers le plateau » puis lancez l'impression.
-                </div>
+                <label class="name-project">{{ __('createJobV2.title_help_create_job_v2') }}</label>
+                @foreach(__('createJobV2.text_help_create_job_v2') as $step)
+                    <div class="hint"> {{ $step }} </div>
+                @endforeach
             </div>
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>Lancer
-                    l'impression</button>
+                <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled> {{ __('createJobV2.btn_print_create_job_v2') }} </button>
+                <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'"> {{ __('createJobV2.btn_back_create_job_v2') }} </button>
             </div>
             <div class="small">
-                Repère : la face sélectionnée est alignée vers <strong>-Z</strong> (le plateau).
+                {{ __('createJobV2.notice_z_position_create_job_v2') }}
             </div>
         </aside>
         <main>
             <canvas id="viewer"></canvas>
-            <div id="status" class="badge">Remplissez les champs pour commencer et chargé un fichier STL</div>
+            <div id="status" class="badge">{{ __('createJobV2.badge_text1_create_job_v2') }}</div>
         </main>
     </div>
     <script type="importmap">
@@ -228,7 +227,8 @@
         // --- STL LOGIC ---
         function loadSTLFile(file) {
             if (!file || !file.name.toLowerCase().endsWith('.stl')) {
-                setStatus('Veuillez choisir un fichier .stl valide.');
+                // setStatus('Veuillez choisir un fichier .stl valide.');
+                setStatus("{{ __('createJobV2.badge_error_text1_create_job_v2') }}");
                 return;
             }
 
@@ -259,10 +259,10 @@
                     resetBtn.disabled = false;
                     applyBtn.disabled = true;
 
-                    setStatus(`Fichier chargé, ajustez l'orientation si besoin.`);
+                    setStatus("{{ __('createJobV2.badge_text2_create_job_v2') }}");
                     checkFormValidity();
                 } catch (error) {
-                    setStatus('Erreur lors du chargement du STL.');
+                    setStatus("{{ __('createJobV2.badge_error_text2_create_job_v2') }}");
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -302,7 +302,7 @@
             showSelectedFaceMarker(hits[0].point, selectedNormalWorld);
             isSelectingFace = false;
             applyBtn.disabled = false;
-            setStatus('Face sélectionnée. Cliquez sur "Orienter vers le plateau".');
+            setStatus("{{ __('createJobV2.badge_text3_create_job_v2') }}");
         }
 
         function showSelectedFaceMarker(point, normal) {
@@ -327,7 +327,7 @@
             }
             selectedNormalWorld = null;
             applyBtn.disabled = true;
-            setStatus('Orientation appliquée.');
+            setStatus("{{ __('createJobV2.badge_text4_create_job_v2') }}");
         }
 
         function bakeTransformIntoGeometry(object) {
@@ -349,7 +349,7 @@
             mesh.geometry.dispose();
             mesh.geometry = originalGeometry.clone();
             centerAndPlaceOnPlate(mesh);
-            setStatus('Vue réinitialisée.');
+            setStatus("{{ __('createJobV2.badge_text5_create_job_v2') }}");
         }
 
         function clearCurrentMesh() {
@@ -373,7 +373,7 @@
             const colorId = colorSelect.value;
             const csrfToken = document.querySelector('input[name="_token"]').value;
 
-            setStatus("Préparation et envoi...");
+            setStatus("{{ __('createJobV2.badge_text6_create_job_v2') }}");
             submitJobBtn.disabled = true;
 
             bakeTransformIntoGeometry(mesh);
@@ -411,7 +411,7 @@
                     submitJobBtn.disabled = false;
                 }
             } catch (e) {
-                setStatus("Erreur réseau.");
+                setStatus("{{ __('createJobV2.badge_error_text3_create_job_v2') }}");
                 submitJobBtn.disabled = false;
             }
         }
@@ -431,7 +431,7 @@
 
         selectFaceBtn.addEventListener('click', () => {
             isSelectingFace = true;
-            setStatus('Cliquez sur la face du dessous (sur le modèle 3D)');
+            setStatus("{{ __('createJobV2.badge_text7_create_job_v2') }}");
         });
 
         applyBtn.addEventListener('click', orientSelectedFaceToPlate);

@@ -14,24 +14,24 @@
         <main class="content-container">
             <div class="space-home">
                 <div class="row-title">
-                    <h1 class="title-home">Vos Jobs</h1>
+                    <h1 class="title-home">{{ __('home.title_jobs') }}</h1>
                     <x-link-button-style href="{{ route('jobs.create') }}">
                         {{ __('home.add_job') }}
                     </x-link-button-style>
                 </div>
                 <div>
                     <form id="sortForm" action="{{ url()->current() }}" method="GET">
-                        <x-dropdown label="Filtrer :" name="filter" :options="array_merge(
+                        <x-dropdown label="{{ __('home.title_filter_jobs') }}" name="filter" :options="array_merge(
                             [
-                                '' => 'Par défaut (Plus récents)',
-                                'abc' => 'Nom (A-Z)',
-                                'cba' => 'Nom (Z-A)',
-                                'waiting' => 'Statut : En attente',
-                                'printing' => 'Statut : Impression',
-                                'finished' => 'Statut : Terminé',
-                                'sliced' => 'Statut : Slicing',
-                                'error_printing' => 'Statut : Erreur d\'impression',
-                                'error_slicing' => 'Statut : Erreur de slicing',
+                                '' => __('home.filter_last_created_jobs'),
+                                'abc' => __('home.filter_az_jobs'),
+                                'cba' => __('home.filter_za_jobs'),
+                                'waiting' => __('home.filter_state_waiting_jobs'),
+                                'printing' => __('home.filter_state_printing_jobs'),
+                                'finished' => __('home.filter_state_completed_jobs'),
+                                'sliced' => __('home.filter_state_sliced_jobs'),
+                                'error_printing' => __('home.filter_state_error_printing_jobs'),
+                                'error_slicing' => __('home.filter_state_error_slicing_jobs'),
                             ],
                             $tags
                                 ->pluck('name', 'id_tag')
