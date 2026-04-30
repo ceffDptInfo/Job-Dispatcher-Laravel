@@ -1,58 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## À propos de JobDispatcher
+Application web qui permet la gestion des impressions 3D au format .STL sous forme de file d'attente. Ce site web est développer pour un projet d'automaticiens CFC du Ceff Industrie.
+ # Installation
+## Prérequis
+1. [VScode](https://code.visualstudio.com/download)
+2. [NodeJS](https://nodejs.org/fr/download) (Version recommandé v24.10.0)
+3. [Composer](https://getcomposer.org/download/) (Version recommandé 2.9.5)
+4. [WampServer](https://www.wampserver.com/) (Version php inclus 8.4.15)
+5. [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+6. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Extension à installer dans Visual Studio Code
+- Laravel Blade Snippets
+- Laravel Blade Formatter
+- Laravel Snippets
+- PHP Intelephense
+- PHP Namespace Resolver
+- Composer
+- Docker 
 
-## About Laravel
+## WampServer
+1. Installer les fichiers C++ : https://www.techpowerup.com/download visual-c-redistributable-runtime-package-all-in-one/
+2. Cliquer sur un des serveur US pour télécharger le pack de fichier c++
+3. Extraire le zip téléchargé, dans un dossier et exécuter le fichier .bat
+télécharger WampServer : https://wampserver.aviatechno.net/files/install/wampserver3.4.0_x64.exe
+4. Exécuter l'exe et suivez les instructions
+5. Rendez-vous dans le dossier de WampServer puis aller dans bin/php/8.4.15 et copier le chemin d'accès
+6. Coller le chemin d'accès dans le PATH de vos variables d'environnement système.
+7. Fermer les invites de commandes puis rouvrez en une pour valider l'installation avec php -v
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Docker
+Assurez-vous de créer un compte sur docker desktop valide et utilisable.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##  MySQL Workbench 
+Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations suivantes :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Connection Name : printer_db
+- Host : 127.0.0.1
+- Port : 3306
+- User : root
+- Password : Pa$$w0rd
 
-## Learning Laravel
+Tester la connexion si c'est ok confirmation la création de connection.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Composer
+1. Fermer le projet s'il est ouvert avant de débuter cette phase.
+2. Suivre les instructions et attendre la fin de l'installation.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## NFS windows
+1. Se rendre dans l'explorateur de fichier.
+2. Créer un dossier. 
+3. Clique droit sur le dossier, et aller sur autres options et accorder l'accès à. 
+4. Cliquer sur partage avancé.
+5. Après ouverture de la fenêtre cliquer à nouveau sur partage avancé.
+6. Cocher la case partager son dossier, donner un nom.
+7. Dans autorisations accordé le contrôle total et cliquer sur appliqué.
+8. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
+9. Faites une copie du .env.example et renommer le .env.
+10. Ensuite copier le chemin d'accès et le mettre dans le .env comme l'exemple ci-dessous.
+  ```
+NFS_SHARE_PATH="\\\\VOTRE-NOM-DE-MACHINE\\NOM-DONNER-AU-DOSSIER-PARTAGÉ\\Users\\"
+  ```
+## Cloner le projet
+  1. Commencer par vous rendre dans un répertoire ou vous souhaitez mettre le projet (depuis l'invite de commande) puis cloner le avec :
+    `git clone https://github.com/ceffDptInfo/Job-Dispatcher-Laravel.git`
+  2. Ouvrez le projet dans VScode et ouvrez un terminal de commande puis installer les dépendances via le terminal du projet :
+    `npm install`
+  3. Executer depuis le cmd `composer install`. 
+  4. Toujours dans la cmd, faites : cd docker 
+  5. Puis lancer : docker compose up -d
+  6. exécuter la commande depuis le terminal du projet :
+    `php artisan migrate:fresh --seed` cela met en place les tables dans la base de donnée.
+  7. Encore dans le projet, mettez vos variables de connexion à la DB dans le fichier **.env** 
+  ```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=printer_db 
+  DB_USERNAME=root
+  DB_PASSWORD=Pa$$w0rd
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+  MAIL_MAILER=smtp
+  MAIL_HOST=smtp-relay.intra.ceff.ch
+  MAIL_PORT=25
+  MAIL_FROM_ADDRESS=no-reply@ceff.ch
+  MAIL_FROM_NAME="JobDispatcher"
+  MAIL_USERNAME=null
+  MAIL_PASSWORD=null
+  MAIL_ENCRYPTION=null
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+  // INFO : S'il y à d'autres éléments comme DB_, MAIL_ ne corresponde pas à ceux de dessus retirer les.
 ```
+  8. Executer depuis le cmd la commande composer run dev afin de lancer le projet.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Crédits 
+Projet web développé dans le cadre d'un travaille commun avec les automaticiens :
+- Urfer Leila
+- Golay Simon
+- Gane Gyan
+- Curty Gwendoline
+ 
