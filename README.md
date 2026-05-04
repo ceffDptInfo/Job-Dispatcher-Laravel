@@ -7,8 +7,8 @@ Application web qui permet la gestion des impressions 3D au format .STL sous for
 2. [NodeJS](https://nodejs.org/fr/download) (Version recommandé v24.15.0)
 3. [WampServer](https://www.wampserver.com/) (Version php inclus 8.4.15)
 4. [Composer](https://getcomposer.org/download/) (Version recommandé 2.9.5)
-5. [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
-6. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
+5. [MySQL Workbench](https://dev.mysql.com/downloads/file/?id=552199)
+6. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/) (Si erreur consulter sa section pour résoudre le soucis)
 6. [Git](https://git-scm.com/install/)
 
 ## Extension à installer dans Visual Studio Code
@@ -21,18 +21,23 @@ Application web qui permet la gestion des impressions 3D au format .STL sous for
 - Docker
  
 ## WampServer
-1. Installer les fichiers C++ : https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/visual-c-redistributable-runtime-package-all-in-one/
+1. Installer les fichiers C++ : https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/
 2. Cliquer sur un des serveur US pour télécharger le pack de fichier c++
 3. Extraire le zip téléchargé, dans un dossier et exécuter le fichier install_all une fois fini
 télécharger WampServer : https://wampserver.aviatechno.net/files/install/wampserver3.4.0_x64.exe
 4. Exécuter l'exe et suivez les instructions
 5. Rendez-vous dans le dossier de WampServer puis aller dans bin/php/8.4.15 et copier le chemin d'accès
-6. Coller le chemin d'accès dans le PATH de vos variables d'environnement système.
+6. Coller le chemin d'accès dans le PATH de vos variables d'environnement système (Rechercher sur window : modifier les variable d'environnement).
 7. Fermer les invites de commandes puis rouvrez en une pour valider l'installation avec php -v
  
 ## Docker
-Après avoir installer docker Desktop, assurez-vous de créer un compte sur docker desktop valide et utilisable, après l'installation de docker l'installateur demande de redémarrer l'ordinateur, faites le. 
-Une fois le redémarrage terminé, cliquer sur le petit icon >_ en bas à droite, puis sur Enable, ensuite lancer la commande wsl --update, puis cliquer sur Try Again et attender que docker démarre.
+Après avoir installer docker Desktop, assurez-vous de créer un compte sur docker desktop valide et utilisable, après l'installation de docker l'installateur demande de redémarrer l'ordinateur, faites le. Une fois le redémarrage terminé, cliquer sur le petit icon >_ en bas à droite, puis sur Enable, ensuite lancer la commande wsl --update, puis cliquer sur Try Again et attender que docker démarre.
+
+### Erreur : For scurity reasons... ---> Suivez ces étapes : 
+
+1. Supprimer le dossier DockerDesktop s'il est présent (dans C:\ProgramData)
+2. Exécuter l'installateur Docker en tant qu'admin (clic droit sur l'exe, exécuter en tant qu'admin).
+3. L'installateur devrait maintenant fonctionner.
  
 ## Composer
 1. Fermer le projet s'il est ouvert avant de débuter cette phase.
@@ -43,13 +48,12 @@ Une fois le redémarrage terminé, cliquer sur le petit icon >_ en bas à droite
 2. Créer un dossier (Fortement récommandé de le faire à la racine de votre C:).
 3. Clique droit sur le dossier, et aller sur propriétés
 4. Rendez-vous dans l'onglet partage et cliquez sur partage avancé.
-5. Après ouverture de la fenêtre cliquer à nouveau sur partage avancé.
-6. Cocher la case partager son dossier, donner un nom.
-7. Dans autorisations accordé le contrôle total et cliquer sur appliqué.
-8. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
-9. Mettez en pause cette étape et revenez après avoir fini l'étape 3 de Cloner le projet.
-10. Faites une copie du env.example et renommer le .env.
-11. Ensuite mettre dans le .env le chemin du dossier partagé comme sur l'exemple ci-dessous.
+5. Cocher la case partager son dossier, donner un nom.
+6. Dans autorisations accordé le contrôle total et cliquer sur appliqué.
+7. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
+8. Mettez en pause cette étape et revenez après avoir fini l'étape 3 de Cloner le projet.
+9. Faites une copie du env.example et renommer le .env.
+10. Ensuite mettre dans le .env le chemin du dossier partagé comme sur l'exemple ci-dessous.
   ```
 NFS_SHARE_PATH="\\\\VOTRE-NOM-DE-MACHINE\\NOM-DONNER-AU-DOSSIER-PARTAGÉ\\Users\\"
   ```
@@ -60,7 +64,7 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
     `git clone https://github.com/ceffDptInfo/Job-Dispatcher-Laravel.git`
   2. Taper ensuite `cd Job-Dispatcher-Laravel` et faites ensuite `code .`
   3. Ouvrez le projet dans VScode et ouvrez un terminal de commande puis installer les dépendances via le terminal du projet :
-    `npm install`
+    `npm install` et un `npm audit fix`
   4. Executer depuis le cmd `composer install`.
   5. Ensuite faites : `composer global require laravel/installer`.
   6. Toujours dans la cmd, faites : cd docker
@@ -73,7 +77,7 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
   DB_PORT=3306
   DB_DATABASE=printer_db
   DB_USERNAME=dispatcher
-  DB_PASSWORD=dispatcherSecret1234
+  DB_PASSWORD=dispatcherRoot1234
  
   MAIL_MAILER=smtp
   MAIL_HOST=smtp-relay.intra.ceff.ch
@@ -100,7 +104,7 @@ Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations 
 - Host : 127.0.0.1
 - Port : 3306
 - User : root
-- Password : Pa$$w0rd
+- Password : dispatcherRoot1234
  
 Tester la connexion si c'est ok confirmation la création de connection.
  
