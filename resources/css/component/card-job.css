@@ -46,6 +46,12 @@
     gap: 15px;
 }
 
+.task-divider {
+    border: none;
+    border-top: 1px solid #7576799d;
+    margin: 4px 0;
+}
+
 .tag-badge {
     background-color: #f3f4f6;
     padding: 4px 12px;

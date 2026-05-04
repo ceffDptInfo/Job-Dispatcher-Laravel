@@ -1,32 +1,25 @@
-services:
-  # Base de données MySQL
-  mysqlServer:
-    image: mysql:8.0
-    container_name: mysql_server
+services : 
+  db : 
+    image :  mysql:8.0
+    container_name :  MySQL 
+    ports : 
+      - "3306:3306" 
+    environment : 
+      - MYSQL_ROOT_PASSWORD=dispatcherRoot1234
+      - MYSQL_USER=dispatcher
+      - MYSQL_PASSWORD=dispatcherRoot1234
+      - MYSQL_DATABASE=printer_db
+    volumes : 
+      -  db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
     restart: always
+    ports:
+      - 8080:80
     environment:
-      MYSQL_ROOT_PASSWORD: Pa$$w0rd
-      MYSQL_DATABASE: printer_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Pa$$w0rd
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - printer_network
+      - PMA_ARBITRARY=1
 
-  # Interface de gestion de base de données (Adminer)
-  adminerServer:
-    image: adminer:latest
-    container_name: adminer_server
-    restart: always
-    ports:
-      - "8081:8080"
-    networks:
-      - printer_network
-
-  # Gestion des containers (Portainer)
   portainerServer:
     image: portainer/portainer-ce:latest
     container_name: portainer_server
@@ -36,13 +29,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-    networks:
-      - printer_network
 
-  # Définition des réseaux et volumes
-  networks:
-    printer_network:
-      driver: bridge
-  volumes:
-    mysql_data:
-    portainer_data:
+volumes:
+  db_data:
+  portainer_data:
