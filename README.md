@@ -1,5 +1,5 @@
 ## À propos de JobDispatcher
-Application web qui permet la gestion des impressions 3D au format .STL sous forme de file d'attente. Ce site web est développer pour un projet d'automaticiens CFC du Ceff Industrie.
+Application web qui permet la gestion des impressions 3D au format .STL sous forme de file d'attente. Ce site web est développé par des informaticiens CFC 3ème année du Ceff Industrie.
 
  # Installation
 ## Prérequis
@@ -104,7 +104,7 @@ Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations 
 - Host : 127.0.0.1
 - Port : 3306
 - User : root
-- Password : dispatcherRoot1234
+- Password : dispatcher1234
  
 Tester la connexion si c'est ok.
  
@@ -114,10 +114,13 @@ Pour gérer les containers utilisé dans le projet vous pouvez vous y rendre soi
 ## Informations supplémentaires
 
 ### Base de donnée 
-Si vous avez suivis ce readme prenez note que la base de donnée actuellement utilisé est en local (fonctionnement uniquement sur le pc actuel) ! Ce qui suffit pour lancer le site internet et avoir un aperçu. Si vous souhaitez le fonctionnement complet réaliser le readMe concernant la base de donnée sur : https://github.com/ceffDptInfo/Job-Dispatcher-Core  
+Vous avez deux possibilité de faire pour utiliser la base de donnée. Soit comme expliqué sur ce readMe, 
+soit en suivant le readMe suivant : https://github.com/ceffDptInfo/Job-Dispatcher-Core ! 
+
+La seule chose qui diffère est l'adresse IP le reste des opérations reste quasi-identique.  
  
 # Crédits
-Projet web développé dans le cadre d'un travaille commun avec les automaticiens :
+Les 4 informaticiens ayant participé au projet :
 - Urfer Leila
 - Golay Simon
 - Gane Gyan
