@@ -38,7 +38,9 @@
                         method="POST" class="tag-delete-form">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('{{ __('gestionTag.confirm_retire_tag_message_tag_management') }}');" class="btn-tag-remove">
+                        <button type="submit"
+                            onclick="return confirm('{{ __('gestionTag.confirm_retire_tag_message_tag_management') }}');"
+                            class="btn-tag-remove">
                             <i class="fas fa-times-circle"></i>
                         </button>
                     </form>

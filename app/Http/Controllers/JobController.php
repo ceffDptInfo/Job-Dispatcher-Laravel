@@ -30,9 +30,17 @@ class JobController extends Controller
         $user = auth()->user();
 
         if ($user && $user->role === 'admin') {
-            $query = Job::query();
+            $query = Job::with([
+                'tags' => function ($query) use ($user) {
+                    $query->where('id_user', $user->id_user);
+                }
+            ]);
         } else {
-            $query = Job::where('id_user', $user->id_user);
+            $query = Job::where('id_user', $user->id_user)->with([
+                'tags' => function ($query) use ($user) {
+                    $query->where('id_user', $user->id_user);
+                }
+            ]);
         }
 
         if ($filter) {
@@ -57,7 +65,7 @@ class JobController extends Controller
             }
         }
         $jobs = $query->get();
-        $tags = ($user->role === 'admin') ? Tag::all() : Tag::where('id_user', $user->id_user)->get();
+        $tags = Tag::where('id_user', $user->id_user)->get();
         return view('home', compact('jobs', 'tags'));
     }
 
@@ -146,7 +154,7 @@ class JobController extends Controller
 
             $folderPath = $job->path;
 
-            
+
             if (file_exists($folderPath) && is_dir($folderPath)) {
                 $files = glob($folderPath . '/*');
                 foreach ($files as $file) {
