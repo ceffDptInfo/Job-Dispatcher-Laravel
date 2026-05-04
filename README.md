@@ -52,8 +52,9 @@ Après avoir installer docker Desktop, assurez-vous de créer un compte sur dock
 6. Dans autorisations accordé le contrôle total et cliquer sur appliqué.
 7. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
 8. Mettez en pause cette étape et revenez après avoir fini l'étape 3 de Cloner le projet.
-9. Faites une copie du env.example et renommer le .env.
+9. Depuis le terminal du projet faites : `cp .env.example .env`.
 10. Ensuite mettre dans le .env le chemin du dossier partagé comme sur l'exemple ci-dessous.
+
   ```
 NFS_SHARE_PATH="\\\\VOTRE-NOM-DE-MACHINE\\NOM-DONNER-AU-DOSSIER-PARTAGÉ\\Users\\"
   ```
@@ -67,8 +68,8 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
     `npm install` et un `npm audit fix`
   4. Executer depuis le cmd `composer install`.
   5. Ensuite faites : `composer global require laravel/installer`.
-  6. Toujours dans la cmd, faites : cd docker
-  7. Puis lancer : docker compose up -d
+  6. Toujours dans la cmd, faites : `cd docker`
+  7. Puis lancer : `docker compose up -d` cela va démarrer en arrière plan les containers contenant la base de donnée.
   8. Encore dans le projet, mettez vos variables de connexion à la DB dans le fichier **.env**
  
   ```
@@ -76,8 +77,7 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
   DB_HOST=127.0.0.1
   DB_PORT=3306
   DB_DATABASE=printer_db
-  DB_USERNAME=dispatcher
-  DB_PASSWORD=dispatcherRoot1234
+  DB_PASSWORD=dispatcher1234
  
   MAIL_MAILER=smtp
   MAIL_HOST=smtp-relay.intra.ceff.ch
@@ -94,8 +94,8 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
   9. Fermer et rouvrez à nouveau le projet.
   10. exécuter la commande depuis le terminal du projet :
     `php artisan migrate:fresh --seed` cela met en place les tables dans la base de donnée. Attention il faut vous placer dans la racine du projet.
-  11. lancer la commande php artisan key:generate
-  12. Executer depuis le cmd la commande composer run dev afin de lancer le projet.
+  11. lancer la commande `php artisan key:generate`
+  12. Executer depuis le cmd la commande `composer run dev` afin de lancer le projet.
  
  ##  MySQL Workbench
 Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations suivantes :
@@ -106,10 +106,15 @@ Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations 
 - User : root
 - Password : dispatcherRoot1234
  
-Tester la connexion si c'est ok confirmation la création de connection.
+Tester la connexion si c'est ok.
  
 ## Gestions des containers docker
 Pour gérer les containers utilisé dans le projet vous pouvez vous y rendre soit avec Docker Desktop ou avec Portainer via http://localhost:9000/ (Pensez à créer votre compte).
+
+## Informations supplémentaires
+
+### Base de donnée 
+Si vous avez suivis ce readme prenez note que la base de donnée actuellement utilisé est en local (fonctionnement uniquement sur le pc actuel) ! Ce qui suffit pour lancer le site internet et avoir un aperçu. Si vous souhaitez le fonctionnement complet réaliser le readMe concernant la base de donnée sur : https://github.com/ceffDptInfo/Job-Dispatcher-Core  
  
 # Crédits
 Projet web développé dans le cadre d'un travaille commun avec les automaticiens :

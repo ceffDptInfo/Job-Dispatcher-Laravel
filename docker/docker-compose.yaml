@@ -6,8 +6,7 @@ services :
       - "3306:3306" 
     environment : 
       - MYSQL_ROOT_PASSWORD=dispatcherRoot1234
-      - MYSQL_USER=dispatcher
-      - MYSQL_PASSWORD=dispatcherRoot1234
+      - MYSQL_PASSWORD=dispatcher1234
       - MYSQL_DATABASE=printer_db
     volumes : 
       -  db_data:/var/lib/mysql
