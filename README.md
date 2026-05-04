@@ -3,13 +3,22 @@ Application web qui permet la gestion des impressions 3D au format .STL sous for
 
  # Installation
 ## Prérequis
+Pour le MySQL vous avez deux possibilités de faire. 
+* Soit comme expliqué sur ce document, ce qui consiste à installer Docker Desktop sur la machine et y faire tourné le Serveur MySQL.
+* Soit en faisant tourner le Serveur MySQL sur une VM Ubuntu Server. Pour faire ça aller voir ce [document](https://github.com/ceffDptInfo/Job-Dispatcher-Core) (appuyer sur MySQL dans le readme)
+
+La seule chose qui diffère est l'adresse IP le reste des opérations reste quasi-identique. 
+
 1. [VScode](https://code.visualstudio.com/download)
 2. [NodeJS](https://nodejs.org/fr/download) (Version recommandé v24.15.0)
 3. [WampServer](https://www.wampserver.com/) (Version php inclus 8.4.15)
 4. [Composer](https://getcomposer.org/download/) (Version recommandé 2.9.5)
 5. [MySQL Workbench](https://dev.mysql.com/downloads/file/?id=552199)
-6. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/) (Si erreur consulter sa section pour résoudre le soucis)
 6. [Git](https://git-scm.com/install/)
+
+Optionnel (si MySQL sur Docker Desktop):
+
+7. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/) (Si erreur consulter sa section pour résoudre le soucis)
 
 ## Extension à installer dans Visual Studio Code
 - Laravel Blade Snippets
@@ -53,8 +62,7 @@ Après avoir installer docker Desktop, assurez-vous de créer un compte sur dock
 7. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
 8. Mettez en pause cette étape et revenez après avoir fini l'étape 3 de Cloner le projet.
 9. Depuis le terminal du projet faites : `cp .env.example .env`.
-10. Ensuite mettre dans le .env le chemin du dossier partagé comme sur l'exemple ci-dessous.
-
+10. Ensuite dans le .env changer cette variable :
   ```
 NFS_SHARE_PATH="\\\\VOTRE-NOM-DE-MACHINE\\NOM-DONNER-AU-DOSSIER-PARTAGÉ\\Users\\"
   ```
@@ -111,14 +119,6 @@ Tester la connexion si c'est ok.
 ## Gestions des containers docker
 Pour gérer les containers utilisé dans le projet vous pouvez vous y rendre soit avec Docker Desktop ou avec Portainer via http://localhost:9000/ (Pensez à créer votre compte).
 
-## Informations supplémentaires
-
-### Base de donnée 
-Vous avez deux possibilité de faire pour utiliser la base de donnée. Soit comme expliqué sur ce readMe, 
-soit en suivant le readMe suivant : https://github.com/ceffDptInfo/Job-Dispatcher-Core ! 
-
-La seule chose qui diffère est l'adresse IP le reste des opérations reste quasi-identique.  
- 
 # Crédits
 Les 4 informaticiens ayant participé au projet :
 - Urfer Leila
