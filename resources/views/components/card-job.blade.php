@@ -28,6 +28,7 @@
             </form>
         </div>
     </div>
+    <divider class="task-divider" />
     <div class="job-tags-list">
         @foreach ($job->tags as $tag)
             @if ($tag)
