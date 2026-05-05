@@ -55,12 +55,30 @@ Après avoir installer docker Desktop, assurez-vous de créer un compte sur dock
 ## NFS windows
 1. Se rendre dans l'explorateur de fichier.
 2. Créer un dossier (Fortement récommandé de le faire à la racine de votre C:).
-3. Clique droit sur le dossier, et aller sur propriétés
-4. Rendez-vous dans l'onglet partage et cliquez sur partage avancé.
+3. Clique droit sur le dossier, et aller sur `propriétés`
+4. Rendez-vous dans l'onglet `partage` et cliquez sur `partage avancé`.
 5. Cocher la case partager son dossier, donner un nom.
 6. Dans autorisations accordé le contrôle total et cliquer sur appliqué.
-7. Se rendre dans le dossier partagé et créer à l'intérieur un dossier users et un dossier slicer_profiles.
-8. Mettez en pause cette étape et revenez après avoir fini l'étape 3 de Cloner le projet.
+7. Se rendre dans le dossier partagé et créer à l'intérieur un dossier `Users` et un dossier `SlicerProfiles`.
+8. Dans le dossier SlicerProfiles il faut ajouter les 6 fichiers de config suivant (créé un fichier texte et renommer le avec .ini à la fin pour chacun) : 
+* PETG-fast.ini
+* PETG-medium.ini
+* PETG-slow.ini
+* PLA-fast.ini
+* PLA-medium.ini
+* PLA-slow.ini
+
+Avec ce contenu test dans chacun des fichiers
+```bash
+layer_height = 0.2
+nozzle_diameter = 0.4
+filament_diameter = 1.75
+perimeters = 3
+fill_density = 20%
+temperature = 200
+```
+
+8. Mettez en pause cette étape et revenez après avoir fini de Cloner le projet.
 9. Depuis le terminal du projet faites : `cp .env.example .env`.
 10. Ensuite dans le .env changer cette variable :
   ```
