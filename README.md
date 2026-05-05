@@ -133,7 +133,7 @@ Si vous avez choisis de lancer le MySQL sur Docker Desktop et pas sur une VM dé
 Créez une nouvelle connexion depuis MySQL Workbench et entrez les informations suivantes :
  
 - Connection Name : printer_db
-- Host : 127.0.0.1
+- Host : 127.0.0.1 // ou ip de la VM qui fait tourner le MySQL
 - Port : 3306
 - User : root
 - Password : dispatcher1234
