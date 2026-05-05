@@ -9,6 +9,8 @@ Pour le MySQL vous avez deux possibilités de faire.
 
 La seule chose qui diffère est l'adresse IP le reste des opérations reste quasi-identique. 
 
+Voici ce qu'il faut avoir d'installé :
+
 1. [VScode](https://code.visualstudio.com/download)
 2. [NodeJS](https://nodejs.org/fr/download) (Version recommandé v24.15.0)
 3. [WampServer](https://www.wampserver.com/) (Version php inclus 8.4.15)
@@ -16,7 +18,7 @@ La seule chose qui diffère est l'adresse IP le reste des opérations reste quas
 5. [MySQL Workbench](https://dev.mysql.com/downloads/file/?id=552199)
 6. [Git](https://git-scm.com/install/)
 
-Optionnel (si MySQL sur Docker Desktop):
+Optionnel (seulement si MySQL sur Docker Desktop):
 
 7. [Docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/) (Si erreur consulter sa section pour résoudre le soucis)
 
@@ -37,9 +39,9 @@ télécharger WampServer : https://wampserver.aviatechno.net/files/install/wamps
 4. Exécuter l'exe et suivez les instructions
 5. Rendez-vous dans le dossier de WampServer puis aller dans bin/php/8.4.15 et copier le chemin d'accès
 6. Coller le chemin d'accès dans le PATH de vos variables d'environnement système (Rechercher sur window : modifier les variable d'environnement).
-7. Fermer les invites de commandes puis rouvrez en une pour valider l'installation avec php -v
+7. Fermer les invites de commandes puis rouvrez en une pour valider l'installation avec `php -v`
  
-## Docker
+## Docker (Seulement si MySQL sur Docker Desktop)
 Après avoir installer docker Desktop, assurez-vous de créer un compte sur docker desktop valide et utilisable, après l'installation de docker l'installateur demande de redémarrer l'ordinateur, faites le. Une fois le redémarrage terminé, cliquer sur le petit icon >_ en bas à droite, puis sur Enable, ensuite lancer la commande wsl --update, puis cliquer sur Try Again et attender que docker démarre.
 
 ### Erreur : For scurity reasons... ---> Suivez ces étapes : 
@@ -49,8 +51,9 @@ Après avoir installer docker Desktop, assurez-vous de créer un compte sur dock
 3. L'installateur devrait maintenant fonctionner.
  
 ## Composer
-1. Fermer le projet s'il est ouvert avant de débuter cette phase.
-2. Suivre les instructions et attendre la fin de l'installation.
+1. Fermer le projet s'il est ouvert avant de lancer le .exe
+2. Lancer le .exe d'installation de composer.
+3. Suivre les instructions et attendre la fin de l'installation.
  
 ## NFS windows
 1. Se rendre dans l'explorateur de fichier.
@@ -78,9 +81,9 @@ fill_density = 20%
 temperature = 200
 ```
 
-8. Mettez en pause cette étape et revenez après avoir fini de Cloner le projet.
-9. Depuis le terminal du projet faites : `cp .env.example .env`.
-10. Ensuite dans le .env changer cette variable :
+9. Mettez en pause cette étape et revenez après avoir fini de Cloner le projet.
+10. Depuis le terminal du projet faites : `cp .env.example .env`.
+11. Ensuite dans le .env changer cette variable :
   ```
 NFS_SHARE_PATH="\\\\VOTRE-NOM-DE-MACHINE\\NOM-DONNER-AU-DOSSIER-PARTAGÉ\\Users\\"
   ```
@@ -94,9 +97,12 @@ Attention ! Le chemin au début doit comporter 4 \ et entre chaque passage de do
     `npm install` et un `npm audit fix`
   4. Executer depuis le cmd `composer install`.
   5. Ensuite faites : `composer global require laravel/installer`.
+  
+Si vous avez choisis de lancer le MySQL sur Docker Desktop et pas sur une VM dédiée faire les étapes 6 et 7. Sinon sauté à l'étape 8.
+
   6. Toujours dans la cmd, faites : `cd docker`
   7. Puis lancer : `docker compose up -d` cela va démarrer en arrière plan les containers contenant la base de donnée.
-  8. Encore dans le projet, mettez vos variables de connexion à la DB dans le fichier **.env**
+  8. Encore dans le projet, mettez vos variables de connexion à la DB dans le fichier **.env** (si pas encore fait créé le avec : `cp .env.example .env`.)
  
   ```
   DB_CONNECTION=mysql
