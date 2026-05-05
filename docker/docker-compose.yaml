@@ -1,5 +1,5 @@
 services : 
-  db : 
+  db : # Service de base de données MySQL
     image :  mysql:8.0
     restart : always
     container_name :  MySQL 
@@ -11,7 +11,7 @@ services :
     volumes : 
       -  db_data:/var/lib/mysql
 
-  phpmyadmin:
+  phpmyadmin: # Service phpMyAdmin pour gérer la base de données MySQL [OPTIONNEL]
     image: phpmyadmin
     restart: always
     ports:
@@ -19,7 +19,7 @@ services :
     environment:
       - PMA_ARBITRARY=1
 
-  portainerServer:
+  portainerServer: # Service Portainer pour la gestion de Docker
     image: portainer/portainer-ce:latest
     container_name: portainer_server
     restart: always
@@ -29,6 +29,6 @@ services :
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
-volumes:
+volumes: # Volumes pour persister les données de MySQL et Portainer
   db_data:
   portainer_data:

@@ -26,15 +26,15 @@ Route::get('/home', [JobController::class, 'index'])
 Route::get('/jobs/create', function () {
     $materials = Material::all(); 
     return view('create-job-v2', compact('materials'));
-})->middleware(['auth'])->name('jobs.create');
+})->middleware(['auth', 'verified'])->name('jobs.create');
 
 Route::get('/materials/{id}/details', [JobController::class, 'getMaterialDetails'])
-    ->middleware(['auth'])
+    ->middleware(['auth', 'verified'])
     ->name('materials.details');
 
 
 Route::post('/jobs/store', [JobController::class, 'store'])
-    ->middleware(['auth'])
+    ->middleware(['auth', 'verified'])
     ->name('jobs.store');
 
 Route::post('/job/create', [JobController::class, 'create']);
@@ -47,7 +47,7 @@ Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.dest
 
 
 Route::get('/jobs/{job}/download-stl', [JobController::class, 'downloadStl'])
-    ->middleware(['auth'])
+    ->middleware(['auth', 'verified'])
     ->name('jobs.downloadStl');
 
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
