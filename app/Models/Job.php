@@ -54,22 +54,6 @@ class Job extends Model
         return $this->belongsTo(SlicerProfile::class, 'id_slicer_profile');
     }
 
-    protected function statusColor(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => match ($this->code_state) {
-                'Finished' => 'green',
-                'Printing' => 'orange',
-                'Sliced' => 'blue',
-                'pending_preview' => 'orange',
-                'Waiting' => 'gray',
-                'Error Printing' => 'red1',
-                'Error Slicing' => 'red2',
-                default => 'gray',
-            },
-        );
-    }
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'tag_job', 'id_job', 'id_tag');
