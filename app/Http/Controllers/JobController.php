@@ -20,7 +20,7 @@ class JobController extends Controller
 
         return response()->json([
             'profiles' => $material->profiles,
-            'colors' => $material->colors,
+            'colors' => $material->colors, 
         ]);
     }
 

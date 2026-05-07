@@ -30,6 +30,8 @@
                 <input type="text" id="projectName" class="input-style" maxlength="35"
                     placeholder= "{{ __('createJobV2.placeholder_name_create_job_v2') }}" />
             </div>
+
+
             <div class="panel">
                 <div class="form-container">
                     <label class="label-text">{{ __('createJobV2.material_select_create_job_v2') }}</label>
@@ -55,6 +57,8 @@
                     </select>
                 </div>
             </div>
+
+
             <div class="panel">
                 <label for="fileInput" class="label-text"> {{ __('createJobV2.text_file_create_job_v2') }}</label>
                 <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
@@ -161,6 +165,9 @@
             resize();
         }
 
+
+
+
         // --- CASCADING SELECT LOGIC ---
         materialSelect.addEventListener('change', function() {
             const materialId = this.value;
@@ -177,8 +184,9 @@
 
             fetch(`/materials/${materialId}/details`)
                 .then(response => response.json())
-                .then(data => {
-                    // Populate Profiles
+                .then(data => { 
+                    
+                    // Profiles
                     slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
                     data.profiles.forEach(p => {
                         slicerProfileSelect.innerHTML +=
@@ -186,7 +194,7 @@
                     });
                     slicerProfileSelect.disabled = false;
 
-                    // Populate Colors
+                    // Colors
                     colorSelect.innerHTML = '<option value="">-- Choisir une couleur --</option>';
                     data.colors.forEach(c => {
                         colorSelect.innerHTML += `<option value="${c.id_color}">${c.name}</option>`;
@@ -198,6 +206,10 @@
                 })
                 .catch(err => setStatus("Erreur de chargement des données."));
         });
+
+
+
+
 
         function resize() {
             const rect = canvas.parentElement.getBoundingClientRect();
