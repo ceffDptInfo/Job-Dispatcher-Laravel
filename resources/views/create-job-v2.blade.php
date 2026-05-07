@@ -98,15 +98,9 @@
 
     <script type="module">
         import * as THREE from 'three';
-        import {
-            OrbitControls
-        } from 'three/addons/controls/OrbitControls.js';
-        import {
-            STLLoader
-        } from 'three/addons/loaders/STLLoader.js';
-        import {
-            STLExporter
-        } from 'three/addons/exporters/STLExporter.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { STLLoader} from 'three/addons/loaders/STLLoader.js';
+        import { STLExporter } from 'three/addons/exporters/STLExporter.js';
 
         // Elements
         const canvas = document.getElementById('viewer');

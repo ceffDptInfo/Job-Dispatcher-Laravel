@@ -132,7 +132,7 @@
         const materialSelect = document.getElementById('materialSelect');
         const slicerProfileSelect = document.getElementById('slicerProfile');
         const colorSelect = document.getElementById('colorSelect');
-        const stateSelect = document.getElementById('stateSelect'); // <-- AJOUT DU SELECT D'ÉTAT
+        const stateSelect = document.getElementById('stateSelect');
         const selectFaceBtn = document.getElementById('selectFaceBtn');
         const applyBtn = document.getElementById('applyBtn');
         const resetBtn = document.getElementById('resetBtn');
