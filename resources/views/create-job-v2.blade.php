@@ -208,9 +208,6 @@
         });
 
 
-
-
-
         function resize() {
             const rect = canvas.parentElement.getBoundingClientRect();
             camera.aspect = rect.width / rect.height;
