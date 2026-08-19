@@ -149,6 +149,83 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        Job::factory()->createMany(
+            [
+                [
+                    'name'              => 'Benchy_Stress_Test',
+                    'path'              => '/uploads/models/benchy/',
+                    'code_state'        => 'w',
+                    'stl_filename'      => '3dbenchy_v2.stl',
+                    'gcode_filename'    => null,
+                    'filament'          => null,
+                    'duration'          => null,
+                    'create_at'         => Carbon::parse('2026-03-01 10:00:00'),
+                    'slice_at'          => null,
+                    'print_at'          => null,
+                    'finish_at'         => null,
+                    'id_printer'        => 1,
+
+                    'id_slicer_profile' => 1,
+                    'id_color'          => 3,
+                    'id_user'           => 1,
+                ],
+                [
+                    'name'              => 'Moving_flower',
+                    'path'              => '/uploads/models/flower/',
+                    'code_state'        => 's',
+                    'stl_filename'      => 'flower_full.stl',
+                    'gcode_filename'    => 'flower_04noz_pla.gcode',
+                    'filament'          => 60.7,
+                    'duration'          => 5000,
+                    'create_at'         => Carbon::parse('2026-03-01 11:00:00'),
+                    'slice_at'          => Carbon::parse('2026-03-01 12:00:00'),
+                    'print_at'          => null,
+                    'finish_at'         => null,
+                    'id_printer'        => 1,
+
+                    'id_slicer_profile' => 2,
+                    'id_color'          => 2,
+                    'id_user'           => 1,
+                ],
+                [
+                    'name'              => 'Stress_toy',
+                    'path'              => '/uploads/models/stressToy/',
+                    'code_state'        => 'p',
+                    'stl_filename'      => 'stressToy_full.stl',
+                    'gcode_filename'    => 'stressToy_04noz_pla.gcode',
+                    'filament'          => 70.7,
+                    'duration'          => 7000,
+                    'create_at'         => Carbon::parse('2026-03-01 13:00:00'),
+                    'slice_at'          => Carbon::parse('2026-03-01 14:00:00'),
+                    'print_at'          => Carbon::parse('2026-03-01 15:00:00'),
+                    'finish_at'         => null,
+                    'id_printer'        => 1,
+
+                    'id_slicer_profile' => 2,
+                    'id_color'          => 2,
+                    'id_user'           => 1,
+                ],
+                [
+                    'name'              => 'Articulated_Dragon',
+                    'path'              => '/uploads/models/dragon/',
+                    'code_state'        => 'f',
+                    'stl_filename'      => 'dragon_full.stl',
+                    'gcode_filename'    => 'dragon_04noz_pla.gcode',
+                    'filament'          => 150.2,
+                    'duration'          => 90000,
+                    'create_at'         => Carbon::parse('2026-03-01 16:00:00'),
+                    'slice_at'          => Carbon::parse('2026-03-01 17:00:00'),
+                    'print_at'          => Carbon::parse('2026-03-01 18:00:00'),
+                    'finish_at'         => Carbon::parse('2026-03-01 19:00:00'),
+                    'id_printer'        => 1,
+
+                    'id_slicer_profile' => 2,
+                    'id_color'          => 3,
+                    'id_user'           => 1,
+                ],
+            ]
+        );
+
         Tag::factory()->createMany(
             [
                 [
@@ -157,11 +234,29 @@ class DatabaseSeeder extends Seeder
                 ],
                 [
                     'name'  => 'dragon',
-                    'id_user'  => '2',
+                    'id_user'  => '1',
                 ],
                 [
                     'name'  => 'prototype',
-                    'id_user'  => '2',
+                    'id_user'  => '1',
+                ],
+            ]
+        );
+        TagJob::factory()->createMany(
+            [
+                [
+                    'id_tag'  => '1',
+                    'id_job'  => '1',
+                ],
+
+                [
+                    'id_tag'  => '2',
+                    'id_job'  => '2',
+                ],
+
+                [
+                    'id_tag'  => '3',
+                    'id_job'  => '3',
                 ],
             ]
         );
