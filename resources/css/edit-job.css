@@ -10,18 +10,15 @@
             background: #2b2e38;
             color: #f9fafb;
             height: 100vh;
-            /* On change le grid en flex pour gérer le header */
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            /* Évite le scroll sur toute la page */
         }
 
         .app-container {
             display: grid;
             grid-template-columns: 320px 1fr;
             flex: 1;
-            /* Prend tout l'espace restant sous le header */
             overflow: hidden;
         }
 
@@ -35,7 +32,6 @@
         main {
             position: relative;
             background: #1a1c23;
-            /* Couleur de fond pour le viewer */
             overflow: hidden;
         }
 
@@ -136,8 +132,7 @@
             padding: 8px 12px;
             text-align: center;
             color: #94a3b8;
-            margin-top: 10px;
-            font-size: 0.85rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
             cursor: pointer;
             background: #0f172a;
@@ -185,7 +180,6 @@
         }
 
 
-        /* Style spécifique pour le panel d'aide */
         .help-section {
             cursor: pointer;
             transition: background 0.5s ease;
@@ -216,8 +210,6 @@
             overflow: hidden;
             transition: max-height 0.8s ease, opacity 0.6s ease, margin-top 0.6s ease;
         }
-
-        /* --- ÉTAT SURVOLÉ --- */
 
         .help-section:hover .help-content {
             max-height: 500px;

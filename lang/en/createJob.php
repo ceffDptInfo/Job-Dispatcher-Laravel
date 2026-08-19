@@ -2,7 +2,8 @@
 
 return [
 
-    'title' => 'JobDispatcher - Create Job',
+    'title' => 'Create Job',
+    'title_edit' => 'Edit Job',
     'name' => 'Job Name',
     'placeholder_name' => 'Example: My project',
 
@@ -13,7 +14,7 @@ return [
     'color_select' => 'Color',
     'select_color_placeholder' => '-- Select a color --',
 
-    'text_file' => 'STL File',
+    'text_dropzone_edit' => 'Current STL : ',
     'text_dropzone_file' => 'Drag and drop an STL here',
     'text_dropzone_file_suffix' => '(or click to change file)',
 
@@ -23,6 +24,7 @@ return [
     'btn_reset' => 'Reset',
 
     'btn_print' => 'Start Printing',
+    'btn_modify' => 'Modify',
     'btn_back' => 'Cancel',
 
     'title_help' => 'Help',
@@ -39,4 +41,11 @@ return [
     'badge_error_text2' => 'Error while loading the STL file.',
     'badge_error_text3' => 'Error while sending the job.',
 
+    'state' => 'Job state',
+    'state_waiting' => 'Waiting',
+    'state_sliced' => 'Sliced',
+    'state_printing' => 'Printing',
+    'state_finished' => 'Finished',
+    'state_error_slicing' => 'Error slicing',
+    'state_error_printing' => 'Error printing',
 ];

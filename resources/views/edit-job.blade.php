@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobDispatcher - Modifier le Job</title>
+    <title>{{ __('createJob.title_edit') }} </title>
 
     <script type="importmap">
     {
@@ -21,25 +21,22 @@
 <body>
     <div class="app-container">
         <aside>
-            <h1>{{ __('createJob.title') }} (Edition)</h1>
-
-            <div class="panel help-section">
-                <label class="label-text help-header">
-                    {{ __('createJob.title_help') }}
-                    <span class="arrow-icon">▼</span>
-                </label>
-
-                <div class="help-content">
-                    @foreach (__('createJob.text_help') as $step)
-                        <div class="hint"> {{ $step }} </div>
-                    @endforeach
-                </div>
-            </div>
+            <h1> {{ __('createJob.title_edit') }} </h1>
 
             <div class="panel">
                 <label class="label-text">{{ __('createJob.name') }}</label>
                 <input type="text" id="projectName" class="input-style" maxlength="35" value="{{ $job->name }}"
                     placeholder= "{{ __('createJob.placeholder_name') }}" />
+            </div>
+
+            <div class="panel">
+                <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
+                <div class="dropzone" id="dropzone">
+                    {{ __('createJob.text_dropzone_edit') }}<strong
+                        id="currentFileName">{{ $job->stl_filename }}</strong><br>
+                    <span
+                        style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJob.text_dropzone_file_suffix') }}</span>
+                </div>
             </div>
 
             <div class="panel">
@@ -59,39 +56,35 @@
                     <label class="label-text">{{ __('createJob.profil_select') }}</label>
                     <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;"
                         disabled>
-                        <option value="">--
-                            {{ __('createJob.select_slicer_profile_placeholder') }} --</option>
+                        <option value="">
+                            {{ __('createJob.select_slicer_profile_placeholder') }}</option>
                     </select>
 
                     <label class="label-text">{{ __('createJob.color_select') }}</label>
                     <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">-- {{ __('createJob.select_color_placeholder') }} --
+                        <option value="">{{ __('createJob.select_color_placeholder') }}
                         </option>
                     </select>
 
-                    <label class="label-text mt-4">Statut du Job :</label>
+                    <label class="label-text mt-4">{{ __('createJob.state') }}</label>
                     <select id="stateSelect" name="code_state" class="input-style" style="background: white;">
-                        <option value="w" {{ $job->code_state == 'w' ? 'selected' : '' }}>Waiting (En attente)
+                        <option value="w" {{ $job->code_state == 'w' ? 'selected' : '' }}>
+                            {{ __('createJob.state_waiting') }}
                         </option>
-                        <option value="s" {{ $job->code_state == 's' ? 'selected' : '' }}>Sliced (Découpé)
+                        <option value="s" {{ $job->code_state == 's' ? 'selected' : '' }}>
+                            {{ __('createJob.state_sliced') }}
                         </option>
-                        <option value="p" {{ $job->code_state == 'p' ? 'selected' : '' }}>Printing (En impression)
+                        <option value="p" {{ $job->code_state == 'p' ? 'selected' : '' }}>
+                            {{ __('createJob.state_printing') }}
                         </option>
-                        <option value="f" {{ $job->code_state == 'f' ? 'selected' : '' }}>Finished (Terminé)
+                        <option value="f" {{ $job->code_state == 'f' ? 'selected' : '' }}>
+                            {{ __('createJob.state_finished') }}
                         </option>
-                        <option value="ep" {{ $job->code_state == 'ep' ? 'selected' : '' }}>Error Printing</option>
-                        <option value="es" {{ $job->code_state == 'es' ? 'selected' : '' }}>Error Slicing</option>
+                        <option value="ep" {{ $job->code_state == 'ep' ? 'selected' : '' }}>
+                            {{ __('createJob.state_error_slicing') }}</option>
+                        <option value="es" {{ $job->code_state == 'es' ? 'selected' : '' }}>
+                            {{ __('createJob.state_error_printing') }}</option>
                     </select>
-                </div>
-            </div>
-
-            <div class="panel">
-                <label for="fileInput" class="label-text"> {{ __('createJob.text_file') }}</label>
-                <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
-                <div class="dropzone" id="dropzone">
-                    Fichier actuel : <strong id="currentFileName">{{ $job->stl_filename }}</strong><br>
-                    <span style="font-size: 0.7rem; opacity: 0.7;">Glissez-déposez un STL ou cliquez pour changer de
-                        fichier.</span>
                 </div>
             </div>
 
@@ -105,20 +98,30 @@
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>
-                    Mettre à jour le Job
+                    {{ __('createJob.btn_modify') }}
                 </button>
                 <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'">
                     {{ __('createJob.btn_back') }}
                 </button>
             </div>
-            <div class="small">
-                {{ __('createJob.notice_z_position') }}
+
+            <div class="panel help-section">
+                <label class="label-text help-header">
+                    {{ __('createJob.title_help') }}
+                    <span class="arrow-icon">▼</span>
+                </label>
+
+                <div class="help-content">
+                    @foreach (__('createJob.text_help') as $step)
+                        <div class="hint"> {{ $step }} </div>
+                    @endforeach
+                </div>
             </div>
         </aside>
 
         <main>
             <canvas id="viewer"></canvas>
-            <div id="status" class="badge">Chargement du modèle...</div>
+            <div id="status" class="badge">{{ __('createJob.badge_text_default') }}</div>
         </main>
     </div>
 
@@ -212,9 +215,8 @@
                 geometry.computeVertexNormals();
                 originalGeometry = geometry.clone();
                 createMesh(geometry);
-                setStatus("Modèle du Job chargé.");
             }, undefined, (err) => {
-                setStatus("Erreur: Impossible de lire le fichier distant.");
+                setStatus("{{ __('createJob.badge_error_text2') }}");
             });
         }
 
@@ -222,8 +224,9 @@
             if (!materialId) {
                 slicerProfileSelect.disabled = true;
                 colorSelect.disabled = true;
-                slicerProfileSelect.innerHTML = '<option value="">Sélectionnez d\'abord un matériau</option>';
-                colorSelect.innerHTML = '<option value="">Sélectionnez d\'abord un matériau</option>';
+                slicerProfileSelect.innerHTML =
+                    '<option value="">{{ __('createJob.select_slicer_profile_placeholder') }}</option>';
+                colorSelect.innerHTML = '<option value="">{{ __('createJob.select_color_placeholder') }}</option>';
                 checkFormValidity();
                 return;
             }
@@ -231,7 +234,8 @@
             fetch(`/materials/${materialId}/details`)
                 .then(response => response.json())
                 .then(data => {
-                    slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
+                    slicerProfileSelect.innerHTML =
+                        '<option value="">{{ __('createJob.select_slicer_profile_placeholder') }}</option>';
                     data.profiles.forEach(p => {
                         const sel = p.id_slicer_profile == selectedProfile ? 'selected' : '';
                         slicerProfileSelect.innerHTML +=
@@ -239,7 +243,7 @@
                     });
                     slicerProfileSelect.disabled = false;
 
-                    colorSelect.innerHTML = '<option value="">-- Choisir une couleur --</option>';
+                    colorSelect.innerHTML = '<option value="">{{ __('createJob.select_color_placeholder') }}</option>';
                     data.colors.forEach(c => {
                         const sel = c.id_color == selectedColor ? 'selected' : '';
                         colorSelect.innerHTML += `<option value="${c.id_color}" ${sel}>${c.name}</option>`;
@@ -307,7 +311,6 @@
                     originalGeometry = geometry.clone();
 
                     createMesh(geometry);
-                    setStatus("Nouveau fichier STL chargé.");
                 } catch (error) {
                     setStatus("{{ __('createJob.badge_error_text2') }}");
                 }
@@ -438,7 +441,6 @@
             const stateValue = stateSelect.value;
             const csrfToken = document.querySelector('input[name="_token"]').value;
 
-            setStatus("Mise à jour en cours...");
             submitJobBtn.disabled = true;
 
             bakeTransformIntoGeometry(mesh);
@@ -476,12 +478,12 @@
                 if (response.ok && res.success) {
                     window.location.href = res.redirect;
                 } else {
-                    alert("Erreur lors de la mise à jour du job : " + (res.error || ""));
+                    alert("{{ __('createJob.badge_error_text3') }}");
                     submitJobBtn.disabled = false;
                 }
             } catch (e) {
                 console.error(e);
-                setStatus("Erreur réseau.");
+                setStatus("{{ __('createJob.badge_error_text3') }}");
                 submitJobBtn.disabled = false;
             }
         }

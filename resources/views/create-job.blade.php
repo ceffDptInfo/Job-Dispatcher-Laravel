@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobDispatcher - Nouveau Job</title>
+    <title>{{ __('createJob.title') }} </title>
 
     <script type="importmap">
     {
@@ -42,7 +42,7 @@
                 <div class="form-container">
                     <label class="label-text">{{ __('createJob.material_select') }}</label>
                     <select id="materialSelect" name="material_id" class="input-style" style="background: white;">
-                        <option value="">-- {{ __('createJob.select_material_placeholder') }} --
+                        <option value=""> {{ __('createJob.select_material_placeholder') }}
                         </option>
                         @foreach ($materials as $material)
                             <option value="{{ $material->id_material }}">{{ $material->name }}</option>
@@ -52,13 +52,13 @@
                     <label class="label-text">{{ __('createJob.profil_select') }}</label>
                     <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;"
                         disabled>
-                        <option value="">--
-                            {{ __('createJob.select_slicer_profile_placeholder') }} --</option>
+                        <option value="">
+                            {{ __('createJob.select_slicer_profile_placeholder') }} </option>
                     </select>
 
                     <label class="label-text">{{ __('createJob.color_select') }}</label>
                     <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">-- {{ __('createJob.select_color_placeholder') }} --
+                        <option value=""> {{ __('createJob.select_color_placeholder') }}
                         </option>
                     </select>
                 </div>
@@ -421,7 +421,7 @@
                 if (res.success) {
                     window.location.href = res.redirect;
                 } else {
-                    alert("Erreur lors de la création du job.");
+                    alert("{{ __('createJob.badge_error_text3') }}");
                     submitJobBtn.disabled = false;
                 }
             } catch (e) {
