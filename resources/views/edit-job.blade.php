@@ -5,6 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JobDispatcher - Modifier le Job</title>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+    }
+    </script>
+
     @vite(['resources/css/edit-job.css', 'resources/js/app.js'])
 </head>
 
@@ -28,8 +38,7 @@
 
             <div class="panel">
                 <label class="label-text">{{ __('createJobV2.name_create_job_v2') }}</label>
-                <input type="text" id="projectName" class="input-style" maxlength="35"
-                    value="{{ $job->name }}"
+                <input type="text" id="projectName" class="input-style" maxlength="35" value="{{ $job->name }}"
                     placeholder= "{{ __('createJobV2.placeholder_name_create_job_v2') }}" />
             </div>
 
@@ -37,30 +46,39 @@
                 <div class="form-container">
                     <label class="label-text">{{ __('createJobV2.material_select_create_job_v2') }}</label>
                     <select id="materialSelect" name="material_id" class="input-style" style="background: white;">
-                        <option value="">-- {{ __('createJobV2.select_material_placeholder_create_job_v2') }} --</option>
+                        <option value="">-- {{ __('createJobV2.select_material_placeholder_create_job_v2') }} --
+                        </option>
                         @foreach ($materials as $material)
-                            <option value="{{ $material->id_material }}" {{ $currentMaterialId == $material->id_material ? 'selected' : '' }}>
+                            <option value="{{ $material->id_material }}"
+                                {{ $currentMaterialId == $material->id_material ? 'selected' : '' }}>
                                 {{ $material->name }}
                             </option>
                         @endforeach
                     </select>
 
                     <label class="label-text">{{ __('createJobV2.profil_select_create_job_v2') }}</label>
-                    <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;" disabled>
-                        <option value="">-- {{ __('createJobV2.select_slicer_profile_placeholder_create_job_v2') }} --</option>
+                    <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;"
+                        disabled>
+                        <option value="">--
+                            {{ __('createJobV2.select_slicer_profile_placeholder_create_job_v2') }} --</option>
                     </select>
 
                     <label class="label-text">{{ __('createJobV2.color_select_create_job_v2') }}</label>
                     <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">-- {{ __('createJobV2.select_color_placeholder_create_job_v2') }} --</option>
+                        <option value="">-- {{ __('createJobV2.select_color_placeholder_create_job_v2') }} --
+                        </option>
                     </select>
 
                     <label class="label-text mt-4">Statut du Job :</label>
                     <select id="stateSelect" name="code_state" class="input-style" style="background: white;">
-                        <option value="w" {{ $job->code_state == 'w' ? 'selected' : '' }}>Waiting (En attente)</option>
-                        <option value="s" {{ $job->code_state == 's' ? 'selected' : '' }}>Sliced (Découpé)</option>
-                        <option value="p" {{ $job->code_state == 'p' ? 'selected' : '' }}>Printing (En impression)</option>
-                        <option value="f" {{ $job->code_state == 'f' ? 'selected' : '' }}>Finished (Terminé)</option>
+                        <option value="w" {{ $job->code_state == 'w' ? 'selected' : '' }}>Waiting (En attente)
+                        </option>
+                        <option value="s" {{ $job->code_state == 's' ? 'selected' : '' }}>Sliced (Découpé)
+                        </option>
+                        <option value="p" {{ $job->code_state == 'p' ? 'selected' : '' }}>Printing (En impression)
+                        </option>
+                        <option value="f" {{ $job->code_state == 'f' ? 'selected' : '' }}>Finished (Terminé)
+                        </option>
                         <option value="ep" {{ $job->code_state == 'ep' ? 'selected' : '' }}>Error Printing</option>
                         <option value="es" {{ $job->code_state == 'es' ? 'selected' : '' }}>Error Slicing</option>
                     </select>
@@ -72,7 +90,8 @@
                 <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
                 <div class="dropzone" id="dropzone">
                     Fichier actuel : <strong id="currentFileName">{{ $job->stl_filename }}</strong><br>
-                    <span style="font-size: 0.7rem; opacity: 0.7;">Glissez-déposez un STL ou cliquez pour changer de fichier.</span>
+                    <span style="font-size: 0.7rem; opacity: 0.7;">Glissez-déposez un STL ou cliquez pour changer de
+                        fichier.</span>
                 </div>
             </div>
 
@@ -80,16 +99,17 @@
                 <label class="label-text">{{ __('createJobV2.title_3d_action_create_job_v2') }}</label>
                 <button id="selectFaceBtn" disabled>{{ __('createJobV2.btn_selected_face_create_job_v2') }}</button>
                 <button id="applyBtn" disabled>{{ __('createJobV2.btn_apply_create_job_v2') }}</button>
-                <button id="resetBtn" class="secondary" disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
+                <button id="resetBtn" class="secondary"
+                    disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
             </div>
 
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>
-                    Mettre à jour le Job 
+                    Mettre à jour le Job
                 </button>
                 <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'">
-                    {{ __('createJobV2.btn_back_create_job_v2') }} 
+                    {{ __('createJobV2.btn_back_create_job_v2') }}
                 </button>
             </div>
             <div class="small">
@@ -103,20 +123,17 @@
         </main>
     </div>
 
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
-        }
-    }
-    </script>
-
     <script type="module">
         import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-        import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+        import {
+            OrbitControls
+        } from 'three/addons/controls/OrbitControls.js';
+        import {
+            STLLoader
+        } from 'three/addons/loaders/STLLoader.js';
+        import {
+            STLExporter
+        } from 'three/addons/exporters/STLExporter.js';
 
         // Params Edit
         const JOB_ID = "{{ $job->id_job }}";
@@ -160,7 +177,10 @@
             camera.up.set(0, 0, 1);
             camera.position.set(120, -120, 120);
 
-            renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+            renderer = new THREE.WebGLRenderer({
+                canvas,
+                antialias: true
+            });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
             controls = new OrbitControls(camera, renderer.domElement);
@@ -215,7 +235,8 @@
                     slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
                     data.profiles.forEach(p => {
                         const sel = p.id_slicer_profile == selectedProfile ? 'selected' : '';
-                        slicerProfileSelect.innerHTML += `<option value="${p.id_slicer_profile}" ${sel}>${p.name}</option>`;
+                        slicerProfileSelect.innerHTML +=
+                            `<option value="${p.id_slicer_profile}" ${sel}>${p.name}</option>`;
                     });
                     slicerProfileSelect.disabled = false;
 
@@ -285,7 +306,7 @@
 
                     clearCurrentMesh();
                     originalGeometry = geometry.clone();
-                    
+
                     createMesh(geometry);
                     setStatus("Nouveau fichier STL chargé.");
                 } catch (error) {
@@ -428,26 +449,30 @@
             centerAndPlaceOnPlate(mesh);
 
             const exporter = new STLExporter();
-            const stlData = exporter.parse(mesh, { binary: true });
-            const orientedFile = new Blob([stlData], { type: 'application/octet-stream' });
+            const stlData = exporter.parse(mesh, {
+                binary: true
+            });
+            const orientedFile = new Blob([stlData], {
+                type: 'application/octet-stream'
+            });
 
             const formData = new FormData();
             formData.append('_token', csrfToken);
-            formData.append('_method', 'PUT'); 
+            formData.append('_method', 'PUT');
             formData.append('name', name);
             formData.append('id_slicer_profile', profileId);
             formData.append('id_color', colorId);
             formData.append('code_state', stateValue);
-            
+
             formData.append('stl_filename', orientedFile, name + ".stl");
 
             try {
                 const response = await fetch(`/jobs/${JOB_ID}`, {
-                    method: 'POST', 
+                    method: 'POST',
                     body: formData,
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json' 
+                        'Accept': 'application/json'
                     }
                 });
 
@@ -488,4 +513,5 @@
         submitJobBtn.addEventListener('click', handleFinalSubmit);
     </script>
 </body>
+
 </html>

@@ -5,6 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JobDispatcher - Nouveau Job</title>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+    }
+    </script>
+
     @vite(['resources/css/create-job-v2.css', 'resources/js/app.js'])
 </head>
 
@@ -91,20 +101,18 @@
             <div id="status" class="badge">{{ __('createJobV2.badge_text1_create_job_v2') }}</div>
         </main>
     </div>
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
-        }
-    }
-    </script>
 
     <script type="module">
         import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { STLLoader} from 'three/addons/loaders/STLLoader.js';
-        import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+        import {
+            OrbitControls
+        } from 'three/addons/controls/OrbitControls.js';
+        import {
+            STLLoader
+        } from 'three/addons/loaders/STLLoader.js';
+        import {
+            STLExporter
+        } from 'three/addons/exporters/STLExporter.js';
 
         // Elements
         const canvas = document.getElementById('viewer');
@@ -184,8 +192,8 @@
 
             fetch(`/materials/${materialId}/details`)
                 .then(response => response.json())
-                .then(data => { 
-                    
+                .then(data => {
+
                     // Profiles
                     slicerProfileSelect.innerHTML = '<option value="">-- Choisir un profil --</option>';
                     data.profiles.forEach(p => {
