@@ -133,11 +133,11 @@
         .dropzone {
             border: 2px dashed #475569;
             border-radius: 12px;
-            padding: 8px 12px;
+            padding: 6px 8px;
             text-align: center;
             color: #94a3b8;
-            margin-top: 10px;
-            font-size: 0.85rem;
+            margin-top: 0px;
+            font-size: 1rem;
             transition: all 0.2s ease;
             cursor: pointer;
             background: #0f172a;
@@ -188,7 +188,7 @@
         /* Style spécifique pour le panel d'aide */
         .help-section {
             cursor: pointer;
-            transition: background 0.5s ease;
+            transition: background 0s ease;
             overflow: hidden;
         }
 

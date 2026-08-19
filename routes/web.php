@@ -24,8 +24,8 @@ Route::get('/home', [JobController::class, 'index'])
     ->name('home');
 
 Route::get('/jobs/create', function () {
-    $materials = Material::all(); 
-    return view('create-job-v2', compact('materials'));
+    $materials = Material::all();
+    return view('create-job', compact('materials'));
 })->middleware(['auth', 'verified'])->name('jobs.create');
 
 Route::get('/materials/{id}/details', [JobController::class, 'getMaterialDetails'])

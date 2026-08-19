@@ -15,90 +15,84 @@
     }
     </script>
 
-    @vite(['resources/css/create-job-v2.css', 'resources/js/app.js'])
+    @vite(['resources/css/create-job.css', 'resources/js/app.js'])
 </head>
 
 <body>
     <div class="app-container">
         <aside>
-            <h1> {{ __('createJobV2.title_create_job_v2') }} </h1>
+            <h1> {{ __('createJob.title') }} </h1>
 
-            <div class="panel help-section">
-                <label class="label-text help-header">
-                    {{ __('createJobV2.title_help_create_job_v2') }}
-                    <span class="arrow-icon">▼</span>
-                </label>
+            <div class="panel">
+                <label class="label-text">{{ __('createJob.name') }}</label>
+                <input type="text" id="projectName" class="input-style" maxlength="35"
+                    placeholder= "{{ __('createJob.placeholder_name') }}" />
+            </div>
 
-                <div class="help-content">
-                    @foreach (__('createJobV2.text_help_create_job_v2') as $step)
-                        <div class="hint"> {{ $step }} </div>
-                    @endforeach
+            <div class="panel">
+                <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
+                <div class="dropzone" id="dropzone">
+                    {{ __('createJob.text_dropzone_file') }} <br>
+                    <span
+                        style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJob.text_dropzone_file_suffix') }}</span>
                 </div>
             </div>
-            <div class="panel">
-                <label class="label-text">{{ __('createJobV2.name_create_job_v2') }}</label>
-                <input type="text" id="projectName" class="input-style" maxlength="35"
-                    placeholder= "{{ __('createJobV2.placeholder_name_create_job_v2') }}" />
-            </div>
-
 
             <div class="panel">
                 <div class="form-container">
-                    <label class="label-text">{{ __('createJobV2.material_select_create_job_v2') }}</label>
+                    <label class="label-text">{{ __('createJob.material_select') }}</label>
                     <select id="materialSelect" name="material_id" class="input-style" style="background: white;">
-                        <option value="">-- {{ __('createJobV2.select_material_placeholder_create_job_v2') }} --
+                        <option value="">-- {{ __('createJob.select_material_placeholder') }} --
                         </option>
                         @foreach ($materials as $material)
                             <option value="{{ $material->id_material }}">{{ $material->name }}</option>
                         @endforeach
                     </select>
 
-                    <label class="label-text">{{ __('createJobV2.profil_select_create_job_v2') }}</label>
+                    <label class="label-text">{{ __('createJob.profil_select') }}</label>
                     <select id="slicerProfile" name="slicer_profile_id" class="input-style" style="background: white;"
                         disabled>
                         <option value="">--
-                            {{ __('createJobV2.select_slicer_profile_placeholder_create_job_v2') }} --</option>
+                            {{ __('createJob.select_slicer_profile_placeholder') }} --</option>
                     </select>
 
-                    <label class="label-text">{{ __('createJobV2.color_select_create_job_v2') }}</label>
+                    <label class="label-text">{{ __('createJob.color_select') }}</label>
                     <select id="colorSelect" name="color_id" class="input-style" style="background: white;" disabled>
-                        <option value="">-- {{ __('createJobV2.select_color_placeholder_create_job_v2') }} --
+                        <option value="">-- {{ __('createJob.select_color_placeholder') }} --
                         </option>
                     </select>
                 </div>
             </div>
 
-
             <div class="panel">
-                <label for="fileInput" class="label-text"> {{ __('createJobV2.text_file_create_job_v2') }}</label>
-                <input id="fileInput" name="stl_file" type="file" accept=".stl" style="display: none;" />
-                <div class="dropzone" id="dropzone">
-                    {{ __('createJobV2.text_dropzone_file_create_job_v2') }} <br>
-                    <span
-                        style="font-size: 0.7rem; opacity: 0.7;">{{ __('createJobV2.text_dropzone_file_create_job_v2_suffix') }}</span>
-                </div>
-            </div>
-            <div class="panel">
-                <label class="label-text">{{ __('createJobV2.title_3d_action_create_job_v2') }}</label>
-                <button id="selectFaceBtn" disabled>{{ __('createJobV2.btn_selected_face_create_job_v2') }}</button>
-                <button id="applyBtn" disabled>{{ __('createJobV2.btn_apply_create_job_v2') }}</button>
-                <button id="resetBtn" class="secondary"
-                    disabled>{{ __('createJobV2.btn_reset_create_job_v2') }}</button>
+                <label class="label-text">{{ __('createJob.title_3d_action') }}</label>
+                <button id="selectFaceBtn" disabled>{{ __('createJob.btn_selected_face') }}</button>
+                <button id="applyBtn" disabled>{{ __('createJob.btn_apply') }}</button>
+                <button id="resetBtn" class="secondary" disabled>{{ __('createJob.btn_reset') }}</button>
             </div>
             <div class="panel">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <button id="submitJobBtn" style="background: #10b981; opacity: 0.5;" disabled>
-                    {{ __('createJobV2.btn_print_create_job_v2') }} </button>
+                    {{ __('createJob.btn_print') }} </button>
                 <button id="backBtn" class="secondary" onclick="window.location.href='{{ route('home') }}'">
-                    {{ __('createJobV2.btn_back_create_job_v2') }} </button>
+                    {{ __('createJob.btn_back') }} </button>
             </div>
-            <div class="small">
-                {{ __('createJobV2.notice_z_position_create_job_v2') }}
+            <div class="panel help-section">
+                <label class="label-text help-header">
+                    {{ __('createJob.title_help') }}
+                    <span class="arrow-icon">▼</span>
+                </label>
+
+                <div class="help-content">
+                    @foreach (__('createJob.text_help') as $step)
+                        <div class="hint"> {{ $step }} </div>
+                    @endforeach
+                </div>
             </div>
         </aside>
         <main>
             <canvas id="viewer"></canvas>
-            <div id="status" class="badge">{{ __('createJobV2.badge_text1_create_job_v2') }}</div>
+            <div id="status" class="badge">{{ __('createJob.badge_text_default') }}</div>
         </main>
     </div>
 
@@ -253,7 +247,7 @@
         // --- STL LOGIC ---
         function loadSTLFile(file) {
             if (!file || !file.name.toLowerCase().endsWith('.stl')) {
-                setStatus("{{ __('createJobV2.badge_error_text1_create_job_v2') }}");
+                setStatus("{{ __('createJob.badge_error_text1') }}");
                 return;
             }
 
@@ -284,10 +278,9 @@
                     resetBtn.disabled = false;
                     applyBtn.disabled = true;
 
-                    setStatus("{{ __('createJobV2.badge_text2_create_job_v2') }}");
                     checkFormValidity();
                 } catch (error) {
-                    setStatus("{{ __('createJobV2.badge_error_text2_create_job_v2') }}");
+                    setStatus("{{ __('createJob.badge_error_text2') }}");
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -327,7 +320,6 @@
             showSelectedFaceMarker(hits[0].point, selectedNormalWorld);
             isSelectingFace = false;
             applyBtn.disabled = false;
-            setStatus("{{ __('createJobV2.badge_text3_create_job_v2') }}");
         }
 
         function showSelectedFaceMarker(point, normal) {
@@ -352,7 +344,6 @@
             }
             selectedNormalWorld = null;
             applyBtn.disabled = true;
-            setStatus("{{ __('createJobV2.badge_text4_create_job_v2') }}");
         }
 
         function bakeTransformIntoGeometry(object) {
@@ -374,7 +365,6 @@
             mesh.geometry.dispose();
             mesh.geometry = originalGeometry.clone();
             centerAndPlaceOnPlate(mesh);
-            setStatus("{{ __('createJobV2.badge_text5_create_job_v2') }}");
         }
 
         function clearCurrentMesh() {
@@ -398,7 +388,6 @@
             const colorId = colorSelect.value;
             const csrfToken = document.querySelector('input[name="_token"]').value;
 
-            setStatus("{{ __('createJobV2.badge_text6_create_job_v2') }}");
             submitJobBtn.disabled = true;
 
             bakeTransformIntoGeometry(mesh);
@@ -436,7 +425,7 @@
                     submitJobBtn.disabled = false;
                 }
             } catch (e) {
-                setStatus("{{ __('createJobV2.badge_error_text3_create_job_v2') }}");
+                setStatus("{{ __('createJob.badge_error_text3') }}");
                 submitJobBtn.disabled = false;
             }
         }
@@ -456,7 +445,6 @@
 
         selectFaceBtn.addEventListener('click', () => {
             isSelectingFace = true;
-            setStatus("{{ __('createJobV2.badge_text7_create_job_v2') }}");
         });
 
         applyBtn.addEventListener('click', orientSelectedFaceToPlate);
